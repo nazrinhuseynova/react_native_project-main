@@ -1,0 +1,1 @@
+export { ParentalControlsScreen as default } from '@/features/parental';

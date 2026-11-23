@@ -1,0 +1,1 @@
+export { BlockedTitlesScreen as default } from '@/features/parental';

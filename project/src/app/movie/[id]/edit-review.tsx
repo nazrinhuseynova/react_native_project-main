@@ -1,0 +1,1 @@
+export { EditReviewScreen as default } from '@/features/reviews';

@@ -1,0 +1,15 @@
+export const storageKeys = {
+  onboardingSeen: 'onboarding.seen',
+  onboardingGenres: 'onboarding.genres',
+  settings: 'settings.app',
+  language: 'settings.language',
+  recentSearches: 'search.recent',
+  activeProfileId: 'profiles.active',
+  queryCache: 'query.cache',
+  deviceId: 'device.id',
+  biometricRefreshToken: 'auth.biometric.token',
+  loginAttempts: 'auth.login.attempts',
+  progressBuffer: 'history.progressBuffer',
+  profilePin: (profileId: string) => `profiles.pin.${profileId}`,
+  profilePinAttempts: (profileId: string) => `profiles.pinAttempts.${profileId}`,
+} as const;

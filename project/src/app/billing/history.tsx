@@ -1,0 +1,1 @@
+export { BillingHistoryScreen as default } from '@/features/payments';

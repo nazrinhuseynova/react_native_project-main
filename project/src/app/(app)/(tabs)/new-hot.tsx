@@ -1,0 +1,1 @@
+export { NewAndHotScreen as default } from '@/features/newhot';

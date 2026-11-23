@@ -1,0 +1,177 @@
+{
+  "onboarding": {
+    "getStarted": "Başla",
+    "steps": {
+      "watch": { "title": "İstədiyin yerdə izlə", "body": "Film və serialları telefon, planşet və ya televizorda izlə." },
+      "download": { "title": "Yüklə və get", "body": "Sevimlilərini yadda saxla və internetsiz izlə." },
+      "personalized": { "title": "Sənin üçün seçilib", "body": "Nəyi sevdiyini de, ana səhifəni sənə uyğun quraq." }
+    },
+    "genres": {
+      "title": "Nə izləməyi sevirsən?",
+      "subtitle": "Ən azı {{count}} janr seç.",
+      "selected": "{{count}} seçilib",
+      "continue": "Davam et",
+      "options": {
+        "28": "Döyüş", "12": "Macəra", "16": "Animasiya", "35": "Komediya", "80": "Cinayət",
+        "99": "Sənədli", "18": "Dram", "10751": "Ailə", "14": "Fantaziya", "36": "Tarix",
+        "27": "Dəhşət", "10402": "Musiqi", "9648": "Sirr", "10749": "Romantik", "878": "Elmi-fantastika", "53": "Triller"
+      }
+    }
+  },
+  "catalog": {
+    "attribution": "Bu məhsul TMDB API-dən istifadə edir, lakin TMDB tərəfindən təsdiqlənməyib və ya sertifikatlaşdırılmayıb.",
+    "rating": { "tmdb": "TMDB", "imdb": "IMDb" },
+    "genre": { "title": "Janr", "movies": "Filmlər", "tv": "Seriallar" },
+    "person": {
+      "born": "Doğum tarixi: {{date}}", "biography": "Bioqrafiya", "noBiography": "Bioqrafiya yoxdur.",
+      "readMore": "Daha çox", "readLess": "Daha az", "knownFor": "Məşhur işləri"
+    },
+    "empty": { "title": "Hələ heç nə yoxdur", "message": "Başqa kateqoriya yoxla." }
+  },
+  "home": {
+    "categories": { "all": "Hamısı", "tvShows": "Seriallar", "movies": "Filmlər" },
+    "rows": {
+      "continueWatching": "İzləməyə davam et",
+      "myList": "Siyahım",
+      "trending": "İndi trenddə",
+      "top10": "Bu günün Top 10-u",
+      "becauseYouWatched": "{{title}} izlədiyin üçün",
+      "popular": "Populyar",
+      "newReleases": "Yeni çıxanlar",
+      "topRated": "Ən yüksək reytinq",
+      "genre": "{{genre}}",
+      "genreMovies": "{{genre}} filmləri",
+      "genreSeries": "{{genre}} serialları",
+      "kidsMovies": "Uşaq filmləri",
+      "kidsSeries": "Uşaq serialları"
+    },
+    "hero": { "play": "Oynat", "myList": "Siyahıma əlavə et", "inMyList": "Siyahımdadır" },
+    "kids": { "title": "Uşaqlar" }
+  },
+  "newhot": {
+    "title": "Yeni və Məşhur",
+    "tabs": { "comingSoon": "Tezliklə", "everyoneWatching": "Hamı izləyir", "top10": "Top 10" },
+    "remindMe": "Xatırlat",
+    "reminding": "Xatırlatma qoyulub",
+    "reminderSet": "Çıxış günü səni xatırladacağıq.",
+    "releases": "{{date}} tarixində",
+    "trailer": "Treyler",
+    "info": "Ətraflı",
+    "play": "Oynat",
+    "noTrailer": "Treyler tapılmadı.",
+    "permissionDenied": "Xatırlatma almaq üçün ayarlarda bildirişləri aç.",
+    "validation": { "notUpcoming": "Bu başlıq artıq çıxıb." },
+    "notification": { "title": "{{title}} artıq çıxıb", "body": "Ətraflı görmək üçün toxun." },
+    "empty": { "title": "Göstəriləcək heç nə yoxdur", "message": "Bir az sonra yenidən yoxla." }
+  },
+  "search": {
+    "placeholder": "Film, serial, aktyor və ya janr axtar",
+    "clear": "Təmizlə",
+    "filter": "Filtrlər",
+    "retry": "Yenidən cəhd et",
+    "people": "Şəxslər",
+    "titles": "Filmlər və seriallar",
+    "filters": {
+      "title": "Filtrlər",
+      "kind": "Növ",
+      "kinds": { "all": "Hamısı", "movie": "Filmlər", "tv": "Seriallar" },
+      "rating": "Minimum reytinq",
+      "ratingAny": "İstənilən",
+      "genre": "Janr",
+      "genreAll": "Hamısı",
+      "reset": "Sıfırla",
+      "apply": "Tətbiq et"
+    },
+    "recent": { "title": "Son axtarışlar", "clear": "Hamısını sil", "remove": "Sil" },
+    "top": { "title": "Ən çox axtarılanlar" },
+    "empty": { "title": "“{{query}}” üçün nəticə tapılmadı", "message": "Başqa söz yoxlayın və ya filtrləri dəyişin." },
+    "error": { "title": "Axtarış alınmadı" }
+  },
+  "details": {
+    "play": "Oynat",
+    "resume": "Davam et",
+    "download": "Yüklə",
+    "rate": "Qiymətləndir",
+    "rated": "{{stars}} ★",
+    "share": "Paylaş",
+    "shareMessage": "“{{title}}” filminə bax: {{url}}",
+    "match": "{{score}}% uyğunluq",
+    "season": "Fəsil {{number}}",
+    "seasonsCount": "{{count}} fəsil",
+    "director": "Rejissor",
+    "more": "Daha çox",
+    "less": "Daha az",
+    "cast": "Aktyor heyəti",
+    "episodes": "Seriyalar",
+    "similar": "Bənzər başlıqlar",
+    "trailers": "Treylerlər",
+    "trailer": "Treyleri izlə",
+    "reviews": "Rəylər",
+    "seeAll": "Hamısı",
+    "noReviews": "Hələ rəy yoxdur.",
+    "error": "Başlıq yüklənmədi",
+    "retry": "Yenidən cəhd et"
+  },
+  "library": {
+    "myList": "Siyahım",
+    "favorite": "Sevimli",
+    "retry": "Yenidən cəhd et",
+    "error": "Kitabxana yüklənmədi",
+    "remove": "Sil",
+    "tabs": { "saved": "Saxlanılanlar", "favorites": "Sevimlilər" },
+    "sort": { "recent": "Son əlavə", "alphabetical": "A–Z" },
+    "filter": { "all": "Hamısı", "movies": "Filmlər", "series": "Seriallar" },
+    "status": { "planned": "Planlaşdırılıb", "watching": "İzlənir", "completed": "Bitib" },
+    "empty": {
+      "saved": { "title": "Siyahınız boşdur", "message": "Bəyəndiyiniz filmləri “Siyahım”a əlavə edin." },
+      "favorites": { "title": "Sevimli yoxdur", "message": "Ürək işarəsi ilə sevimlilərinizi seçin." }
+    }
+  },
+  "history": {
+    "watched": { "title": "İzlənilənlər" },
+    "watchedBadge": "İZLƏNİB",
+    "watchedOn": "{{date}} tarixində izlənib",
+    "remove": "Tarixçədən sil",
+    "clear": "Tarixçəni təmizlə",
+    "cleared": "Tarixçə təmizləndi",
+    "retry": "Yenidən cəhd et",
+    "error": "Tarixçə yüklənmədi",
+    "clearDialog": {
+      "title": "Tarixçə silinsin?",
+      "message": "Bütün izləmə tarixçəniz silinəcək. Bu əməliyyat geri qaytarıla bilməz.",
+      "confirm": "Sil",
+      "cancel": "Ləğv et"
+    },
+    "empty": { "title": "Hələ heç nə izləməmisiniz", "message": "Bitirdiyiniz filmlər burada görünəcək." }
+  },
+  "reviews": {
+    "title": "Rəylər",
+    "mine": "Sizin rəyiniz",
+    "anonymous": "İstifadəçi",
+    "write": "Rəy yaz",
+    "edit": "Rəyi redaktə et",
+    "delete": "Sil",
+    "cancel": "Ləğv et",
+    "save": "Yadda saxla",
+    "saved": "Rəy yadda saxlanıldı",
+    "deleted": "Rəy silindi",
+    "error": "Rəylər yüklənmədi",
+    "retry": "Yenidən cəhd et",
+    "form": { "text": "Rəyiniz", "placeholder": "Filmlə bağlı fikirlərinizi yazın (ixtiyari)" },
+    "validation": { "stars": "1-dən 5-ə qədər ulduz seçin", "textTooLong": "Rəy çox uzundur" },
+    "summary": { "count_one": "{{count}} rəy", "count_other": "{{count}} rəy" },
+    "reaction": { "dislike": "Xoşuma gəlmədi", "like": "Xoşuma gəldi", "love": "Çox xoşuma gəldi" },
+    "deleteConfirm": { "title": "Rəy silinsin?", "message": "Bu əməliyyat geri qaytarıla bilməz." },
+    "empty": { "title": "Hələ rəy yoxdur", "message": "İlk rəyi siz yazın." }
+  },
+  "stats": {
+    "title": "İzləmə statistikası",
+    "totalTitles": "İzlənən başlıq",
+    "totalHours": "Ümumi vaxt",
+    "hoursValue": "{{value}} saat",
+    "topGenre": "Sevimli janr",
+    "avgRating": "Orta reytinqiniz",
+    "genres": "Janrlar üzrə",
+    "empty": "Statistika üçün ən azı bir film izləyin."
+  }
+}

@@ -1,0 +1,1 @@
+export { RentScreen as default } from '@/features/rentals';

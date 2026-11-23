@@ -1,0 +1,1 @@
+export { ManageProfilesScreen as default } from '@/features/profiles';

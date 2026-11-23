@@ -1,0 +1,1 @@
+export { GenrePickerScreen as default } from '@/features/onboarding';

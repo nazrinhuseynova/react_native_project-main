@@ -1,0 +1,178 @@
+{
+  "onboarding": {
+    "getStarted": "Get started",
+    "steps": {
+      "watch": { "title": "Watch anywhere", "body": "Stream movies and series on your phone, tablet or TV." },
+      "download": { "title": "Download and go", "body": "Save your favourites and watch them offline." },
+      "personalized": { "title": "Picked for you", "body": "Tell us what you like and we will build your home screen." }
+    },
+    "genres": {
+      "title": "What do you like to watch?",
+      "subtitle": "Pick at least {{count}} genres.",
+      "selected": "{{count}} selected",
+      "continue": "Continue",
+      "options": {
+        "28": "Action", "12": "Adventure", "16": "Animation", "35": "Comedy", "80": "Crime",
+        "99": "Documentary", "18": "Drama", "10751": "Family", "14": "Fantasy", "36": "History",
+        "27": "Horror", "10402": "Music", "9648": "Mystery", "10749": "Romance", "878": "Sci-Fi", "53": "Thriller"
+      }
+    }
+  },
+  "catalog": {
+    "attribution": "This product uses the TMDB API but is not endorsed or certified by TMDB.",
+    "rating": { "tmdb": "TMDB", "imdb": "IMDb" },
+    "genre": { "title": "Genre", "movies": "Movies", "tv": "TV Shows" },
+    "person": {
+      "born": "Born {{date}}", "biography": "Biography", "noBiography": "No biography available.",
+      "readMore": "Read more", "readLess": "Show less", "knownFor": "Known for"
+    },
+    "empty": { "title": "Nothing here yet", "message": "Try another category." }
+  },
+  "home": {
+    "categories": { "all": "All", "tvShows": "TV Shows", "movies": "Movies" },
+    "rows": {
+      "continueWatching": "Continue Watching",
+      "myList": "My List",
+      "trending": "Trending Now",
+      "top10": "Top 10 Today",
+      "becauseYouWatched": "Because you watched {{title}}",
+      "popular": "Popular",
+      "newReleases": "New Releases",
+      "topRated": "Top Rated",
+      "genre": "{{genre}}",
+      "genreMovies": "{{genre}} Movies",
+      "genreSeries": "{{genre}} Series",
+      "kidsMovies": "Kids' Movies",
+      "kidsSeries": "Kids' Series"
+    },
+    "hero": { "play": "Play", "myList": "My List", "inMyList": "In My List" },
+    "kids": { "title": "Kids" }
+  },
+  "newhot": {
+    "title": "New & Hot",
+    "tabs": { "comingSoon": "Coming Soon", "everyoneWatching": "Everyone's Watching", "top10": "Top 10" },
+    "remindMe": "Remind Me",
+    "reminding": "Reminder set",
+    "reminderSet": "We will remind you on release day.",
+    "releases": "Coming {{date}}",
+    "trailer": "Trailer",
+    "info": "Info",
+    "play": "Play",
+    "noTrailer": "No trailer available.",
+    "permissionDenied": "Enable notifications in settings to get reminders.",
+    "validation": { "notUpcoming": "This title is already out." },
+    "notification": { "title": "{{title}} is out now", "body": "Tap to see details." },
+    "empty": { "title": "Nothing to show", "message": "Check back later." }
+  },
+  "search": {
+    "placeholder": "Search movies, shows, actors or genres",
+    "clear": "Clear",
+    "filter": "Filters",
+    "retry": "Try again",
+    "people": "People",
+    "titles": "Movies & shows",
+    "filters": {
+      "title": "Filters",
+      "kind": "Type",
+      "kinds": { "all": "All", "movie": "Movies", "tv": "Series" },
+      "rating": "Minimum rating",
+      "ratingAny": "Any",
+      "genre": "Genre",
+      "genreAll": "All",
+      "reset": "Reset",
+      "apply": "Apply"
+    },
+    "recent": { "title": "Recent searches", "clear": "Clear all", "remove": "Remove" },
+    "top": { "title": "Top searches" },
+    "empty": { "title": "No results for “{{query}}”", "message": "Try another word or change the filters." },
+    "error": { "title": "Search failed" }
+  },
+  "details": {
+    "play": "Play",
+    "resume": "Resume",
+    "download": "Download",
+    "rate": "Rate",
+    "rated": "{{stars}} ★",
+    "share": "Share",
+    "shareMessage": "Watch “{{title}}”: {{url}}",
+    "match": "{{score}}% Match",
+    "season": "Season {{number}}",
+    "seasonsCount_one": "{{count}} Season",
+    "seasonsCount_other": "{{count}} Seasons",
+    "director": "Director",
+    "more": "More",
+    "less": "Less",
+    "cast": "Cast",
+    "episodes": "Episodes",
+    "similar": "More Like This",
+    "trailers": "Trailers",
+    "trailer": "Watch trailer",
+    "reviews": "Reviews",
+    "seeAll": "See all",
+    "noReviews": "No reviews yet.",
+    "error": "Couldn't load title",
+    "retry": "Try again"
+  },
+  "library": {
+    "myList": "My List",
+    "favorite": "Favorite",
+    "retry": "Try again",
+    "error": "Couldn't load your library",
+    "remove": "Remove",
+    "tabs": { "saved": "Saved", "favorites": "Favorites" },
+    "sort": { "recent": "Recently added", "alphabetical": "A–Z" },
+    "filter": { "all": "All", "movies": "Movies", "series": "Series" },
+    "status": { "planned": "Planned", "watching": "Watching", "completed": "Completed" },
+    "empty": {
+      "saved": { "title": "Your list is empty", "message": "Add titles you like to My List." },
+      "favorites": { "title": "No favorites yet", "message": "Tap the heart to mark your favorites." }
+    }
+  },
+  "history": {
+    "watched": { "title": "Watched" },
+    "watchedBadge": "WATCHED",
+    "watchedOn": "Watched on {{date}}",
+    "remove": "Remove from history",
+    "clear": "Clear history",
+    "cleared": "History cleared",
+    "retry": "Try again",
+    "error": "Couldn't load history",
+    "clearDialog": {
+      "title": "Clear history?",
+      "message": "Your entire watch history will be deleted. This can't be undone.",
+      "confirm": "Clear",
+      "cancel": "Cancel"
+    },
+    "empty": { "title": "Nothing watched yet", "message": "Titles you finish will show up here." }
+  },
+  "reviews": {
+    "title": "Reviews",
+    "mine": "Your review",
+    "anonymous": "User",
+    "write": "Write a review",
+    "edit": "Edit review",
+    "delete": "Delete",
+    "cancel": "Cancel",
+    "save": "Save",
+    "saved": "Review saved",
+    "deleted": "Review deleted",
+    "error": "Couldn't load reviews",
+    "retry": "Try again",
+    "form": { "text": "Your review", "placeholder": "Share your thoughts (optional)" },
+    "validation": { "stars": "Pick 1 to 5 stars", "textTooLong": "Review is too long" },
+    "summary": { "count_one": "{{count}} review", "count_other": "{{count}} reviews" },
+    "reaction": { "dislike": "Not for me", "like": "I like this", "love": "Love this" },
+    "deleteConfirm": { "title": "Delete review?", "message": "This can't be undone." },
+    "empty": { "title": "No reviews yet", "message": "Be the first to write one." }
+  },
+  "stats": {
+    "title": "Watch stats",
+    "totalTitles": "Titles watched",
+    "totalHours": "Total time",
+    "hoursValue": "{{value}} h",
+    "topGenre": "Top genre",
+    "avgRating": "Your avg rating",
+    "genres": "By genre",
+    "empty": "Watch at least one title to see your stats."
+  }
+}

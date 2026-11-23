@@ -1,0 +1,1 @@
+export { GenreScreen as default } from '@/features/catalog';

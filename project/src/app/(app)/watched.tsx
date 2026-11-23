@@ -1,0 +1,1 @@
+export { WatchedScreen as default } from '@/features/history';

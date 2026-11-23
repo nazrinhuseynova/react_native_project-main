@@ -1,0 +1,1 @@
+export { PinEntryScreen as default } from '@/features/profiles';
