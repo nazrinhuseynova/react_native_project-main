@@ -1,4 +1,4 @@
-import { SUPPORTED_LANGUAGES, type AppLanguage } from '@/core/i18n/i18n';
+import { isSupportedLanguage, type AppLanguage } from '@/core/i18n/i18n';
 import type { DownloadQuality } from '@/features/downloads';
 
 export const THEME_PREFERENCES = ['system', 'light', 'dark'] as const;
@@ -43,7 +43,10 @@ export function sanitizeSettings(raw: unknown, fallback: AppSettings): AppSettin
 
   return {
     theme: THEME_PREFERENCES.find((item) => item === source.theme) ?? fallback.theme,
-    language: SUPPORTED_LANGUAGES.find((item) => item === source.language) ?? fallback.language,
+    language:
+      typeof source.language === 'string' && isSupportedLanguage(source.language)
+        ? source.language
+        : fallback.language,
     notifications: flag(source.notifications, fallback.notifications),
     dataSaver: flag(source.dataSaver, fallback.dataSaver),
     autoplay: flag(source.autoplay, fallback.autoplay),
