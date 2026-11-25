@@ -1,8 +1,9 @@
 import { useRouter } from 'expo-router';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { View } from 'react-native';
+import { Alert, View } from 'react-native';
 
+import { formatMoney } from '@/core/utils/formatMoney';
 import { useTheme } from '@/shared/theme/useTheme';
 import { AppText } from '@/shared/ui/AppText';
 import { ErrorState } from '@/shared/ui/ErrorState';
@@ -14,11 +15,12 @@ import { useChangePlan } from '../../application/hooks/useChangePlan';
 import { usePlans } from '../../application/hooks/usePlans';
 import { useSubscription } from '../../application/hooks/useSubscription';
 import type { Plan } from '../../domain/entities/Plan';
+import { NO_PAYMENT_METHOD } from '../../domain/usecases/ChangePlan';
 import { PlanCard } from '../components/PlanCard';
 import { PlanComparison } from '../components/PlanComparison';
 
 export function PlansScreen() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const router = useRouter();
   const { spacing } = useTheme();
   const { plans, isLoading, isError, refetch } = usePlans();
@@ -28,13 +30,38 @@ export function PlansScreen() {
 
   const header = <ScreenHeader title={t('plans.title')} onBack={() => router.back()} />;
 
-  const handleSelect = async (plan: Plan) => {
+  const runChange = async (plan: Plan) => {
     setSelectedPlanId(plan.id);
     try {
-      await changePlan(plan.id);
+      const result = await changePlan(plan.id);
+      if (!result.ok && result.code === NO_PAYMENT_METHOD) {
+        router.push('/billing/payment-methods');
+      }
     } finally {
       setSelectedPlanId(null);
     }
+  };
+
+  const handleSelect = (plan: Plan) => {
+    if (isChanging) return;
+
+
+    if (plan.priceMinor > 0) {
+      Alert.alert(
+        t('subscription.confirmChangeTitle'),
+        t('subscription.confirmChangeMessage', {
+          plan: plan.name,
+          price: formatMoney(plan.priceMinor, plan.currency, i18n.language),
+        }),
+        [
+          { text: t('common.cancel'), style: 'cancel' },
+          { text: t('common.confirm'), onPress: () => void runChange(plan) },
+        ],
+      );
+      return;
+    }
+
+    void runChange(plan);
   };
 
   if (isError && plans.length === 0) {
@@ -74,7 +101,8 @@ export function PlansScreen() {
               plan={plan}
               isCurrent={currentPlan?.id === plan.id}
               isLoading={isChanging && selectedPlanId === plan.id}
-              onSelect={(next) => void handleSelect(next)}
+              disabled={isChanging}
+              onSelect={handleSelect}
             />
           ))}
 

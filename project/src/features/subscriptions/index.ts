@@ -14,8 +14,12 @@ export { useCancelSubscription } from './application/hooks/useCancelSubscription
 
 export { DEFAULT_PLANS } from './domain/entities/Plan';
 export type { Plan, VideoQuality } from './domain/entities/Plan';
-export { isSubscriptionEntitled } from './domain/entities/Subscription';
-export type { Subscription, SubscriptionStatus } from './domain/entities/Subscription';
+export { getSubscriptionState, isSubscriptionEntitled } from './domain/entities/Subscription';
+export type {
+  Subscription,
+  SubscriptionState,
+  SubscriptionStatus,
+} from './domain/entities/Subscription';
 export type { PlanRepository } from './domain/repositories/PlanRepository';
 export type {
   SubscriptionRepository,
@@ -28,7 +32,8 @@ export type { ProrationResult } from './domain/services/ProrationCalculator';
 export { RenewalPolicy } from './domain/services/RenewalPolicy';
 
 export { Subscribe } from './domain/usecases/Subscribe';
-export { ChangePlan } from './domain/usecases/ChangePlan';
+export { ChangePlan, NO_PAYMENT_METHOD } from './domain/usecases/ChangePlan';
+export type { ChangePlanOutcome, ChangePlanKind } from './domain/usecases/ChangePlan';
 export { CancelSubscription } from './domain/usecases/CancelSubscription';
 export { ResumeSubscription } from './domain/usecases/ResumeSubscription';
 

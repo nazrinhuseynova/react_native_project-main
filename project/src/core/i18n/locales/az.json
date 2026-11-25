@@ -198,11 +198,13 @@
     "resumedToast": "Abunəlik bərpa edildi",
     "error": "Abunəlik məlumatları yüklənmədi",
     "retry": "Yenidən cəhd et",
-    "status": {
-      "none": "PULSUZ",
-      "active": "AKTİV",
-      "canceled": "LƏĞV EDİLİB"
-    }
+   "confirmChangeTitle": "Plan dəyişdirilsin?",
+"confirmChangeMessage": "{{plan}} planına {{price}} / ay qiymətlə keçilsin? Əsas kartınızdan ödəniş çəkiləcək.",
+"noCard": "Davam etmək üçün ödəniş kartı əlavə edin",
+"paymentFailed": "Ödəniş alınmadı. Kartınızı yoxlayın.",
+"requires3ds": "Bankınız əlavə təsdiq (3D Secure) tələb edir.",
+"expiredNote": "Abunəliyin müddəti bitib. Pulsuz plandasınız.",
+"status": { "none": "PULSUZ", "active": "AKTİV", "canceled": "LƏĞV EDİLİB", "pastDue": "ÖDƏNİŞ UĞURSUZ", "expired": "MÜDDƏTİ BİTİB" }
   },
   "plans": {
     "title": "Planınızı seçin",
@@ -291,6 +293,11 @@
     "account": "Hesab",
     "devices": "Cihazlar"
   }
+},
+"common": {
+  "retry": "Yenidən cəhd et", "save": "Yadda saxla", "cancel": "Ləğv et", "delete": "Sil",
+  "done": "Hazır", "back": "Geri", "loading": "Yüklənir...", "confirm": "Təsdiq et",
+  "continue": "Davam et", "next": "Növbəti", "skip": "Keç"
 }
 
 

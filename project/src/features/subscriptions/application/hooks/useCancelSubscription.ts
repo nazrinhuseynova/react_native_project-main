@@ -53,10 +53,28 @@ export function useCancelSubscription() {
     onError: (error) => toast.error(t(toUserMessage(error))),
   });
 
+  const cancelSubscription = async (): Promise<boolean> => {
+    try {
+      await cancelMutation.mutateAsync();
+      return true;
+    } catch {
+      return false;
+    }
+  };
+
+  const resumeSubscription = async (): Promise<boolean> => {
+    try {
+      await resumeMutation.mutateAsync();
+      return true;
+    } catch {
+      return false;
+    }
+  };
+
   return {
-    cancelSubscription: cancelMutation.mutateAsync,
+    cancelSubscription,
     isCanceling: cancelMutation.isPending,
-    resumeSubscription: resumeMutation.mutateAsync,
+    resumeSubscription,
     isResuming: resumeMutation.isPending,
   };
 }

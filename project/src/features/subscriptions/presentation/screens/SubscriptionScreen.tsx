@@ -1,7 +1,6 @@
 import { useRouter } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 import { View } from 'react-native';
-
 import { formatDate } from '@/core/utils/formatDate';
 import { formatMoney } from '@/core/utils/formatMoney';
 import { useDisclosure } from '@/shared/hooks/useDisclosure';
@@ -48,7 +47,8 @@ export function SubscriptionScreen() {
   const { spacing } = useTheme();
   const cancelSheet = useDisclosure();
 
-  const { subscription, currentPlan, isLoading, isError, refetch } = useSubscription();
+  const { subscription, state, currentPlan, isPaid, isCanceled, isLoading, isError, refetch } =
+    useSubscription();
   const { cancelSubscription, isCanceling, resumeSubscription, isResuming } =
     useCancelSubscription();
 
@@ -75,15 +75,22 @@ export function SubscriptionScreen() {
     );
   }
 
-  const isPaid = subscription !== null && currentPlan.priceMinor > 0;
-  const isCanceled = subscription?.cancelAtPeriodEnd === true;
+  const isPastDue = state === 'past_due';
 
-  const badgeTone = !isPaid ? 'neutral' : isCanceled ? 'warning' : 'success';
+  const badgeTone = !isPaid
+    ? 'neutral'
+    : isPastDue
+      ? 'danger'
+      : isCanceled
+        ? 'warning'
+        : 'success';
   const badgeLabel = !isPaid
     ? t('subscription.status.none')
-    : isCanceled
-      ? t('subscription.status.canceled')
-      : t('subscription.status.active');
+    : isPastDue
+      ? t('subscription.status.pastDue')
+      : isCanceled
+        ? t('subscription.status.canceled')
+        : t('subscription.status.active');
 
   const priceLabel =
     currentPlan.priceMinor === 0
@@ -97,7 +104,11 @@ export function SubscriptionScreen() {
     : null;
 
   return (
-    <Screen scroll header={header} contentContainerStyle={{ gap: spacing.lg, paddingBottom: spacing.xxxl }}>
+    <Screen
+      scroll
+      header={header}
+      contentContainerStyle={{ gap: spacing.lg, paddingBottom: spacing.xxxl }}
+    >
       <View style={styles.card}>
         <AppText variant="captionStrong" color="textSecondary">
           {t('subscription.currentPlan')}
@@ -124,7 +135,7 @@ export function SubscriptionScreen() {
           </AppText>
         ) : !isPaid ? (
           <AppText variant="caption" color="textMuted">
-            {t('subscription.noPlan')}
+            {state === 'expired' ? t('subscription.expiredNote') : t('subscription.noPlan')}
           </AppText>
         ) : null}
       </View>
@@ -144,12 +155,8 @@ export function SubscriptionScreen() {
           />
         ) : null}
 
-        {isPaid && !isCanceled ? (
-          <Button
-            label={t('subscription.cancel')}
-            variant="ghost"
-            onPress={cancelSheet.open}
-          />
+        {isPaid && !isCanceled && !isPastDue ? (
+          <Button label={t('subscription.cancel')} variant="ghost" onPress={cancelSheet.open} />
         ) : null}
       </View>
 
@@ -174,7 +181,9 @@ export function SubscriptionScreen() {
         isCanceling={isCanceling}
         onClose={cancelSheet.close}
         onConfirm={() => {
-          void cancelSubscription().then(() => cancelSheet.close());
+          void cancelSubscription().then((ok) => {
+            if (ok) cancelSheet.close();
+          });
         }}
       />
     </Screen>

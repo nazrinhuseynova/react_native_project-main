@@ -501,11 +501,13 @@
     "resumedToast": "Subscription resumed",
     "error": "Could not load subscription details",
     "retry": "Try again",
-    "status": {
-      "none": "FREE",
-      "active": "ACTIVE",
-      "canceled": "CANCELED"
-    }
+    "confirmChangeTitle": "Change plan?",
+"confirmChangeMessage": "Switch to {{plan}} for {{price}} / month? Your default card will be charged.",
+"noCard": "Add a payment card to continue",
+"paymentFailed": "Payment failed. Please check your card.",
+"requires3ds": "Your bank requires extra verification (3D Secure).",
+"expiredNote": "Your subscription has ended. You are on the Free plan.",
+"status": { "none": "FREE", "active": "ACTIVE", "canceled": "CANCELED", "pastDue": "PAYMENT FAILED", "expired": "EXPIRED" }
   },
   "plans": {
     "title": "Choose Your Plan",

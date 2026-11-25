@@ -38,10 +38,17 @@ type PlanCardProps = {
   plan: Plan;
   isCurrent: boolean;
   isLoading?: boolean;
+  disabled?: boolean;
   onSelect: (plan: Plan) => void;
 };
 
-export function PlanCard({ plan, isCurrent, isLoading = false, onSelect }: PlanCardProps) {
+export function PlanCard({
+  plan,
+  isCurrent,
+  isLoading = false,
+  disabled = false,
+  onSelect,
+}: PlanCardProps) {
   const { t, i18n } = useTranslation();
   const styles = useStyles();
 
@@ -80,7 +87,7 @@ export function PlanCard({ plan, isCurrent, isLoading = false, onSelect }: PlanC
       <Button
         label={isCurrent ? t('plans.selected') : t('plans.select')}
         variant={isCurrent ? 'secondary' : 'primary'}
-        disabled={isCurrent || isLoading}
+        disabled={isCurrent || isLoading || disabled}
         loading={isLoading}
         onPress={() => onSelect(plan)}
       />

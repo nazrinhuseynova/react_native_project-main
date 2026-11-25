@@ -129,16 +129,18 @@ export class SupabaseSubscriptionRepository implements SubscriptionRepository {
       .single();
 
     if (error) {
-      for (const [userId, sub] of memoryFallback.entries()) {
-        if (sub.id === subscriptionId) {
-          const updated: Subscription = {
-            ...sub,
-            cancelAtPeriodEnd,
-            canceledAt,
-            status: cancelAtPeriodEnd ? 'canceled' : 'active',
-          };
-          memoryFallback.set(userId, updated);
-          return updated;
+      if (isMissingTableError(error)) {
+        for (const [userId, sub] of memoryFallback.entries()) {
+          if (sub.id === subscriptionId) {
+            const updated: Subscription = {
+              ...sub,
+              cancelAtPeriodEnd,
+              canceledAt,
+              status: cancelAtPeriodEnd ? 'canceled' : 'active',
+            };
+            memoryFallback.set(userId, updated);
+            return updated;
+          }
         }
       }
       throw new AppError('Failed to update subscription status', {
