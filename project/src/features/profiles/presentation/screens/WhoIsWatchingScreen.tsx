@@ -1,3 +1,4 @@
+import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 import { View } from 'react-native';
@@ -14,7 +15,6 @@ import { ErrorState } from '@/shared/ui/ErrorState';
 import { Screen } from '@/shared/ui/Screen';
 import { Skeleton } from '@/shared/ui/Skeleton';
 import { useToast } from '@/shared/ui/ToastProvider';
-import { Ionicons } from '@expo/vector-icons';
 
 import { useActiveProfile } from '../../application/hooks/useActiveProfile';
 import { useProfiles } from '../../application/hooks/useProfiles';
@@ -55,7 +55,7 @@ export function WhoIsWatchingScreen() {
   const styles = useStyles();
   const { colors } = useTheme();
   const { signOut } = useAuth();
-  const { switchProfile } = useActiveProfile();
+  const { activeProfile, switchProfile } = useActiveProfile();
   const { profiles, isLoading, isError, refetch, canCreate } = useProfiles();
 
   const onSelect = async (profile: Profile) => {
@@ -64,10 +64,17 @@ export function WhoIsWatchingScreen() {
       return;
     }
     try {
-      // Aktiv profil təyin olunanda route guard özü Home-a yönləndirir.
       await switchProfile(profile.id);
+      router.replace('/home');
     } catch (error) {
       toast.error(t(toUserMessage(error)));
+    }
+  };
+
+  const onContinue = () => {
+    const target = activeProfile ?? profiles.at(0);
+    if (target) {
+      void onSelect(target);
     }
   };
 
@@ -77,7 +84,11 @@ export function WhoIsWatchingScreen() {
   if (isError && profiles.length === 0) {
     return (
       <Screen>
-        <ErrorState message={t('errors.unknown')} onRetry={() => void refetch()} retryLabel={t('common.retry')} />
+        <ErrorState
+          message={t('errors.unknown')}
+          onRetry={() => void refetch()}
+          retryLabel={t('common.retry')}
+        />
       </Screen>
     );
   }
@@ -88,41 +99,51 @@ export function WhoIsWatchingScreen() {
         {t('profiles.whoIsWatching')}
       </AppText>
 
-      {isLoading ? (
-        <View style={styles.grid}>
-          {[0, 1, 2].map((key) => (
+      <View style={styles.grid}>
+        {isLoading ? (
+          ['sk-1', 'sk-2', 'sk-3'].map((key) => (
             <View key={key} style={styles.addTile}>
               <Skeleton circle height={96} />
             </View>
-          ))}
-        </View>
-      ) : (
-        <View style={styles.grid}>
-          {profiles.map((profile) => (
+          ))
+        ) : (
+          profiles.map((profile) => (
             <ProfileTile key={profile.id} profile={profile} onPress={onSelect} />
-          ))}
+          ))
+        )}
 
-          {canCreate ? (
-            <ScalePressable {...buttonA11y(t('profiles.addProfile'))} onPress={onAdd} style={styles.addTile}>
-              <View style={styles.addCircle}>
-                <Ionicons name="add" size={40} color={colors.textSecondary} />
-              </View>
-              <AppText variant="bodyStrong" color="textSecondary">
-                {t('profiles.addProfile')}
-              </AppText>
-            </ScalePressable>
-          ) : null}
-        </View>
-      )}
+        {canCreate ? (
+          <ScalePressable
+            {...buttonA11y(t('profiles.addProfile'))}
+            onPress={onAdd}
+            style={styles.addTile}
+          >
+            <View style={styles.addCircle}>
+              <Ionicons name="add" size={40} color={colors.textSecondary} />
+            </View>
+            <AppText variant="bodyStrong" color="textSecondary">
+              {t('profiles.addProfile')}
+            </AppText>
+          </ScalePressable>
+        ) : null}
+      </View>
 
       <View style={styles.footer}>
         {profiles.length > 0 ? (
-          <Button
-            label={t('profiles.manage')}
-            variant="secondary"
-            leftIcon="settings-outline"
-            onPress={() => router.push('/manage')}
-          />
+          <>
+            <Button
+              label={t('common.continue', { defaultValue: 'Continue' })}
+              variant="primary"
+              leftIcon="play"
+              onPress={onContinue}
+            />
+            <Button
+              label={t('profiles.manage')}
+              variant="secondary"
+              leftIcon="settings-outline"
+              onPress={() => router.push('/manage')}
+            />
+          </>
         ) : null}
         <Button label={t('profiles.signOut')} variant="ghost" onPress={() => void signOut()} />
       </View>

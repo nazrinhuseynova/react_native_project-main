@@ -1,15 +1,18 @@
-import { Redirect, type Href } from 'expo-router';
-
-import { useAppGate, type AppStage } from '@/bootstrap/useAppGate';
-
-const ENTRY_ROUTE: Record<AppStage, Href> = {
-  onboarding: '/splash',
-  auth: '/login',
-  profiles: '/who-is-watching',
-  app: '/home',
-};
+import { ActivityIndicator, StyleSheet, View } from 'react-native';
 
 export default function Index() {
-  const { stage } = useAppGate();
-  return <Redirect href={ENTRY_ROUTE[stage]} />;
+  return (
+    <View style={styles.container}>
+      <ActivityIndicator size="large" />
+    </View>
+  );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#000000',
+  },
+});

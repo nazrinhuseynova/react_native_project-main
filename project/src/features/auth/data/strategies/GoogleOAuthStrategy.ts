@@ -12,6 +12,8 @@ import {
 } from '../../domain/strategies/AuthStrategy';
 import { toAuthError, toSession } from '../mappers/sessionMapper';
 
+WebBrowser.maybeCompleteAuthSession();
+
 const REDIRECT_PATH = 'auth/callback';
 
 function readParams(url: string): URLSearchParams {
@@ -42,10 +44,18 @@ export class GoogleOAuthStrategy implements AuthStrategy {
     }
 
     const redirectTo = Linking.createURL(REDIRECT_PATH);
+    console.log('[GoogleOAuth] redirectTo:', redirectTo);
 
     const { data, error } = await this.client.auth.signInWithOAuth({
       provider: 'google',
-      options: { redirectTo, skipBrowserRedirect: true },
+      options: {
+        redirectTo,
+        skipBrowserRedirect: true,
+        queryParams: {
+          access_type: 'offline',
+          prompt: 'consent',
+        },
+      },
     });
     if (error) throw toAuthError(error);
     if (!data.url) throw new AuthError('OAuth URL is missing', { reason: 'unknown' });

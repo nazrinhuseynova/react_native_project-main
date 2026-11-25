@@ -1,4 +1,5 @@
 import type { SupabaseClient } from '@supabase/supabase-js';
+import * as Linking from 'expo-linking';
 
 import { AuthError } from '@/core/errors/AuthError';
 
@@ -37,14 +38,17 @@ export class EmailPasswordStrategy implements AuthStrategy {
   }
 
   async signUp(input: SignUpInput): Promise<SignUpResult> {
+    const redirectTo = Linking.createURL('auth/callback');
+
     const { data, error } = await this.client.auth.signUp({
       email: normalizeEmail(input.email),
       password: input.password,
+      options: {
+        emailRedirectTo: redirectTo,
+      },
     });
     if (error) throw toAuthError(error);
 
-    // Email təsdiqi açıq olanda mövcud email üçün Supabase xəta qaytarmır,
-    // amma `identities` boş massiv olur.
     if (data.user && Array.isArray(data.user.identities) && data.user.identities.length === 0) {
       throw new AuthError('User already exists', { reason: 'user_already_exists' });
     }

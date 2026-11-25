@@ -29,7 +29,6 @@ export type { MaturityRating } from './domain/entities/MaturityRating';
 export type { AvatarStorage } from './domain/repositories/AvatarStorage';
 export type { PinCrypto, ProfileRepository } from './domain/repositories/ProfileRepository';
 
-// ── container.ts üçün ──
 export { PinPolicy } from './domain/policies/PinPolicy';
 export { ProfileLimitPolicy } from './domain/policies/ProfileLimitPolicy';
 export { CreateProfile } from './domain/usecases/CreateProfile';

@@ -1,5 +1,9 @@
 import { useLocalSearchParams, useRouter } from 'expo-router';
+import { useEffect } from 'react';
+import { AppState } from 'react-native';
 import { useTranslation } from 'react-i18next';
+
+import { useServices } from '@/bootstrap/useServices';
 
 import { useSignUp } from '../../application/hooks/useSignUp';
 import { AuthButton, AuthForm, AuthLink, AuthMessage } from '../components/AuthForm';
@@ -8,9 +12,19 @@ import { ResendCodeButton } from '../components/ResendCodeButton';
 export function VerifyEmailScreen() {
   const { t } = useTranslation();
   const router = useRouter();
+  const { supabase } = useServices();
   const params = useLocalSearchParams<{ email?: string }>();
   const email = params.email ?? '';
   const { resendCode, resendErrorKey } = useSignUp();
+
+  useEffect(() => {
+    const subscription = AppState.addEventListener('change', (state) => {
+      if (state === 'active') {
+        void supabase.auth.getSession();
+      }
+    });
+    return () => subscription.remove();
+  }, [supabase]);
 
   return (
     <AuthForm

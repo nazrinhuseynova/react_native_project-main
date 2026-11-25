@@ -3,6 +3,7 @@ import {
   type AuthChangeEvent,
   type SupabaseClient,
 } from '@supabase/supabase-js';
+import * as Linking from 'expo-linking';
 
 import { AuthError } from '@/core/errors/AuthError';
 
@@ -76,7 +77,12 @@ export class SupabaseAuthRepository implements AuthRepository {
   }
 
   async resendVerification(email: string): Promise<void> {
-    const { error } = await this.client.auth.resend({ type: 'signup', email });
+    const redirectTo = Linking.createURL('auth/callback');
+    const { error } = await this.client.auth.resend({
+      type: 'signup',
+      email,
+      options: { emailRedirectTo: redirectTo },
+    });
     if (error) throw toAuthError(error);
   }
 }

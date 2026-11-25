@@ -1,5 +1,5 @@
 export const APP_NAME = 'CineVerse';
-export const DEEP_LINK_SCHEME = 'cineverse';
+export const DEEP_LINK_SCHEME = 'project';
 
 export const MAX_PROFILES = 5;
 export const PIN_LENGTH = 4;

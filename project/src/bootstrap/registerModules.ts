@@ -19,7 +19,6 @@ export function registerModules(services: Services): void {
     void Linking.openURL(url);
   }).start();
 
-  // playback.progress → tarixçəyə yazılır (throttle ilə).
   startHistoryListener({
     events: services.eventBus,
     storage: services.storage,
@@ -27,7 +26,6 @@ export function registerModules(services: Services): void {
     logger: services.logger,
   });
 
-  // Arxa fon tapşırığı: yükləmə lisenziyalarını yoxlayır.
   setDownloadsTaskRunner(async () => {
     await services.downloads.licenses.execute({ isOnline: true });
   });

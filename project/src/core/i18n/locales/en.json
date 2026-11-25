@@ -174,5 +174,140 @@
     "avgRating": "Your avg rating",
     "genres": "By genre",
     "empty": "Watch at least one title to see your stats."
+  },
+
+    "common": {
+    "retry": "Try again",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "done": "Done",
+    "back": "Back",
+    "loading": "Loading..."
+  },
+  "errors": {
+    "unknown": "Something went wrong. Please try again.",
+    "network": "No internet connection.",
+    "unauthorized": "Session expired. Please sign in again."
+  },
+  "auth": {
+    "login": {
+      "title": "Sign In",
+      "subtitle": "Welcome back to CineVerse",
+      "email": "Email",
+      "password": "Password",
+      "submit": "Sign In",
+      "forgot": "Forgot password?",
+      "noAccount": "New to CineVerse? Sign up",
+      "google": "Continue with Google",
+      "biometric": "Sign in with Biometrics"
+    },
+    "register": {
+      "title": "Create Account",
+      "subtitle": "Start watching movies and shows",
+      "email": "Email",
+      "password": "Password",
+      "confirmPassword": "Confirm Password",
+      "terms": "I agree to the Terms of Service and Privacy Policy",
+      "submit": "Sign Up",
+      "hasAccount": "Already have an account? Sign in"
+    },
+    "forgot": {
+      "title": "Reset Password",
+      "subtitle": "Enter your email to receive a reset code",
+      "email": "Email",
+      "submit": "Send Code",
+      "back": "Back to Sign In"
+    },
+    "reset": {
+      "title": "New Password",
+      "subtitle": "Choose a strong password",
+      "password": "New Password",
+      "submit": "Update Password"
+    },
+    "verifyEmail": {
+      "title": "Check your email",
+      "subtitle": "We sent a verification code to {{email}}",
+      "enterCode": "Enter verification code"
+    },
+    "verifyOtp": {
+      "title": "Enter Code",
+      "subtitle": "Enter the 6-digit code sent to {{email}}",
+      "submit": "Verify"
+    },
+    "validation": {
+      "emailRequired": "Email is required",
+      "emailInvalid": "Enter a valid email address",
+      "passwordRequired": "Password is required",
+      "passwordMin": "Password must be at least 8 characters",
+      "passwordMismatch": "Passwords do not match",
+      "termsRequired": "You must accept the terms"
+    },
+    "errors": {
+      "invalidCredentials": "Incorrect email or password",
+      "userAlreadyExists": "An account with this email already exists",
+      "otpInvalid": "Invalid or expired code",
+      "locked": "Too many attempts. Try again later."
+    }
+  },
+  "profiles": {
+    "whoIsWatching": "Who's watching?",
+    "addProfile": "Add Profile",
+    "manage": "Manage Profiles",
+    "signOut": "Sign Out",
+    "kidsBadge": "KIDS",
+    "limitInfo": "You can create up to {{max}} profiles.",
+    "avatar": {
+      "choose": "Choose an avatar",
+      "upload": "Upload Photo",
+      "denied": "Photo library permission is required.",
+      "openSettings": "Open Settings"
+    },
+    "kids": {
+      "label": "Kids Profile",
+      "description": "Only show titles suitable for children"
+    },
+    "edit": {
+      "newTitle": "Add Profile",
+      "editTitle": "Edit Profile",
+      "name": "Profile Name",
+      "maturity": "Maturity Rating",
+      "pin": "Profile PIN",
+      "pinOn": "PIN enabled",
+      "pinOff": "Off",
+      "delete": "Delete Profile",
+      "deleteTitle": "Delete profile?",
+      "deleteMessage": "Are you sure you want to delete {{name}}?"
+    },
+    "pin": {
+      "title": "Profile Lock",
+      "subtitle": "Enter PIN for {{name}}",
+      "setupTitle": "Set Profile PIN",
+      "setupEnter": "Enter a 4-digit PIN",
+      "setupConfirm": "Re-enter PIN to confirm",
+      "mismatch": "PINs didn't match. Try again.",
+      "remove": "Remove PIN",
+      "wrong": "Wrong PIN. {{attempts}} attempts left.",
+      "locked": "Locked. Try again in {{time}}."
+    },
+    "tab": {
+      "photoUpdated": "Profile photo updated",
+      "changePhoto": "Change Photo",
+      "account": "Account",
+      "parental": "Parental Controls",
+      "switchProfile": "Switch Profile",
+      "stats": "Viewing Stats"
+    },
+    "validation": {
+      "nameRequired": "Profile name is required",
+      "nameTooLong": "Profile name is too long",
+      "nameInvalid": "Enter a valid profile name",
+      "nameTaken": "This profile name is already taken"
+    },
+    "errors": {
+      "limit": "Maximum number of profiles reached",
+      "lastProfile": "You cannot delete your only profile",
+      "pinFormat": "PIN must be 4 digits"
+    }
   }
 }
