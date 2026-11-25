@@ -2,20 +2,23 @@ import type { VideoView } from 'expo-video';
 import { useKeepAwake } from 'expo-keep-awake';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
+import * as WebBrowser from 'expo-web-browser';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ActivityIndicator, StyleSheet, View } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { useServices } from '@/bootstrap/useServices';
 import { AppError } from '@/core/errors/AppError';
 import { toUserMessage } from '@/core/errors/toUserMessage';
 import { useSecureScreen } from '@/core/security/useSecureScreen';
-import { titleIdFromRoute, toRouteParams, type TitleId } from '@/features/catalog';
+import { titleIdFromRoute, toRouteParams, useTrailers, youTubeUrl, type TitleId } from '@/features/catalog';
 import { useSettings } from '@/features/settings';
 import { useBackHandler } from '@/shared/hooks/useBackHandler';
 import { makeStyles } from '@/shared/theme/makeStyles';
 import { Button } from '@/shared/ui/Button';
 import { ErrorState } from '@/shared/ui/ErrorState';
+import { IconButton } from '@/shared/ui/IconButton';
 
 import type { GestureActions } from '../../application/gestures/GestureStrategy';
 import { useBrightness } from '../../application/hooks/useBrightness';
@@ -43,6 +46,7 @@ import { PlayerControls } from '../components/PlayerControls';
 import { QualitySheet } from '../components/QualitySheet';
 import { SpeedSheet } from '../components/SpeedSheet';
 import { TracksSheet } from '../components/TracksSheet';
+import { TrailerPlayer } from '../components/TrailerPlayer';
 import { VideoSurface } from '../components/VideoSurface';
 
 const useStyles = makeStyles(() => ({
@@ -66,6 +70,66 @@ type ContentProps = {
   nextEpisode: EpisodeRef | null;
   titleName: string;
 };
+
+/** Demo rejimində: filmin öz treyleri (TMDB -> YouTube). Biri açılmasa, növbətisinə keçir. */
+function TrailerContent({ titleId }: { titleId: TitleId }) {
+  const router = useRouter();
+  const { t } = useTranslation();
+  const styles = useStyles();
+  const insets = useSafeAreaInsets();
+  const { videos, isLoading } = useTrailers(titleId);
+  const [index, setIndex] = useState(0);
+
+  const list = useMemo(
+    () =>
+      videos
+        .filter((video) => video.site === 'YouTube' && (video.type === 'Trailer' || video.type === 'Teaser'))
+        .sort(
+          (a, b) =>
+            Number(b.type === 'Trailer') - Number(a.type === 'Trailer') ||
+            (b.publishedAt ?? '').localeCompare(a.publishedAt ?? ''),
+        ),
+    [videos],
+  );
+
+  const current = list[index];
+
+  if (isLoading) {
+    return (
+      <View style={styles.center}>
+        <StatusBar hidden />
+        <ActivityIndicator size="large" color="#FFFFFF" />
+      </View>
+    );
+  }
+
+  if (!current) {
+    return (
+      <View style={styles.center}>
+        <ErrorState title={t('newhot.noTrailer')} onRetry={() => router.back()} retryLabel={t('common.back')} />
+        {list[0] ? (
+          <View style={{ width: 260, marginBottom: 24 }}>
+            <Button label={t('details.trailer')} onPress={() => void WebBrowser.openBrowserAsync(youTubeUrl(list[0]))} />
+          </View>
+        ) : null}
+      </View>
+    );
+  }
+
+  return (
+    <View style={styles.root}>
+      <StatusBar hidden />
+      <TrailerPlayer key={current.key} videoKey={current.key} onError={() => setIndex((value) => value + 1)} />
+      <IconButton
+        icon="chevron-back"
+        filled
+        accessibilityLabel={t('common.back')}
+        onPress={() => router.back()}
+        style={{ position: 'absolute', top: insets.top + 8, left: 16 }}
+      />
+    </View>
+  );
+}
 
 function PlayerContent({ titleId, episode, session, segments, nextEpisode, titleName }: ContentProps) {
   const router = useRouter();
@@ -288,6 +352,11 @@ export function PlayerScreen() {
         ) : null}
       </View>
     );
+  }
+
+  // Yüklənmiş (offline) fayl yoxdursa, demo video əvəzinə filmin öz treyleri açılır.
+  if (!state.session.source.isLocal) {
+    return <TrailerContent key={titleId} titleId={titleId} />;
   }
 
   return (

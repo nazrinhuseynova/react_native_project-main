@@ -61,10 +61,23 @@ export class TmdbTitleRepository implements TitleRepository {
 
   async videos(id: TitleId): Promise<Video[]> {
     const { kind, tmdbId } = this.parse(id);
-    const dto = await this.client.get<TmdbVideoDto>(`/${kind}/${tmdbId}/videos`, {
-      include_video_language: 'en,null',
-    });
-    return mapVideos(dto);
+    const path = `/${kind}/${tmdbId}/videos`;
+
+    // 1) İngiliscə: treylerlərin çoxu bu dildədir.
+    const english = mapVideos(
+      await this.client.get<TmdbVideoDto>(path, {
+        language: 'en-US',
+        include_video_language: 'en,null',
+      }),
+    );
+    if (english.some((video) => video.site === 'YouTube')) return english;
+
+    // 2) Tapılmadısa: tətbiqin dili ilə, bir neçə dil icazə verilir.
+    return mapVideos(
+      await this.client.get<TmdbVideoDto>(path, {
+        include_video_language: 'en,null,ru,az',
+      }),
+    );
   }
 
   async season(id: TitleId, seasonNumber: number): Promise<Season> {
