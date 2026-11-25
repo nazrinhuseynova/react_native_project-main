@@ -2,9 +2,18 @@
   "onboarding": {
     "getStarted": "Get started",
     "steps": {
-      "watch": { "title": "Watch anywhere", "body": "Stream movies and series on your phone, tablet or TV." },
-      "download": { "title": "Download and go", "body": "Save your favourites and watch them offline." },
-      "personalized": { "title": "Picked for you", "body": "Tell us what you like and we will build your home screen." }
+      "watch": {
+        "title": "Watch anywhere",
+        "body": "Stream movies and series on your phone, tablet or TV."
+      },
+      "download": {
+        "title": "Download and go",
+        "body": "Save your favourites and watch them offline."
+      },
+      "personalized": {
+        "title": "Picked for you",
+        "body": "Tell us what you like and we will build your home screen."
+      }
     },
     "genres": {
       "title": "What do you like to watch?",
@@ -12,24 +21,55 @@
       "selected": "{{count}} selected",
       "continue": "Continue",
       "options": {
-        "28": "Action", "12": "Adventure", "16": "Animation", "35": "Comedy", "80": "Crime",
-        "99": "Documentary", "18": "Drama", "10751": "Family", "14": "Fantasy", "36": "History",
-        "27": "Horror", "10402": "Music", "9648": "Mystery", "10749": "Romance", "878": "Sci-Fi", "53": "Thriller"
+        "28": "Action",
+        "12": "Adventure",
+        "16": "Animation",
+        "35": "Comedy",
+        "80": "Crime",
+        "99": "Documentary",
+        "18": "Drama",
+        "10751": "Family",
+        "14": "Fantasy",
+        "36": "History",
+        "27": "Horror",
+        "10402": "Music",
+        "9648": "Mystery",
+        "10749": "Romance",
+        "878": "Sci-Fi",
+        "53": "Thriller"
       }
     }
   },
   "catalog": {
     "attribution": "This product uses the TMDB API but is not endorsed or certified by TMDB.",
-    "rating": { "tmdb": "TMDB", "imdb": "IMDb" },
-    "genre": { "title": "Genre", "movies": "Movies", "tv": "TV Shows" },
-    "person": {
-      "born": "Born {{date}}", "biography": "Biography", "noBiography": "No biography available.",
-      "readMore": "Read more", "readLess": "Show less", "knownFor": "Known for"
+    "rating": {
+      "tmdb": "TMDB",
+      "imdb": "IMDb"
     },
-    "empty": { "title": "Nothing here yet", "message": "Try another category." }
+    "genre": {
+      "title": "Genre",
+      "movies": "Movies",
+      "tv": "TV Shows"
+    },
+    "person": {
+      "born": "Born {{date}}",
+      "biography": "Biography",
+      "noBiography": "No biography available.",
+      "readMore": "Read more",
+      "readLess": "Show less",
+      "knownFor": "Known for"
+    },
+    "empty": {
+      "title": "Nothing here yet",
+      "message": "Try another category."
+    }
   },
   "home": {
-    "categories": { "all": "All", "tvShows": "TV Shows", "movies": "Movies" },
+    "categories": {
+      "all": "All",
+      "tvShows": "TV Shows",
+      "movies": "Movies"
+    },
     "rows": {
       "continueWatching": "Continue Watching",
       "myList": "My List",
@@ -45,12 +85,22 @@
       "kidsMovies": "Kids' Movies",
       "kidsSeries": "Kids' Series"
     },
-    "hero": { "play": "Play", "myList": "My List", "inMyList": "In My List" },
-    "kids": { "title": "Kids" }
+    "hero": {
+      "play": "Play",
+      "myList": "My List",
+      "inMyList": "In My List"
+    },
+    "kids": {
+      "title": "Kids"
+    }
   },
   "newhot": {
     "title": "New & Hot",
-    "tabs": { "comingSoon": "Coming Soon", "everyoneWatching": "Everyone's Watching", "top10": "Top 10" },
+    "tabs": {
+      "comingSoon": "Coming Soon",
+      "everyoneWatching": "Everyone's Watching",
+      "top10": "Top 10"
+    },
     "remindMe": "Remind Me",
     "reminding": "Reminder set",
     "reminderSet": "We will remind you on release day.",
@@ -60,9 +110,17 @@
     "play": "Play",
     "noTrailer": "No trailer available.",
     "permissionDenied": "Enable notifications in settings to get reminders.",
-    "validation": { "notUpcoming": "This title is already out." },
-    "notification": { "title": "{{title}} is out now", "body": "Tap to see details." },
-    "empty": { "title": "Nothing to show", "message": "Check back later." }
+    "validation": {
+      "notUpcoming": "This title is already out."
+    },
+    "notification": {
+      "title": "{{title}} is out now",
+      "body": "Tap to see details."
+    },
+    "empty": {
+      "title": "Nothing to show",
+      "message": "Check back later."
+    }
   },
   "search": {
     "placeholder": "Search movies, shows, actors or genres",
@@ -74,7 +132,11 @@
     "filters": {
       "title": "Filters",
       "kind": "Type",
-      "kinds": { "all": "All", "movie": "Movies", "tv": "Series" },
+      "kinds": {
+        "all": "All",
+        "movie": "Movies",
+        "tv": "Series"
+      },
       "rating": "Minimum rating",
       "ratingAny": "Any",
       "genre": "Genre",
@@ -82,10 +144,21 @@
       "reset": "Reset",
       "apply": "Apply"
     },
-    "recent": { "title": "Recent searches", "clear": "Clear all", "remove": "Remove" },
-    "top": { "title": "Top searches" },
-    "empty": { "title": "No results for “{{query}}”", "message": "Try another word or change the filters." },
-    "error": { "title": "Search failed" }
+    "recent": {
+      "title": "Recent searches",
+      "clear": "Clear all",
+      "remove": "Remove"
+    },
+    "top": {
+      "title": "Top searches"
+    },
+    "empty": {
+      "title": "No results for “{{query}}”",
+      "message": "Try another word or change the filters."
+    },
+    "error": {
+      "title": "Search failed"
+    }
   },
   "details": {
     "play": "Play",
@@ -119,17 +192,39 @@
     "retry": "Try again",
     "error": "Couldn't load your library",
     "remove": "Remove",
-    "tabs": { "saved": "Saved", "favorites": "Favorites" },
-    "sort": { "recent": "Recently added", "alphabetical": "A–Z" },
-    "filter": { "all": "All", "movies": "Movies", "series": "Series" },
-    "status": { "planned": "Planned", "watching": "Watching", "completed": "Completed" },
+    "tabs": {
+      "saved": "Saved",
+      "favorites": "Favorites"
+    },
+    "sort": {
+      "recent": "Recently added",
+      "alphabetical": "A–Z"
+    },
+    "filter": {
+      "all": "All",
+      "movies": "Movies",
+      "series": "Series"
+    },
+    "status": {
+      "planned": "Planned",
+      "watching": "Watching",
+      "completed": "Completed"
+    },
     "empty": {
-      "saved": { "title": "Your list is empty", "message": "Add titles you like to My List." },
-      "favorites": { "title": "No favorites yet", "message": "Tap the heart to mark your favorites." }
+      "saved": {
+        "title": "Your list is empty",
+        "message": "Add titles you like to My List."
+      },
+      "favorites": {
+        "title": "No favorites yet",
+        "message": "Tap the heart to mark your favorites."
+      }
     }
   },
   "history": {
-    "watched": { "title": "Watched" },
+    "watched": {
+      "title": "Watched"
+    },
     "watchedBadge": "WATCHED",
     "watchedOn": "Watched on {{date}}",
     "remove": "Remove from history",
@@ -143,7 +238,10 @@
       "confirm": "Clear",
       "cancel": "Cancel"
     },
-    "empty": { "title": "Nothing watched yet", "message": "Titles you finish will show up here." }
+    "empty": {
+      "title": "Nothing watched yet",
+      "message": "Titles you finish will show up here."
+    }
   },
   "reviews": {
     "title": "Reviews",
@@ -158,12 +256,31 @@
     "deleted": "Review deleted",
     "error": "Couldn't load reviews",
     "retry": "Try again",
-    "form": { "text": "Your review", "placeholder": "Share your thoughts (optional)" },
-    "validation": { "stars": "Pick 1 to 5 stars", "textTooLong": "Review is too long" },
-    "summary": { "count_one": "{{count}} review", "count_other": "{{count}} reviews" },
-    "reaction": { "dislike": "Not for me", "like": "I like this", "love": "Love this" },
-    "deleteConfirm": { "title": "Delete review?", "message": "This can't be undone." },
-    "empty": { "title": "No reviews yet", "message": "Be the first to write one." }
+    "form": {
+      "text": "Your review",
+      "placeholder": "Share your thoughts (optional)"
+    },
+    "validation": {
+      "stars": "Pick 1 to 5 stars",
+      "textTooLong": "Review is too long"
+    },
+    "summary": {
+      "count_one": "{{count}} review",
+      "count_other": "{{count}} reviews"
+    },
+    "reaction": {
+      "dislike": "Not for me",
+      "like": "I like this",
+      "love": "Love this"
+    },
+    "deleteConfirm": {
+      "title": "Delete review?",
+      "message": "This can't be undone."
+    },
+    "empty": {
+      "title": "No reviews yet",
+      "message": "Be the first to write one."
+    }
   },
   "stats": {
     "title": "Watch stats",
@@ -175,20 +292,24 @@
     "genres": "By genre",
     "empty": "Watch at least one title to see your stats."
   },
-
-    "common": {
+  "common": {
     "retry": "Try again",
     "save": "Save",
     "cancel": "Cancel",
     "delete": "Delete",
     "done": "Done",
     "back": "Back",
-    "loading": "Loading..."
+    "loading": "Loading...",
+    "confirm": "Confirm",
+    "continue": "Continue",
+    "next": "Next",
+    "skip": "Skip"
   },
   "errors": {
     "unknown": "Something went wrong. Please try again.",
     "network": "No internet connection.",
-    "unauthorized": "Session expired. Please sign in again."
+    "unauthorized": "Session expired. Please sign in again.",
+    "notFound": "We couldn't find that."
   },
   "auth": {
     "login": {
@@ -309,5 +430,95 @@
       "lastProfile": "You cannot delete your only profile",
       "pinFormat": "PIN must be 4 digits"
     }
+  },
+  "parental": {
+    "title": "Parental Controls",
+    "subtitle": "Choose what each profile is allowed to watch.",
+    "profileFor": "Settings for {{name}}",
+    "kidsInfo": "Kids profiles are always limited to PG and below.",
+    "maxMaturity": "Maximum maturity rating",
+    "maxMaturityHint": "Titles above this rating will be hidden.",
+    "kidsLocked": {
+      "title": "Locked for kids",
+      "message": "Switch to a standard profile to change parental controls."
+    },
+    "blocked": {
+      "row": "Blocked titles",
+      "count_one": "{{count}} title blocked",
+      "count_other": "{{count}} titles blocked",
+      "count": "{{count}} blocked",
+      "title": "Blocked titles",
+      "empty": {
+        "title": "No blocked titles",
+        "message": "Titles you block will appear here."
+      }
+    },
+    "unblock": "Unblock"
+  },
+  "maturity": {
+    "G": {
+      "label": "G",
+      "description": "General audiences – suitable for all ages"
+    },
+    "PG": {
+      "label": "PG",
+      "description": "Parental guidance suggested"
+    },
+    "PG-13": {
+      "label": "PG-13",
+      "description": "Parents strongly cautioned – may be inappropriate under 13"
+    },
+    "R": {
+      "label": "R",
+      "description": "Restricted – under 17 requires an adult"
+    },
+    "NC-17": {
+      "label": "NC-17",
+      "description": "Adults only – no restrictions"
+    }
+  },
+  "subscription": {
+    "title": "Subscription",
+    "currentPlan": "Current plan",
+    "noPlan": "You don't have an active plan",
+    "manage": "Manage",
+    "status": {
+      "active": "Active",
+      "canceled": "Canceled",
+      "none": "Free"
+    },
+    "renewsOn": "Renews on {{date}}",
+    "endsOn": "Ends on {{date}}",
+    "price": "{{price}} / month",
+    "viewPlans": "See all plans",
+    "changePlan": "Change plan",
+    "cancel": "Cancel subscription",
+    "resume": "Resume subscription",
+    "cancelTitle": "Cancel subscription?",
+    "cancelMessage": "You'll keep access until the end of the billing period.",
+    "keep": "Keep plan",
+    "confirmCancel": "Yes, cancel",
+    "canceledToast": "Subscription canceled",
+    "resumedToast": "Subscription resumed",
+    "changedToast": "Plan updated",
+    "error": "Couldn't load your subscription",
+    "retry": "Try again",
+    "perMonth": "/ month",
+    "free": "Free"
+  },
+  "plans": {
+    "title": "Choose your plan",
+    "subtitle": "Cancel anytime.",
+    "current": "Current",
+    "popular": "Most popular",
+    "select": "Choose plan",
+    "selected": "Your plan",
+    "quality": "Video quality",
+    "screens": "Screens at once",
+    "downloads": "Downloads",
+    "ads": "Ads",
+    "yes": "Yes",
+    "no": "No",
+    "error": "Couldn't load plans"
   }
 }

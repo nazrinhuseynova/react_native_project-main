@@ -189,6 +189,16 @@ const OMDB_BASE_URL = 'https://www.omdbapi.com';
 const DEMO_DOWNLOAD_URL =
   'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4';
 
+/**
+ * TMDB iki cür açar verir:
+ *  - v4 "API Read Access Token" (JWT, "eyJ..." ilə başlayır, ~200 simvol) -> Authorization: Bearer
+ *  - v3 "API Key" (32 simvollu hex) -> ?api_key=... query parametri
+ * .env-də 32 simvollu v3 açar var idi, amma Bearer kimi göndərilirdi -> 401 -> bütün TMDB sorğuları uğursuz.
+ */
+function isTmdbBearerToken(token: string): boolean {
+  return token.startsWith('eyJ') || token.length > 60;
+}
+
 function toTmdbLanguage(language: string): string {
   const normalized = language.toLowerCase();
   if (normalized.startsWith('az')) return 'az-AZ';
@@ -392,7 +402,7 @@ function createCatalogServices({
       new LoggingInterceptor(logger),
       new ErrorMappingInterceptor(),
       new RetryInterceptor(),
-      new AuthInterceptor(() => env.tmdbToken),
+      new AuthInterceptor(() => (isTmdbBearerToken(env.tmdbToken) ? env.tmdbToken : null)),
     ],
   });
   const omdbHttp = new FetchHttpClient({
@@ -402,6 +412,7 @@ function createCatalogServices({
 
   const client = new TmdbClient({
     http: tmdbHttp,
+    apiKey: isTmdbBearerToken(env.tmdbToken) ? undefined : env.tmdbToken,
     getLanguage: () => toTmdbLanguage(i18n.language),
   });
   const titles = new TmdbTitleRepository(client, images);

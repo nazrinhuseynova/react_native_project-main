@@ -57,6 +57,20 @@ export function resolveDeviceLanguage(): AppLanguage {
   return isSupportedLanguage(code) ? code : DEFAULT_LANGUAGE;
 }
 
+function isObj(value: unknown): value is Record<string, unknown> {
+  return typeof value === 'object' && value !== null && !Array.isArray(value);
+}
+
+/** base üzərinə override yazır; override-da olmayan açarlar (məs. yeni ekranların mətnləri) base-dən qalır. */
+function deepMerge(base: TranslationStrings, override: TranslationStrings): TranslationStrings {
+  const out: TranslationStrings = { ...base };
+  for (const [key, value] of Object.entries(override)) {
+    const current = out[key];
+    out[key] = isObj(current) && isObj(value) ? deepMerge(current, value) : value;
+  }
+  return out;
+}
+
 function applyBundle(code: string, bundle: TranslationBundle): void {
   i18n.addResourceBundle(code, 'translation', bundle.strings, true, true);
 }
@@ -124,13 +138,15 @@ export async function initI18n(options: InitI18nOptions): Promise<typeof i18n> {
 
   const cachedDefault = await source.readCachedBundle(DEFAULT_LANGUAGE);
   const resources: Record<string, { translation: TranslationStrings }> = {
-    [DEFAULT_LANGUAGE]: { translation: cachedDefault?.strings ?? en },
+    [DEFAULT_LANGUAGE]: {
+      translation: cachedDefault ? deepMerge(en, cachedDefault.strings) : en,
+    },
   };
 
   let lng: AppLanguage = wanted;
   if (wanted !== DEFAULT_LANGUAGE) {
     const bundle = await source.loadBundle(wanted);
-    if (bundle) resources[wanted] = { translation: bundle.strings };
+    if (bundle) resources[wanted] = { translation: deepMerge(en, bundle.strings) };
     else lng = DEFAULT_LANGUAGE;
   }
 

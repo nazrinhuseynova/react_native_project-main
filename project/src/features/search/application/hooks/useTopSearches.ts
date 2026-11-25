@@ -20,5 +20,10 @@ export function useTopSearches() {
     staleTime: TOP_STALE_TIME_MS,
   });
 
-  return { titles: query.data ?? EMPTY, isLoading: query.isLoading };
+  return {
+    titles: query.data ?? EMPTY,
+    isLoading: query.isLoading,
+    isError: query.isError,
+    refetch: query.refetch,
+  };
 }

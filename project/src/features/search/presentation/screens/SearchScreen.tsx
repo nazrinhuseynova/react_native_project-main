@@ -43,7 +43,7 @@ export function SearchScreen() {
   const { filter, setFilter, activeCount } = useSearchFilters();
   const { query, isActive, results, isLoading, isError, refetch } = useSearch(text, filter);
   const { recent, add, remove, clear } = useRecentSearches();
-  const { titles: top } = useTopSearches();
+  const { titles: top, isLoading: topLoading, isError: topError, refetch: refetchTop } = useTopSearches();
 
   const remember = () => {
     if (isActive) void add(query.text);
@@ -73,6 +73,20 @@ export function SearchScreen() {
         showsVerticalScrollIndicator={false}
       >
         <RecentSearchesList items={recent} onPress={setText} onRemove={(q) => void remove(q)} onClear={() => void clear()} />
+        {topLoading && top.length === 0 ? (
+          <View style={styles.skeletons}>
+            {Array.from({ length: 6 }).map((_, index) => (
+              <Skeleton key={index} height={72} radius={8} width="100%" />
+            ))}
+          </View>
+        ) : null}
+        {topError && top.length === 0 ? (
+          <ErrorState
+            title={t('search.error.title')}
+            retryLabel={t('search.retry')}
+            onRetry={() => void refetchTop()}
+          />
+        ) : null}
         <TopSearchesList titles={top} onPress={openTitle} />
       </ScrollView>
     );

@@ -17,6 +17,8 @@ export type TmdbClientOptions = {
   http: HttpClient;
   getLanguage: () => string;
   region?: string;
+  /** TMDB v3 API key (32 simvol). v4 token üçün boş saxla, o Bearer ilə gedir. */
+  apiKey?: string;
 };
 
 export type TmdbRequestOptions = {
@@ -27,16 +29,19 @@ export class TmdbClient {
   private readonly http: HttpClient;
   private readonly getLanguage: () => string;
   private readonly region?: string;
+  private readonly apiKey?: string;
 
   constructor(options: TmdbClientOptions) {
     this.http = options.http;
     this.getLanguage = options.getLanguage;
     this.region = options.region;
+    this.apiKey = options.apiKey;
   }
 
   get<T>(path: string, query: QueryParams = {}, options: TmdbRequestOptions = {}): Promise<T> {
     return this.http.get<T>(path, {
       query: {
+        ...(this.apiKey ? { api_key: this.apiKey } : {}),
         language: this.getLanguage(),
         ...(options.withRegion && this.region ? { region: this.region } : {}),
         ...query,
