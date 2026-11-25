@@ -48,7 +48,10 @@ export class SupabaseHistoryRepository implements HistoryRepository {
       .eq('profile_id', profileId)
       .order('updated_at', { ascending: false })
       .limit(LIST_LIMIT);
-    if (error) throw toError('Failed to load history', error);
+    if (error) {
+      console.log('SUPABASE HISTORY ERROR', JSON.stringify(error));
+      throw toError('Failed to load history', error);
+    }
     return ((data ?? []) as ProgressRow[]).map(toProgress);
   }
 

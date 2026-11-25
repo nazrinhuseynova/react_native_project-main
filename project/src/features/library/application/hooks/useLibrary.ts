@@ -18,6 +18,10 @@ export function useLibrary() {
     queryKey: libraryKeys.list(profileId),
     queryFn: () => library.repository.list(profileId as string),
     enabled: profileId !== null,
+    // Xəta olanda avtomatik təkrar sorğu yoxdur: yoxsa error ↔ skeleton sonsuz dövrü yaranır.
+    // Yenidən cəhd yalnız "Try again" düyməsi ilə olur.
+    retryOnMount: false,
+    refetchOnReconnect: false,
   });
 
   const entries = query.data ?? EMPTY;
@@ -27,7 +31,7 @@ export function useLibrary() {
     profileId,
     entries,
     byId,
-    isLoading: query.isLoading,
+    isLoading: query.isLoading && !query.isError,
     isError: query.isError,
     refetch: query.refetch,
   };

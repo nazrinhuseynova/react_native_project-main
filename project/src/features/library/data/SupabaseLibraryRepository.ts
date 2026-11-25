@@ -45,7 +45,10 @@ export class SupabaseLibraryRepository implements LibraryRepository {
       .select(COLUMNS)
       .eq('profile_id', profileId)
       .order('added_at', { ascending: false });
-    if (error) throw toError('Failed to load library', error);
+    if (error) {
+      console.log('SUPABASE LIBRARY ERROR', JSON.stringify(error));
+      throw toError('Failed to load library', error);
+    }
     return ((data ?? []) as LibraryRow[]).map(toEntry);
   }
 
