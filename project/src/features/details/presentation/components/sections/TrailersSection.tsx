@@ -1,10 +1,10 @@
 import { Ionicons } from '@expo/vector-icons';
 import { Image } from 'expo-image';
-import * as WebBrowser from 'expo-web-browser';
+import { useRouter } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 import { FlatList, View } from 'react-native';
 
-import { useTrailers, youTubeUrl, type Video } from '@/features/catalog';
+import { toRouteParams, useTrailers, type TitleId, type Video } from '@/features/catalog';
 import { buttonA11y } from '@/shared/a11y/accessibilityProps';
 import { ScalePressable } from '@/shared/animations/ScalePressable';
 import { makeStyles } from '@/shared/theme/makeStyles';
@@ -31,19 +31,25 @@ const useStyles = makeStyles(({ colors, radius, spacing }) => ({
   },
 }));
 
-function TrailerCard({ video }: { video: Video }) {
+function TrailerCard({ titleId, video }: { titleId: TitleId; video: Video }) {
+  const router = useRouter();
   const styles = useStyles();
   const { colors } = useTheme();
 
   return (
     <ScalePressable
       {...buttonA11y(video.name)}
-      onPress={() => void WebBrowser.openBrowserAsync(youTubeUrl(video))}
+      onPress={() =>
+        router.push({
+          pathname: '/player/[id]',
+          params: { ...toRouteParams(titleId), videoKey: video.key },
+        })
+      }
       style={styles.card}
     >
       <View style={styles.thumb}>
         <Image
-          source={{ uri: `https://img.youtube.com/vi/${video.key}/hqdefault.jpg` }}
+          source={{ uri: `https://youtube.com{video.key}/hqdefault.jpg` }}
           contentFit="cover"
           style={{ position: 'absolute', width: '100%', height: '100%' }}
         />
@@ -73,7 +79,7 @@ export function TrailersSection({ details }: DetailSectionProps) {
         data={youtube}
         keyExtractor={(video) => video.id}
         contentContainerStyle={styles.list}
-        renderItem={({ item }) => <TrailerCard video={item} />}
+        renderItem={({ item }) => <TrailerCard titleId={details.title.id} video={item} />}
       />
     </View>
   );

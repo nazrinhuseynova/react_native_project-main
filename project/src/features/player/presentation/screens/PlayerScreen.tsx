@@ -1,373 +1,179 @@
-import type { VideoView } from 'expo-video';
+import { Ionicons } from '@expo/vector-icons';
 import { useKeepAwake } from 'expo-keep-awake';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
-import * as WebBrowser from 'expo-web-browser';
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ActivityIndicator, StyleSheet, View } from 'react-native';
+import { ActivityIndicator, Pressable, StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { WebView } from 'react-native-webview';
 
 import { useServices } from '@/bootstrap/useServices';
-import { AppError } from '@/core/errors/AppError';
-import { toUserMessage } from '@/core/errors/toUserMessage';
 import { useSecureScreen } from '@/core/security/useSecureScreen';
-import { titleIdFromRoute, toRouteParams, useTrailers, youTubeUrl, type TitleId } from '@/features/catalog';
-import { useSettings } from '@/features/settings';
-import { useBackHandler } from '@/shared/hooks/useBackHandler';
-import { makeStyles } from '@/shared/theme/makeStyles';
-import { Button } from '@/shared/ui/Button';
-import { ErrorState } from '@/shared/ui/ErrorState';
-import { IconButton } from '@/shared/ui/IconButton';
+import { titleIdFromRoute, useTitleDetails, useTrailers } from '@/features/catalog';
+import { AppText } from '@/shared/ui/AppText';
 
-import type { GestureActions } from '../../application/gestures/GestureStrategy';
-import { useBrightness } from '../../application/hooks/useBrightness';
-import { useControlsVisibility } from '../../application/hooks/useControlsVisibility';
 import { useOrientationLock } from '../../application/hooks/useOrientationLock';
-import { usePictureInPicture } from '../../application/hooks/usePictureInPicture';
-import { usePlaybackEvents } from '../../application/hooks/usePlaybackEvents';
-import { usePlaybackSession } from '../../application/hooks/usePlaybackSession';
-import { usePlaybackSpeed } from '../../application/hooks/usePlaybackSpeed';
-import { usePlayerController } from '../../application/hooks/usePlayerController';
-import { useScreenLock } from '../../application/hooks/useScreenLock';
-import { useTracks } from '../../application/hooks/useTracks';
-import { overlayRegistry } from '../../application/overlays/overlayRegistry';
-import type { OverlayContext } from '../../application/overlays/PlayerOverlay';
-import type { SkipSegment } from '../../domain/entities/SkipSegment';
-import { formatSpeed } from '../../domain/entities/PlaybackSpeed';
-import type { EpisodeRef } from '../../domain/services/NextEpisodeResolver';
-import { toEpisodeId } from '../../domain/services/NextEpisodeResolver';
-import type { PlaybackSession } from '../../domain/usercases/ResolvePlayback';
-import { CastButton } from '../components/CastButton';
-import { GestureLayer } from '../components/GestureLayer';
-import { LockToggle } from '../components/LockToggle';
-import { PipButton } from '../components/PipButton';
-import { PlayerControls } from '../components/PlayerControls';
-import { QualitySheet } from '../components/QualitySheet';
-import { SpeedSheet } from '../components/SpeedSheet';
-import { TracksSheet } from '../components/TracksSheet';
-import { TrailerPlayer } from '../components/TrailerPlayer';
-import { VideoSurface } from '../components/VideoSurface';
 
-const useStyles = makeStyles(() => ({
-  root: { flex: 1, backgroundColor: '#000000' },
-  center: {
-    flex: 1,
-    backgroundColor: '#000000',
-    alignItems: 'center' as const,
-    justifyContent: 'center' as const,
-  },
-  lockSlot: { position: 'absolute' as const, left: 24, top: '42%' },
-}));
+const FALLBACK_YOUTUBE_KEY = 'aqz-KE-bpKQ';
 
-type Sheet = 'speed' | 'tracks' | 'quality' | null;
-
-type ContentProps = {
-  titleId: TitleId;
-  episode: EpisodeRef | null;
-  session: PlaybackSession;
-  segments: SkipSegment[];
-  nextEpisode: EpisodeRef | null;
-  titleName: string;
-};
-
-/** Demo rejimində: filmin öz treyleri (TMDB -> YouTube). Biri açılmasa, növbətisinə keçir. */
-function TrailerContent({ titleId }: { titleId: TitleId }) {
-  const router = useRouter();
-  const { t } = useTranslation();
-  const styles = useStyles();
-  const insets = useSafeAreaInsets();
-  const { videos, isLoading } = useTrailers(titleId);
-  const [index, setIndex] = useState(0);
-
-  const list = useMemo(
-    () =>
-      videos
-        .filter((video) => video.site === 'YouTube' && (video.type === 'Trailer' || video.type === 'Teaser'))
-        .sort(
-          (a, b) =>
-            Number(b.type === 'Trailer') - Number(a.type === 'Trailer') ||
-            (b.publishedAt ?? '').localeCompare(a.publishedAt ?? ''),
-        ),
-    [videos],
-  );
-
-  const current = list[index];
-
-  if (isLoading) {
-    return (
-      <View style={styles.center}>
-        <StatusBar hidden />
-        <ActivityIndicator size="large" color="#FFFFFF" />
-      </View>
-    );
-  }
-
-  if (!current) {
-    return (
-      <View style={styles.center}>
-        <ErrorState title={t('newhot.noTrailer')} onRetry={() => router.back()} retryLabel={t('common.back')} />
-        {list[0] ? (
-          <View style={{ width: 260, marginBottom: 24 }}>
-            <Button label={t('details.trailer')} onPress={() => void WebBrowser.openBrowserAsync(youTubeUrl(list[0]))} />
-          </View>
-        ) : null}
-      </View>
-    );
-  }
-
-  return (
-    <View style={styles.root}>
-      <StatusBar hidden />
-      <TrailerPlayer key={current.key} videoKey={current.key} onError={() => setIndex((value) => value + 1)} />
-      <IconButton
-        icon="chevron-back"
-        filled
-        accessibilityLabel={t('common.back')}
-        onPress={() => router.back()}
-        style={{ position: 'absolute', top: insets.top + 8, left: 16 }}
-      />
-    </View>
-  );
-}
-
-function PlayerContent({ titleId, episode, session, segments, nextEpisode, titleName }: ContentProps) {
-  const router = useRouter();
-  const { t } = useTranslation();
-  const styles = useStyles();
-  const { player: playerServices } = useServices();
-  const { settings } = useSettings();
-  const videoRef = useRef<VideoView>(null);
-
-  const [sheet, setSheet] = useState<Sheet>(null);
-  const [scrubbing, setScrubbing] = useState(false);
-
-  const controller = usePlayerController(session.source, session.startPositionSec);
-  const { seekBy, seekTo, getVolume, setVolume, positionRef } = controller;
-  const episodeId = episode ? toEpisodeId(episode) : null;
-
-  const { notifySeek } = usePlaybackEvents({
-    titleId,
-    episodeId,
-    isPlaying: controller.isPlaying,
-    isBuffering: controller.isBuffering,
-    ended: controller.ended,
-    positionSec: controller.positionSec,
-    durationSec: controller.durationSec,
-  });
-
-  const lock = useScreenLock();
-  const controls = useControlsVisibility(!controller.isPlaying || sheet !== null || scrubbing);
-  const { getBrightness, setBrightness } = useBrightness();
-  const speed = usePlaybackSpeed(controller.player);
-  const tracks = useTracks(controller.player);
-  const pip = usePictureInPicture(videoRef);
-
-  useBackHandler(() => true, lock.isLocked);
-
-  const playNext = useCallback(() => {
-    if (!nextEpisode) return;
-    const route = toRouteParams(titleId);
-    router.replace({
-      pathname: '/player/[id]',
-      params: {
-        id: route.id,
-        type: route.type,
-        season: String(nextEpisode.seasonNumber),
-        episode: String(nextEpisode.episodeNumber),
-      },
-    });
-  }, [nextEpisode, router, titleId]);
-
-  useEffect(() => {
-    if (controller.ended && nextEpisode && settings.autoplay) playNext();
-  }, [controller.ended, nextEpisode, settings.autoplay, playNext]);
-
-  const handleSeekTo = useCallback(
-    (sec: number) => {
-      notifySeek(positionRef.current, sec);
-      seekTo(sec);
-    },
-    [notifySeek, positionRef, seekTo],
-  );
-
-  const handleSeekBy = useCallback(
-    (delta: number) => {
-      const from = positionRef.current;
-      seekBy(delta);
-      notifySeek(from, from + delta);
-    },
-    [notifySeek, positionRef, seekBy],
-  );
-
-  const gestureActions = useMemo<Omit<GestureActions, 'showHud'>>(
-    () => ({ seekBy: handleSeekBy, getBrightness, setBrightness, getVolume, setVolume }),
-    [handleSeekBy, getBrightness, setBrightness, getVolume, setVolume],
-  );
-
-  const overlayContext: OverlayContext = {
-    titleId,
-    positionSec: controller.positionSec,
-    durationSec: controller.durationSec,
-    isBuffering: controller.isBuffering,
-    controlsVisible: controls.visible,
-    segments,
-    nextEpisode,
-    seekTo: handleSeekTo,
-    playNext,
-  };
-
-  const subtitle = episode ? `S${episode.seasonNumber}:E${episode.episodeNumber}` : undefined;
-
-  if (controller.errorMessage) {
-    return (
-      <View style={styles.center}>
-        <ErrorState title={t('player.errors.playback')} onRetry={() => router.back()} retryLabel={t('common.back')} />
-      </View>
-    );
-  }
-
-  return (
-    <View style={styles.root}>
-      <StatusBar hidden />
-      <VideoSurface ref={videoRef} player={controller.player} onPipStart={pip.onEnter} onPipStop={pip.onExit} />
-
-      {!lock.isLocked && !pip.isInPip ? (
-        <GestureLayer actions={gestureActions} onToggleControls={controls.toggle} />
-      ) : null}
-
-      {overlayRegistry
-        .all()
-        .filter((overlay) => overlay.shouldShow(overlayContext))
-        .map(({ id, Component }) => (
-          <Component key={id} ctx={overlayContext} />
-        ))}
-
-      {!lock.isLocked && !pip.isInPip ? (
-        <PlayerControls
-          title={titleName}
-          subtitle={subtitle}
-          visible={controls.visible}
-          isPlaying={controller.isPlaying}
-          positionSec={controller.positionSec}
-          durationSec={controller.durationSec}
-          bufferedSec={controller.bufferedSec}
-          speedLabel={formatSpeed(speed.speed)}
-          hasNext={nextEpisode !== null}
-          onBack={() => router.back()}
-          onTogglePlay={controller.toggle}
-          onSeekBy={handleSeekBy}
-          onSeek={handleSeekTo}
-          onScrubStart={() => setScrubbing(true)}
-          onScrubEnd={() => setScrubbing(false)}
-          onOpenSpeed={() => setSheet('speed')}
-          onOpenTracks={() => setSheet('tracks')}
-          onOpenQuality={() => setSheet('quality')}
-          onNext={playNext}
-          cast={<CastButton cast={playerServices.cast} onPress={() => void playerServices.cast.connect()} />}
-          pip={<PipButton supported={pip.isSupported} onPress={pip.enter} />}
-          lock={<LockToggle locked={false} onPress={lock.lock} />}
-        />
-      ) : null}
-
-      {lock.isLocked ? (
-        <View style={styles.lockSlot}>
-          <LockToggle locked onPress={lock.unlock} />
-        </View>
-      ) : null}
-
-      <SpeedSheet visible={sheet === 'speed'} speed={speed.speed} onSelect={speed.setSpeed} onClose={() => setSheet(null)} />
-      <TracksSheet
-        visible={sheet === 'tracks'}
-        audio={tracks.audio}
-        subtitles={tracks.subtitles}
-        audioId={tracks.audioId}
-        subtitleId={tracks.subtitleId}
-        onSelectAudio={tracks.selectAudio}
-        onSelectSubtitle={tracks.selectSubtitle}
-        onClose={() => setSheet(null)}
-      />
-      <QualitySheet
-        visible={sheet === 'quality'}
-        qualities={tracks.qualities}
-        selectedId={tracks.qualityId}
-        onSelect={tracks.selectQuality}
-        onClose={() => setSheet(null)}
-      />
-    </View>
-  );
+function buildEmbedHtml(videoKey: string): string {
+  const safeKey = encodeURIComponent(videoKey);
+  return `<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { width: 100%; height: 100%; background: #000; overflow: hidden; }
+    iframe { position: fixed; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+  </style>
+</head>
+<body>
+  <iframe
+    src="https://youtube.com{safeKey}?playsinline=1&rel=0&modestbranding=1&autoplay=1&controls=1&fs=1"
+    referrerpolicy="strict-origin-when-cross-origin"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+    allowfullscreen
+  ></iframe>
+</body>
+</html>`;
 }
 
 export function PlayerScreen() {
-  const params = useLocalSearchParams<{ id?: string; type?: string; season?: string; episode?: string }>();
+  const params = useLocalSearchParams<{
+    id?: string;
+    type?: string;
+    season?: string;
+    episode?: string;
+    videoKey?: string;
+  }>();
   const router = useRouter();
   const { t } = useTranslation();
-  const styles = useStyles();
+  const insets = useSafeAreaInsets();
+  const { eventBus } = useServices();
 
   const titleId = titleIdFromRoute(params.id, params.type);
-  const episode = useMemo<EpisodeRef | null>(() => {
-    const seasonNumber = Number(params.season);
-    const episodeNumber = Number(params.episode);
-    return Number.isInteger(seasonNumber) && Number.isInteger(episodeNumber) && params.season && params.episode
-      ? { seasonNumber, episodeNumber }
-      : null;
-  }, [params.season, params.episode]);
+  const { details } = useTitleDetails(titleId);
+  const { trailer, videos, isLoading } = useTrailers(titleId, { enabled: !params.videoKey });
 
   useOrientationLock();
   useKeepAwake();
   useSecureScreen(true, 'player');
 
-  const state = usePlaybackSession(titleId, episode);
+  const resolvedVideo =
+    params.videoKey ??
+    trailer?.key ??
+    videos.find((v) => v.site === 'YouTube')?.key ??
+    FALLBACK_YOUTUBE_KEY;
 
-  if (!titleId) {
-    return (
-      <View style={styles.center}>
-        <ErrorState title={t('errors.notFound')} onRetry={() => router.back()} retryLabel={t('common.back')} />
-      </View>
-    );
-  }
+  const titleName = details?.title.name ?? '';
+  const subtitle =
+    params.season && params.episode ? `S${params.season}:E${params.episode}` : undefined;
 
-  if (state.isLoading) {
-    return (
-      <View style={styles.center}>
-        <StatusBar hidden />
-        <ActivityIndicator size="large" color="#FFFFFF" />
-      </View>
-    );
-  }
-
-  if (state.error || !state.session) {
-    const notEntitled = state.error instanceof AppError && state.error.code === 'NOT_ENTITLED';
-    return (
-      <View style={styles.center}>
-        <ErrorState
-          title={t(toUserMessage(state.error))}
-          onRetry={notEntitled ? undefined : () => void state.refetch()}
-        />
-        {notEntitled ? (
-          <View style={{ width: 260, marginBottom: 24 }}>
-            <Button label={t('player.seePlans')} onPress={() => router.replace('/billing/plans')} />
-            <Button label={t('common.back')} variant="ghost" onPress={() => router.back()} />
-          </View>
-        ) : null}
-      </View>
-    );
-  }
-
-  // Yüklənmiş (offline) fayl yoxdursa, demo video əvəzinə filmin öz treyleri açılır.
-  if (!state.session.source.isLocal) {
-    return <TrailerContent key={titleId} titleId={titleId} />;
-  }
+  useEffect(() => {
+    if (!titleId) return;
+    eventBus.emit('playback.started', {
+      titleId,
+      episodeId: params.season && params.episode ? `s${params.season}e${params.episode}` : undefined,
+      positionSec: 0,
+    });
+  }, [titleId, params.season, params.episode, eventBus]);
 
   return (
-    <PlayerContent
-      key={`${titleId}:${episode ? toEpisodeId(episode) : 'movie'}`}
-      titleId={titleId}
-      episode={episode}
-      session={state.session}
-      segments={state.segments}
-      nextEpisode={state.nextEpisode}
-      titleName={state.titleName}
-    />
+    <View style={styles.root}>
+      <StatusBar hidden />
+
+      {isLoading && !params.videoKey ? (
+        <View style={styles.center}>
+          <ActivityIndicator size="large" color="#FFFFFF" />
+        </View>
+      ) : (
+        <WebView
+          originWhitelist={['*']}
+          source={{
+            html: buildEmbedHtml(resolvedVideo),
+            baseUrl: 'https://youtube.com',
+          }}
+          style={styles.webview}
+          javaScriptEnabled
+          domStorageEnabled
+          allowsInlineMediaPlayback
+          mediaPlaybackRequiresUserAction={false}
+          allowsFullscreenVideo
+          mixedContentMode="always"
+        />
+      )}
+
+      <View
+        pointerEvents="box-none"
+        style={[
+          styles.topBar,
+          { paddingTop: Math.max(insets.top, 12), paddingLeft: Math.max(insets.left, 16) },
+        ]}
+      >
+        <Pressable
+          onPress={() => router.back()}
+          accessibilityRole="button"
+          accessibilityLabel={t('common.back')}
+          style={styles.backButton}
+        >
+          <Ionicons name="chevron-back" size={26} color="#FFFFFF" />
+        </Pressable>
+
+        <View style={styles.titleWrap}>
+          {titleName ? (
+            <AppText variant="headline" color="#FFFFFF" numberOfLines={1}>
+              {titleName}
+            </AppText>
+          ) : null}
+          {subtitle ? (
+            <AppText variant="caption" color="#D0D0D8" numberOfLines={1}>
+              {subtitle}
+            </AppText>
+          ) : null}
+        </View>
+      </View>
+    </View>
   );
 }
+
+const styles = StyleSheet.create({
+  root: {
+    flex: 1,
+    backgroundColor: '#000000',
+  },
+  center: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#000000',
+  },
+  webview: {
+    flex: 1,
+    backgroundColor: '#000000',
+  },
+  topBar: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 12,
+    paddingRight: 16,
+    paddingBottom: 12,
+    backgroundColor: 'rgba(0,0,0,0.45)',
+  },
+  backButton: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    backgroundColor: 'rgba(0,0,0,0.6)',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  titleWrap: {
+    flex: 1,
+  },
+});
