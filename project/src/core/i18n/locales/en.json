@@ -547,6 +547,54 @@
       "failed": "Failed",
       "expired": "Expired"
     }
+  },
+
+"settings": {
+  "title": "Settings",
+  "appearance": {
+    "title": "Appearance",
+    "system": "System",
+    "light": "Light",
+    "dark": "Dark"
+  },
+  "language": {
+    "title": "Language",
+    "downloadFailed": "Could not download the language. Check your connection."
+  },
+  "notifications": {
+    "title": "Notifications",
+    "enable": "Enable notifications",
+    "enableHint": "Get notified about new releases and reminders.",
+    "denied": "Notification permission denied",
+    "openSettings": "Enable notifications in your device settings."
+  },
+  "playback": {
+    "title": "Playback",
+    "autoplay": "Autoplay",
+    "autoplayHint": "Automatically start the next video.",
+    "dataSaver": "Data saver",
+    "dataSaverHint": "Help reduce mobile data usage.",
+    "uiSounds": "App sounds"
+  },
+  "downloads": {
+    "title": "Downloads",
+    "wifiOnly": "Download over Wi-Fi only",
+    "wifiOnlyHint": "Avoid using mobile data for downloads.",
+    "smart": "Smart downloads",
+    "smartHint": "Automatically download content based on what you watch.",
+    "quality": "Download quality",
+    "forYou": "Downloads for you",
+    "forYouHint": "Storage limit for recommended downloads.",
+    "gb_one": "{{count}} GB",
+    "gb_other": "{{count}} GB"
+  },
+  "privacy": {
+    "title": "Privacy",
+    "parental": "Parental controls",
+    "account": "Account",
+    "devices": "Devices"
   }
+}
+
 
 }

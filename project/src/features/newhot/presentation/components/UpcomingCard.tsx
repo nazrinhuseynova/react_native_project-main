@@ -1,7 +1,6 @@
 import { Ionicons } from '@expo/vector-icons';
 import { Image } from 'expo-image';
 import { useRouter } from 'expo-router';
-import * as WebBrowser from 'expo-web-browser';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { StyleSheet, View } from 'react-native';
@@ -11,14 +10,12 @@ import {
   toRouteParams,
   useGenres,
   useTrailers,
-  youTubeUrl,
   type Title,
   type TitleId,
 } from '@/features/catalog';
 import { buttonA11y } from '@/shared/a11y/accessibilityProps';
 import { ScalePressable } from '@/shared/animations/ScalePressable';
 import { makeStyles } from '@/shared/theme/makeStyles';
-import { useTheme } from '@/shared/theme/useTheme';
 import { AppText } from '@/shared/ui/AppText';
 import { Button } from '@/shared/ui/Button';
 import { useToast } from '@/shared/ui/ToastProvider';
@@ -51,7 +48,6 @@ const useStyles = makeStyles(({ spacing, radius, colors }) => ({
 type UpcomingCardProps = {
   title: Title;
   rank?: number;
-  /** true: "Coming Soon" kartı (Remind Me). false: artıq çıxıb (Play). */
   showReminder?: boolean;
   onPress: (id: TitleId) => void;
 };
@@ -61,7 +57,6 @@ export function UpcomingCard({ title, rank, showReminder = false, onPress }: Upc
   const router = useRouter();
   const toast = useToast();
   const styles = useStyles();
-  const { colors } = useTheme();
   const { names } = useGenres();
   const [trailerRequested, setTrailerRequested] = useState(false);
 
@@ -76,9 +71,15 @@ export function UpcomingCard({ title, rank, showReminder = false, onPress }: Upc
   useEffect(() => {
     if (!trailerRequested || isTrailerLoading) return;
     setTrailerRequested(false);
-    if (trailer) void WebBrowser.openBrowserAsync(youTubeUrl(trailer));
-    else toast.info(t('newhot.noTrailer'));
-  }, [trailerRequested, isTrailerLoading, trailer, toast, t]);
+    if (trailer) {
+      router.push({
+        pathname: '/player/[id]',
+        params: { ...toRouteParams(title.id), videoKey: trailer.key },
+      });
+    } else {
+      toast.info(t('newhot.noTrailer'));
+    }
+  }, [trailerRequested, isTrailerLoading, trailer, router, title.id, toast, t]);
 
   const artwork = title.backdrop ?? title.poster;
   const genres = title.genreIds

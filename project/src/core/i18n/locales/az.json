@@ -244,6 +244,54 @@
       "failed": "Alınmadı",
       "expired": "Vaxtı bitib"
     }
+  },
+
+"settings": {
+  "title": "Tənzimləmələr",
+  "appearance": {
+    "title": "Görünüş",
+    "system": "Sistem",
+    "light": "Açıq",
+    "dark": "Tünd"
+  },
+  "language": {
+    "title": "Dil",
+    "downloadFailed": "Dil yüklənmədi. İnternet bağlantını yoxla."
+  },
+  "notifications": {
+    "title": "Bildirişlər",
+    "enable": "Bildirişləri aktiv et",
+    "enableHint": "Yeni çıxışlar və xatırlatmalar barədə bildiriş al.",
+    "denied": "Bildiriş icazəsi verilməyib",
+    "openSettings": "Bildirişləri telefon ayarlarından aktiv et."
+  },
+  "playback": {
+    "title": "Oynatma",
+    "autoplay": "Avtomatik oynatma",
+    "autoplayHint": "Növbəti videonu avtomatik başladır.",
+    "dataSaver": "Məlumat qənaəti",
+    "dataSaverHint": "Mobil internet istifadəsini azaltmağa kömək edir.",
+    "uiSounds": "Tətbiq səsləri"
+  },
+  "downloads": {
+    "title": "Yükləmələr",
+    "wifiOnly": "Yalnız Wi-Fi ilə yüklə",
+    "wifiOnlyHint": "Mobil internetdən istifadə etmədən yüklə.",
+    "smart": "Ağıllı yükləmələr",
+    "smartHint": "İzlədiklərinə uyğun məzmunu avtomatik yüklə.",
+    "quality": "Yükləmə keyfiyyəti",
+    "forYou": "Sənin üçün yükləmələr",
+    "forYouHint": "Yükləmələr üçün ayrılan yaddaş limiti.",
+    "gb_one": "{{count}} GB",
+    "gb_other": "{{count}} GB"
+  },
+  "privacy": {
+    "title": "Məxfilik",
+    "parental": "Valideyn nəzarəti",
+    "account": "Hesab",
+    "devices": "Cihazlar"
   }
+}
+
 
 }

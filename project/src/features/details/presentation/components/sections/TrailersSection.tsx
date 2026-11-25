@@ -35,6 +35,7 @@ function TrailerCard({ titleId, video }: { titleId: TitleId; video: Video }) {
   const router = useRouter();
   const styles = useStyles();
   const { colors } = useTheme();
+  const thumbUri = 'https://youtube.com' + video.key + '/hqdefault.jpg';
 
   return (
     <ScalePressable
@@ -49,7 +50,7 @@ function TrailerCard({ titleId, video }: { titleId: TitleId; video: Video }) {
     >
       <View style={styles.thumb}>
         <Image
-          source={{ uri: `https://youtube.com{video.key}/hqdefault.jpg` }}
+          source={{ uri: thumbUri }}
           contentFit="cover"
           style={{ position: 'absolute', width: '100%', height: '100%' }}
         />

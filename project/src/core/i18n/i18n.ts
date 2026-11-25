@@ -2,7 +2,8 @@ import type { SupabaseClient } from '@supabase/supabase-js';
 import { getLocales } from 'expo-localization';
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
-
+import az from './locales/az.json';
+import ru from './locales/ru.json';
 import type { Logger } from '@/core/logging/Logger';
 import type { KeyValueStorage } from '@/core/storage/KeyValueStorage';
 
