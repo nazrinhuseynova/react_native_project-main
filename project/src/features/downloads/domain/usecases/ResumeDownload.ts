@@ -24,7 +24,7 @@ export class ResumeDownload {
     if (!this.wifi.canDownload(network.connection, network.wifiOnly)) {
       throw new AppError('Download blocked by network policy', {
         code: 'DOWNLOAD_NETWORK',
-        userMessageKey: network.connection === 'none' ? 'errors.network.offline' : 'downloads.errors.wifiOnly',
+        userMessageKey: network.connection === 'none' ? 'errors.network' : 'downloads.errors.wifiOnly',
       });
     }
 

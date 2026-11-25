@@ -5,7 +5,7 @@ export default function AppDrawerLayout() {
     <Drawer>
       <Drawer.Screen name="(tabs)" options={{ title: 'Home' }} />
       <Drawer.Screen name="watched" options={{ title: 'Watched Movies' }} />
-      <Drawer.Screen name="downloads" options={{ title: 'Downloads' }} />
+      <Drawer.Screen name="downloads" options={{ title: 'Downloads', headerShown: false }} />
       <Drawer.Screen name="subscription" options={{ title: 'Subscription' }} />
       <Drawer.Screen name="settings" options={{ title: 'Settings' }} />
     </Drawer>

@@ -83,6 +83,8 @@ export function TitleDetailsScreen() {
           myRating={actions.myRating}
           onPlay={actions.play}
           onDownload={actions.download}
+          downloadStatus={actions.downloadStatus}
+          downloadProgress={actions.downloadProgress}
           onRate={actions.rate}
           onShare={() => void actions.share()}
         />

@@ -1,16 +1,9 @@
-// NOTE: expo-file-system SDK 54+-da köhnə API "expo-file-system/legacy" altındadır.
-// SDK 58-də bu yolun hələ mövcud olduğunu yoxlayın; yoxdursa File/Directory API-sinə keçin.
 import * as FileSystem from 'expo-file-system/legacy';
-
 import type { DownloadItem } from '../domain/entities/DownloadItem';
 import type { DownloadEngine, DownloadEngineEvent } from '../domain/ports/DownloadEngine';
 
 const DIRECTORY = `${FileSystem.documentDirectory ?? ''}downloads/`;
 
-/**
- * Fayllar tətbiqin özəl qovluğunda saxlanır. Real DRM şifrələməsi YOXDUR (dürüstlük qeydi).
- * Tətbiq yenidən açılanda yarımçıq yükləmələr sıfırdan başlayır (resume data yaddaşdadır).
- */
 export class ExpoFileDownloadEngine implements DownloadEngine {
   private readonly listeners = new Set<(event: DownloadEngineEvent) => void>();
   private readonly active = new Map<string, FileSystem.DownloadResumable>();
@@ -73,7 +66,11 @@ export class ExpoFileDownloadEngine implements DownloadEngine {
     try {
       const result = resume ? await resumable.resumeAsync() : await resumable.downloadAsync();
       if (!result || this.paused.has(id) || !this.active.has(id)) return;
-      if (result.status >= 400) throw new Error(`HTTP ${result.status}`);
+
+      if (result.status >= 400) {
+        await FileSystem.deleteAsync(result.uri, { idempotent: true }).catch(() => undefined);
+        throw new Error(`HTTP ${result.status}`);
+      }
 
       const info = await FileSystem.getInfoAsync(result.uri);
       this.active.delete(id);

@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { View } from 'react-native';
 
 import type { Title } from '@/features/catalog';
+import type { DownloadStatus } from '@/features/downloads';
 import { FavoriteButton, SaveButton } from '@/features/library';
 import { buttonA11y } from '@/shared/a11y/accessibilityProps';
 import { ScalePressable } from '@/shared/animations/ScalePressable';
@@ -47,11 +48,23 @@ type ActionBarProps = {
   myRating: number | null;
   onPlay: () => void;
   onDownload: () => void;
+  downloadStatus?: DownloadStatus | 'none';
+  downloadProgress?: number;
   onRate: () => void;
   onShare: () => void;
 };
 
-export function ActionBar({ title, resume, myRating, onPlay, onDownload, onRate, onShare }: ActionBarProps) {
+export function ActionBar({
+  title,
+  resume,
+  myRating,
+  onPlay,
+  onDownload,
+  downloadStatus = 'none',
+  downloadProgress = 0,
+  onRate,
+  onShare,
+}: ActionBarProps) {
   const { t } = useTranslation();
   const styles = useStyles();
 
@@ -72,7 +85,26 @@ export function ActionBar({ title, resume, myRating, onPlay, onDownload, onRate,
           active={myRating !== null}
           onPress={onRate}
         />
-        <ActionItem icon="download-outline" label={t('details.download')} onPress={onDownload} />
+        <ActionItem
+          icon={
+            downloadStatus === 'completed'
+              ? 'checkmark-circle'
+              : downloadStatus === 'queued' || downloadStatus === 'downloading'
+                ? 'cloud-download-outline'
+                : downloadStatus === 'paused'
+                  ? 'pause-circle-outline'
+                  : 'download-outline'
+          }
+          label={
+            downloadStatus === 'none' || downloadStatus === 'expired'
+              ? t('details.download')
+              : downloadStatus === 'downloading'
+                ? `${Math.round(downloadProgress * 100)}%`
+                : t(`downloads.state.${downloadStatus}`)
+          }
+          active={downloadStatus === 'completed'}
+          onPress={onDownload}
+        />
         <ActionItem icon="share-social-outline" label={t('details.share')} onPress={onShare} />
       </View>
     </View>

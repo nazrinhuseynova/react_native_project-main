@@ -217,6 +217,33 @@
     "select": "Planı seç",
     "selected": "Cari plan",
     "error": "Planlar yüklənmədi"
+  },
+    "downloads": {
+    "title": "Yükləmələr",
+    "used": "{{size}} istifadə olunub",
+    "free": "{{size}} boş",
+    "storage": "Yaddaş",
+    "ready": "İzləməyə hazır",
+    "inProgress": "Yüklənir",
+    "emptyTitle": "Hələ yükləmə yoxdur",
+    "emptyMessage": "Yüklədiyiniz filmlər və seriyalar oflayn izləmək üçün burada görünəcək.",
+    "offline": "Oflaynsınız. Yükləmələriniz göstərilir.",
+    "offlineGo": "Oflaynsınız. Yükləmələrə keçin",
+    "started": "“{{title}}” yüklənməyə başladı",
+    "deleteTitle": "Yükləmə silinsin?",
+    "deleteMessage": "“{{title}}” bu cihazdan silinəcək.",
+    "failed": "Yükləmə alınmadı",
+    "quality": { "standard": "Standart", "high": "Yüksək" },
+    "errors": { "wifiOnly": "Yükləmələr yalnız Wi-Fi ilə məhdudlaşdırılıb. Ayarlardan dəyişə bilərsiniz." },
+    "state": {
+      "none": "Yüklə",
+      "queued": "Növbədə",
+      "downloading": "Yüklənir",
+      "paused": "Dayandırılıb",
+      "completed": "Yüklənib",
+      "failed": "Alınmadı",
+      "expired": "Vaxtı bitib"
+    }
   }
 
 }

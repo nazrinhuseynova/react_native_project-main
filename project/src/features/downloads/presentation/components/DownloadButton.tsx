@@ -53,8 +53,9 @@ export function DownloadButton({
       case 'downloading':
         return item && run(() => pause(item.id));
       case 'paused':
-      case 'failed':
         return item && run(() => resume(item.id));
+      case 'failed':
+        return start();
       case 'completed':
         return setConfirmDelete(true);
     }

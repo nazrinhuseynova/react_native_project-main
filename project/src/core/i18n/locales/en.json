@@ -477,50 +477,6 @@
       "description": "Adults only – no restrictions"
     }
   },
-  "subscription": {
-    "title": "Subscription",
-    "currentPlan": "Current plan",
-    "noPlan": "You don't have an active plan",
-    "manage": "Manage",
-    "status": {
-      "active": "Active",
-      "canceled": "Canceled",
-      "none": "Free"
-    },
-    "renewsOn": "Renews on {{date}}",
-    "endsOn": "Ends on {{date}}",
-    "price": "{{price}} / month",
-    "viewPlans": "See all plans",
-    "changePlan": "Change plan",
-    "cancel": "Cancel subscription",
-    "resume": "Resume subscription",
-    "cancelTitle": "Cancel subscription?",
-    "cancelMessage": "You'll keep access until the end of the billing period.",
-    "keep": "Keep plan",
-    "confirmCancel": "Yes, cancel",
-    "canceledToast": "Subscription canceled",
-    "resumedToast": "Subscription resumed",
-    "changedToast": "Plan updated",
-    "error": "Couldn't load your subscription",
-    "retry": "Try again",
-    "perMonth": "/ month",
-    "free": "Free"
-  },
-  "plans": {
-    "title": "Choose your plan",
-    "subtitle": "Cancel anytime.",
-    "current": "Current",
-    "popular": "Most popular",
-    "select": "Choose plan",
-    "selected": "Your plan",
-    "quality": "Video quality",
-    "screens": "Screens at once",
-    "downloads": "Downloads",
-    "ads": "Ads",
-    "yes": "Yes",
-    "no": "No",
-    "error": "Couldn't load plans"
-  },
     "subscription": {
     "title": "Subscription",
     "currentPlan": "Current Plan",
@@ -564,6 +520,33 @@
     "select": "Select Plan",
     "selected": "Current Plan",
     "error": "Could not load plans"
+  },
+    "downloads": {
+    "title": "Downloads",
+    "used": "{{size}} used",
+    "free": "{{size}} free",
+    "storage": "Storage",
+    "ready": "Ready to watch",
+    "inProgress": "Downloading",
+    "emptyTitle": "No downloads yet",
+    "emptyMessage": "Movies and episodes you download will appear here so you can watch offline.",
+    "offline": "You're offline. Showing your downloads.",
+    "offlineGo": "You're offline. Go to Downloads",
+    "started": "“{{title}}” download started",
+    "deleteTitle": "Delete download?",
+    "deleteMessage": "“{{title}}” will be removed from this device.",
+    "failed": "Download failed",
+    "quality": { "standard": "Standard", "high": "High" },
+    "errors": { "wifiOnly": "Downloads are limited to Wi-Fi. Change this in Settings." },
+    "state": {
+      "none": "Download",
+      "queued": "Queued",
+      "downloading": "Downloading",
+      "paused": "Paused",
+      "completed": "Downloaded",
+      "failed": "Failed",
+      "expired": "Expired"
+    }
   }
 
 }
