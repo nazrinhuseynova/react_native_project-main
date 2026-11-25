@@ -173,5 +173,50 @@
     "avgRating": "Orta reytinqiniz",
     "genres": "Janrlar üzrə",
     "empty": "Statistika üçün ən azı bir film izləyin."
+  },
+    "subscription": {
+    "title": "Abunəlik",
+    "currentPlan": "Cari plan",
+    "free": "Pulsuz",
+    "perMonth": "/ ay",
+    "price": "{{price}} / ay",
+    "noPlan": "Hazırda Pulsuz plandan istifadə edirsiniz.",
+    "renewsOn": "Yenilənmə tarixi: {{date}}",
+    "endsOn": "Bitmə tarixi: {{date}}",
+    "viewPlans": "Planlara bax",
+    "changePlan": "Planı dəyiş",
+    "cancel": "Abunəliyi ləğv et",
+    "resume": "Abunəliyi bərpa et",
+    "cancelTitle": "Abunəlik ləğv edilsin?",
+    "cancelMessage": "Cari ödəniş dövrünün sonuna qədər xidmətdən istifadə edə biləcəksiniz.",
+    "confirmCancel": "Bəli, ləğv et",
+    "keep": "Abunəliyi saxla",
+    "paymentMethods": "Ödəniş üsulları",
+    "billingHistory": "Ödəniş tarixçəsi",
+    "changedToast": "Abunəlik planı yeniləndi",
+    "canceledToast": "Abunəlik dövrün sonunda ləğv ediləcək",
+    "resumedToast": "Abunəlik bərpa edildi",
+    "error": "Abunəlik məlumatları yüklənmədi",
+    "retry": "Yenidən cəhd et",
+    "status": {
+      "none": "PULSUZ",
+      "active": "AKTİV",
+      "canceled": "LƏĞV EDİLİB"
+    }
+  },
+  "plans": {
+    "title": "Planınızı seçin",
+    "subtitle": "İstənilən vaxt planı dəyişə bilərsiniz.",
+    "current": "Cari",
+    "popular": "Ən populyar",
+    "quality": "Video keyfiyyəti",
+    "screens": "Ekran sayı",
+    "downloads": "Yükləmələr",
+    "yes": "Daxildir",
+    "no": "Daxil deyil",
+    "select": "Planı seç",
+    "selected": "Cari plan",
+    "error": "Planlar yüklənmədi"
   }
+
 }

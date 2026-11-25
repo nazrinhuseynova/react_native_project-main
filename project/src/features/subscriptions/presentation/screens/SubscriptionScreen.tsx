@@ -14,6 +14,7 @@ import { Divider } from '@/shared/ui/Divider';
 import { ErrorState } from '@/shared/ui/ErrorState';
 import { ListRow } from '@/shared/ui/ListRow';
 import { Screen } from '@/shared/ui/Screen';
+import { ScreenHeader } from '@/shared/ui/ScreenHeader';
 import { Skeleton } from '@/shared/ui/Skeleton';
 
 import { useCancelSubscription } from '../../application/hooks/useCancelSubscription';
@@ -51,9 +52,11 @@ export function SubscriptionScreen() {
   const { cancelSubscription, isCanceling, resumeSubscription, isResuming } =
     useCancelSubscription();
 
+  const header = <ScreenHeader title={t('subscription.title')} onBack={() => router.back()} />;
+
   if (isError) {
     return (
-      <Screen>
+      <Screen header={header}>
         <ErrorState
           title={t('subscription.error')}
           retryLabel={t('subscription.retry')}
@@ -65,7 +68,7 @@ export function SubscriptionScreen() {
 
   if (isLoading || !currentPlan) {
     return (
-      <Screen contentContainerStyle={{ gap: spacing.md }}>
+      <Screen header={header} contentContainerStyle={{ gap: spacing.md }}>
         <Skeleton height={150} radius={12} />
         <Skeleton height={48} radius={10} />
       </Screen>
@@ -94,7 +97,7 @@ export function SubscriptionScreen() {
     : null;
 
   return (
-    <Screen scroll contentContainerStyle={{ gap: spacing.lg, paddingBottom: spacing.xxxl }}>
+    <Screen scroll header={header} contentContainerStyle={{ gap: spacing.lg, paddingBottom: spacing.xxxl }}>
       <View style={styles.card}>
         <AppText variant="captionStrong" color="textSecondary">
           {t('subscription.currentPlan')}
@@ -154,13 +157,13 @@ export function SubscriptionScreen() {
         <Divider />
         <ListRow
           icon="card-outline"
-          title="Payment Methods"
+          title={t('subscription.paymentMethods')}
           onPress={() => router.push('/billing/payment-methods')}
         />
         <Divider />
         <ListRow
           icon="receipt-outline"
-          title="Billing History"
+          title={t('subscription.billingHistory')}
           onPress={() => router.push('/billing/history')}
         />
         <Divider />

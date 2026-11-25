@@ -520,5 +520,50 @@
     "yes": "Yes",
     "no": "No",
     "error": "Couldn't load plans"
+  },
+    "subscription": {
+    "title": "Subscription",
+    "currentPlan": "Current Plan",
+    "free": "Free",
+    "perMonth": "/ month",
+    "price": "{{price}} / month",
+    "noPlan": "You are currently on the Free plan.",
+    "renewsOn": "Renews on {{date}}",
+    "endsOn": "Ends on {{date}}",
+    "viewPlans": "View Plans",
+    "changePlan": "Change Plan",
+    "cancel": "Cancel Subscription",
+    "resume": "Resume Subscription",
+    "cancelTitle": "Cancel subscription?",
+    "cancelMessage": "You will keep access until the end of your current billing period.",
+    "confirmCancel": "Yes, Cancel",
+    "keep": "Keep Subscription",
+    "paymentMethods": "Payment Methods",
+    "billingHistory": "Billing History",
+    "changedToast": "Subscription plan updated",
+    "canceledToast": "Subscription will cancel at period end",
+    "resumedToast": "Subscription resumed",
+    "error": "Could not load subscription details",
+    "retry": "Try again",
+    "status": {
+      "none": "FREE",
+      "active": "ACTIVE",
+      "canceled": "CANCELED"
+    }
+  },
+  "plans": {
+    "title": "Choose Your Plan",
+    "subtitle": "Upgrade or downgrade anytime. No commitments.",
+    "current": "Current",
+    "popular": "Most Popular",
+    "quality": "Video quality",
+    "screens": "Screens",
+    "downloads": "Downloads",
+    "yes": "Included",
+    "no": "Not included",
+    "select": "Select Plan",
+    "selected": "Current Plan",
+    "error": "Could not load plans"
   }
+
 }
