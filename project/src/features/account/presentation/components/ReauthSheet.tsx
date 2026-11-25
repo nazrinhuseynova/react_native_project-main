@@ -10,7 +10,7 @@ import { PasswordField } from '@/shared/ui/PasswordField';
 
 import type { StepUpSheetState } from '../../application/hooks/useStepUp';
 
-export function ReauthSheet({ visible, isVerifying, errorKey, onSubmit, onCancel }: StepUpSheetState) {
+export function ReauthSheet({ visible, isVerifying, errorKey, onSubmit, onCancel, clearError }: StepUpSheetState) {
   const { t } = useTranslation();
   const { spacing } = useTheme();
   const [password, setPassword] = useState('');
@@ -28,7 +28,10 @@ export function ReauthSheet({ visible, isVerifying, errorKey, onSubmit, onCancel
       <PasswordField
         label={t('account.reauth.password')}
         value={password}
-        onChangeText={setPassword}
+        onChangeText={(value) => {
+          if (errorKey) clearError();
+          setPassword(value);
+        }}
         error={errorKey ? t(errorKey) : null}
         returnKeyType="done"
         onSubmitEditing={() => password && onSubmit(password)}

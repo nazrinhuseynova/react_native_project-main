@@ -56,6 +56,7 @@ export function AccountScreen() {
     }
   };
 
+  // Google ilə daxil olanlarda şifrə/e-poçt provayderdə idarə olunur.
   const canChangePassword = user?.provider === 'email';
 
   return (
@@ -94,8 +95,12 @@ export function AccountScreen() {
           <Divider />
         </>
       ) : null}
-      <ListRow icon="mail-outline" title={t('account.sections.email')} onPress={() => router.push('/account/change-email')} />
-      <Divider />
+      {canChangePassword ? (
+        <>
+          <ListRow icon="mail-outline" title={t('account.sections.email')} onPress={() => router.push('/account/change-email')} />
+          <Divider />
+        </>
+      ) : null}
       <ListRow icon="phone-portrait-outline" title={t('account.sections.devices')} onPress={() => router.push('/account/devices')} />
       <Divider />
       <ListRow icon="shield-checkmark-outline" title={t('account.sections.security')} onPress={() => router.push('/account/security')} />

@@ -20,19 +20,38 @@ function isValidLuhn(raw: string): boolean {
   return sum % 10 === 0;
 }
 
+// 13-19 rəqəm, istəyə görə rəqəmlər arasında tək boşluq (məs. "4111 1111 1111 1111")
+const CARD_NUMBER_REGEX = /^(?:\d ?){13,19}$/;
+// 1-12 (tək rəqəm və ya 01-12)
+const MONTH_REGEX = /^(0?[1-9]|1[0-2])$/;
+// 2024-2050
+const YEAR_REGEX = /^(202[4-9]|20[34]\d|2050)$/;
+// 3 və ya 4 rəqəm
+const CVC_REGEX = /^\d{3,4}$/;
+
+const asString = (value: unknown) => (value === undefined || value === null ? '' : String(value).trim());
+
 export const cardSchema = z
   .object({
-    cardholderName: z.string().trim().min(2, 'Kart sahibinin adını daxil edin'),
+    cardholderName: z
+      .string()
+      .trim()
+      .min(2, 'Kart sahibinin adını daxil edin')
+      .max(60, 'Ad çox uzundur'),
     cardNumber: z
       .string()
       .trim()
+      .regex(CARD_NUMBER_REGEX, 'Kart nömrəsi 13-19 rəqəm olmalıdır')
       .refine(isValidLuhn, 'Kart nömrəsi düzgün deyil'),
-    expMonth: z.coerce.number().int().min(1, 'Ay 1-12 aralığında olmalıdır').max(12, 'Ay 1-12 aralığında olmalıdır'),
-    expYear: z.coerce.number().int().min(2024, 'İl düzgün deyil').max(2050, 'İl düzgün deyil'),
-    cvc: z
-      .string()
-      .trim()
-      .regex(/^\d{3,4}$/, 'CVC 3 və ya 4 rəqəmdən ibarət olmalıdır'),
+    expMonth: z.preprocess(
+      asString,
+      z.string().regex(MONTH_REGEX, 'Ay 1-12 aralığında olmalıdır').transform(Number),
+    ),
+    expYear: z.preprocess(
+      asString,
+      z.string().regex(YEAR_REGEX, 'İl 2024-2050 aralığında olmalıdır').transform(Number),
+    ),
+    cvc: z.preprocess(asString, z.string().regex(CVC_REGEX, 'CVC 3 və ya 4 rəqəmdən ibarət olmalıdır')),
     setAsDefault: z.boolean().optional().default(true),
   })
   .refine(

@@ -48,6 +48,10 @@ function toReason(error: SupabaseAuthError): AuthErrorReason {
       return 'user_already_exists';
     case 'weak_password':
       return 'weak_password';
+    case 'same_password':
+      return 'same_password';
+    case 'email_address_invalid':
+      return 'invalid_email';
     case 'over_request_rate_limit':
     case 'over_email_send_rate_limit':
     case 'over_sms_send_rate_limit':
@@ -60,9 +64,13 @@ function toReason(error: SupabaseAuthError): AuthErrorReason {
     case 'refresh_token_already_used':
       return 'session_expired';
     case 'validation_failed':
-      return 'otp_invalid';
+      return /email/i.test(error.message) ? 'invalid_email' : 'otp_invalid';
     default:
       break;
+  }
+
+  if (/different from the old password|same as the old password/i.test(error.message)) {
+    return 'same_password';
   }
 
   if (error.status === 429) return 'too_many_attempts';

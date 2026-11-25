@@ -12,8 +12,8 @@ export type StepUpSheetState = {
   errorKey: string | null;
   onSubmit: (password: string) => void;
   onCancel: () => void;
+  clearError: () => void;
 };
-
 
 export function useStepUp(action: SensitiveAction) {
   const { account } = useServices();
@@ -71,6 +71,8 @@ export function useStepUp(action: SensitiveAction) {
     [],
   );
 
-  const sheet: StepUpSheetState = { visible, isVerifying, errorKey, onSubmit, onCancel };
+  const clearError = useCallback(() => setErrorKey(null), []);
+
+  const sheet: StepUpSheetState = { visible, isVerifying, errorKey, onSubmit, onCancel, clearError };
   return { request, sheet };
 }

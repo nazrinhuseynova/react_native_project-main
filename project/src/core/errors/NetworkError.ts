@@ -2,6 +2,13 @@ import { AppError } from './AppError';
 
 export type NetworkErrorReason = 'offline' | 'timeout' | 'http' | 'aborted';
 
+const NETWORK_MESSAGE_KEYS: Record<NetworkErrorReason, string> = {
+  offline: 'errors.network',
+  aborted: 'errors.network',
+  timeout: 'errors.timeout',
+  http: 'errors.unknown',
+};
+
 export type NetworkErrorOptions = {
   reason: NetworkErrorReason;
   status?: number;
@@ -16,7 +23,7 @@ export class NetworkError extends AppError {
   constructor(message: string, options: NetworkErrorOptions) {
     super(message, {
       code: 'NETWORK',
-      userMessageKey: `errors.network.${options.reason}`,
+      userMessageKey: NETWORK_MESSAGE_KEYS[options.reason],
       cause: options.cause,
       details: options.details,
     });

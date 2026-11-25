@@ -1,4 +1,5 @@
 import { Ionicons } from '@expo/vector-icons';
+import { useTranslation } from 'react-i18next';
 import { StyleSheet, View } from 'react-native';
  
 import { useTheme } from '../theme/useTheme';
@@ -13,18 +14,19 @@ interface ErrorStateProps {
 }
  
 export function ErrorState({
-  title = 'Something went wrong',
+  title,
   message,
   onRetry,
-  retryLabel = 'Retry',
+  retryLabel,
 }: ErrorStateProps) {
+  const { t } = useTranslation();
   const { colors, spacing } = useTheme();
  
   return (
     <View accessibilityRole="alert" style={[styles.container, { padding: spacing.xxl }]}>
       <Ionicons name="alert-circle-outline" size={56} color={colors.danger} />
       <AppText variant="title3" align="center" style={{ marginTop: spacing.lg }}>
-        {title}
+        {title ?? t('errors.somethingWrong')}
       </AppText>
       {message ? (
         <AppText variant="callout" color="textSecondary" align="center" style={{ marginTop: spacing.sm }}>
@@ -33,7 +35,7 @@ export function ErrorState({
       ) : null}
       {onRetry ? (
         <Button
-          label={retryLabel}
+          label={retryLabel ?? t('common.retry')}
           onPress={onRetry}
           leftIcon="refresh"
           fullWidth={false}

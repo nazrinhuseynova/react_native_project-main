@@ -1,18 +1,18 @@
 {
   "onboarding": {
-    "getStarted": "Get started",
+    "getStarted": "Get Started",
     "steps": {
       "watch": {
         "title": "Watch anywhere",
-        "body": "Stream movies and series on your phone, tablet or TV."
+        "body": "Watch movies and series on your phone, tablet or TV."
       },
       "download": {
         "title": "Download and go",
-        "body": "Save your favourites and watch them offline."
+        "body": "Save your favorites and watch offline."
       },
       "personalized": {
         "title": "Picked for you",
-        "body": "Tell us what you like and we will build your home screen."
+        "body": "Tell us what you love and we'll tailor your home screen."
       }
     },
     "genres": {
@@ -52,11 +52,11 @@
       "tv": "TV Shows"
     },
     "person": {
-      "born": "Born {{date}}",
+      "born": "Born: {{date}}",
       "biography": "Biography",
       "noBiography": "No biography available.",
       "readMore": "Read more",
-      "readLess": "Show less",
+      "readLess": "Read less",
       "knownFor": "Known for"
     },
     "empty": {
@@ -74,7 +74,7 @@
       "continueWatching": "Continue Watching",
       "myList": "My List",
       "trending": "Trending Now",
-      "top10": "Top 10 Today",
+      "top10": "Today's Top 10",
       "becauseYouWatched": "Because you watched {{title}}",
       "popular": "Popular",
       "newReleases": "New Releases",
@@ -87,7 +87,7 @@
     },
     "hero": {
       "play": "Play",
-      "myList": "My List",
+      "myList": "Add to My List",
       "inMyList": "In My List"
     },
     "kids": {
@@ -95,7 +95,7 @@
     }
   },
   "newhot": {
-    "title": "New & Hot",
+    "title": "New & Popular",
     "tabs": {
       "comingSoon": "Coming Soon",
       "everyoneWatching": "Everyone's Watching",
@@ -103,15 +103,15 @@
     },
     "remindMe": "Remind Me",
     "reminding": "Reminder set",
-    "reminderSet": "We will remind you on release day.",
-    "releases": "Coming {{date}}",
+    "reminderSet": "We'll remind you on release day.",
+    "releases": "Releases on {{date}}",
     "trailer": "Trailer",
     "info": "Info",
     "play": "Play",
-    "noTrailer": "No trailer available.",
+    "noTrailer": "No trailer found.",
     "permissionDenied": "Enable notifications in settings to get reminders.",
     "validation": {
-      "notUpcoming": "This title is already out."
+      "notUpcoming": "This title has already been released."
     },
     "notification": {
       "title": "{{title}} is out now",
@@ -119,23 +119,23 @@
     },
     "empty": {
       "title": "Nothing to show",
-      "message": "Check back later."
+      "message": "Check back a little later."
     }
   },
   "search": {
-    "placeholder": "Search movies, shows, actors or genres",
+    "placeholder": "Search movies, series, actors or genres",
     "clear": "Clear",
     "filter": "Filters",
     "retry": "Try again",
     "people": "People",
-    "titles": "Movies & shows",
+    "titles": "Movies & Series",
     "filters": {
       "title": "Filters",
       "kind": "Type",
       "kinds": {
         "all": "All",
         "movie": "Movies",
-        "tv": "Series"
+        "tv": "TV Shows"
       },
       "rating": "Minimum rating",
       "ratingAny": "Any",
@@ -154,7 +154,7 @@
     },
     "empty": {
       "title": "No results for “{{query}}”",
-      "message": "Try another word or change the filters."
+      "message": "Try a different word or change the filters."
     },
     "error": {
       "title": "Search failed"
@@ -167,11 +167,10 @@
     "rate": "Rate",
     "rated": "{{stars}} ★",
     "share": "Share",
-    "shareMessage": "Watch “{{title}}”: {{url}}",
-    "match": "{{score}}% Match",
+    "shareMessage": "Check out “{{title}}”: {{url}}",
+    "match": "{{score}}% match",
     "season": "Season {{number}}",
-    "seasonsCount_one": "{{count}} Season",
-    "seasonsCount_other": "{{count}} Seasons",
+    "seasonsCount": "{{count}} seasons",
     "director": "Director",
     "more": "More",
     "less": "Less",
@@ -184,13 +183,15 @@
     "seeAll": "See all",
     "noReviews": "No reviews yet.",
     "error": "Couldn't load title",
-    "retry": "Try again"
+    "retry": "Try again",
+    "seasonsCount_one": "{{count}} season",
+    "seasonsCount_other": "{{count}} seasons"
   },
   "library": {
     "myList": "My List",
     "favorite": "Favorite",
     "retry": "Try again",
-    "error": "Couldn't load your library",
+    "error": "Couldn't load library",
     "remove": "Remove",
     "tabs": {
       "saved": "Saved",
@@ -213,11 +214,11 @@
     "empty": {
       "saved": {
         "title": "Your list is empty",
-        "message": "Add titles you like to My List."
+        "message": "Add movies you like to “My List”."
       },
       "favorites": {
-        "title": "No favorites yet",
-        "message": "Tap the heart to mark your favorites."
+        "title": "No favorites",
+        "message": "Tap the heart icon to pick your favorites."
       }
     }
   },
@@ -234,13 +235,13 @@
     "error": "Couldn't load history",
     "clearDialog": {
       "title": "Clear history?",
-      "message": "Your entire watch history will be deleted. This can't be undone.",
-      "confirm": "Clear",
+      "message": "Your entire watch history will be deleted. This action cannot be undone.",
+      "confirm": "Delete",
       "cancel": "Cancel"
     },
     "empty": {
-      "title": "Nothing watched yet",
-      "message": "Titles you finish will show up here."
+      "title": "You haven't watched anything yet",
+      "message": "Movies you finish will appear here."
     }
   },
   "reviews": {
@@ -258,10 +259,10 @@
     "retry": "Try again",
     "form": {
       "text": "Your review",
-      "placeholder": "Share your thoughts (optional)"
+      "placeholder": "Share your thoughts about the movie (optional)"
     },
     "validation": {
-      "stars": "Pick 1 to 5 stars",
+      "stars": "Select 1 to 5 stars",
       "textTooLong": "Review is too long"
     },
     "summary": {
@@ -269,13 +270,13 @@
       "count_other": "{{count}} reviews"
     },
     "reaction": {
-      "dislike": "Not for me",
-      "like": "I like this",
-      "love": "Love this"
+      "dislike": "Didn't like it",
+      "like": "Liked it",
+      "love": "Loved it"
     },
     "deleteConfirm": {
       "title": "Delete review?",
-      "message": "This can't be undone."
+      "message": "This action cannot be undone."
     },
     "empty": {
       "title": "No reviews yet",
@@ -283,14 +284,148 @@
     }
   },
   "stats": {
-    "title": "Watch stats",
+    "title": "Watch Stats",
     "totalTitles": "Titles watched",
     "totalHours": "Total time",
-    "hoursValue": "{{value}} h",
-    "topGenre": "Top genre",
-    "avgRating": "Your avg rating",
+    "hoursValue": "{{value}} hours",
+    "topGenre": "Favorite genre",
+    "avgRating": "Your average rating",
     "genres": "By genre",
-    "empty": "Watch at least one title to see your stats."
+    "empty": "Watch at least one movie to see stats."
+  },
+  "subscription": {
+    "title": "Subscription",
+    "currentPlan": "Current plan",
+    "free": "Free",
+    "perMonth": "/ month",
+    "price": "{{price}} / month",
+    "noPlan": "You're currently on the Free plan.",
+    "renewsOn": "Renews on: {{date}}",
+    "endsOn": "Ends on: {{date}}",
+    "viewPlans": "View plans",
+    "changePlan": "Change plan",
+    "cancel": "Cancel subscription",
+    "resume": "Resume subscription",
+    "cancelTitle": "Cancel subscription?",
+    "cancelMessage": "You can keep using the service until the end of the current billing period.",
+    "confirmCancel": "Yes, cancel",
+    "keep": "Keep subscription",
+    "paymentMethods": "Payment methods",
+    "billingHistory": "Billing history",
+    "changedToast": "Subscription plan updated",
+    "canceledToast": "Subscription will be canceled at the end of the period",
+    "resumedToast": "Subscription resumed",
+    "error": "Couldn't load subscription details",
+    "retry": "Try again",
+    "confirmChangeTitle": "Change plan?",
+    "confirmChangeMessage": "Switch to the {{plan}} plan at {{price}} / month? Your primary card will be charged.",
+    "noCard": "Add a payment card to continue",
+    "paymentFailed": "Payment failed. Check your card.",
+    "requires3ds": "Your bank requires additional verification (3D Secure).",
+    "expiredNote": "Your subscription has expired. You're on the Free plan.",
+    "status": {
+      "none": "FREE",
+      "active": "ACTIVE",
+      "canceled": "CANCELED",
+      "pastDue": "PAYMENT FAILED",
+      "expired": "EXPIRED"
+    }
+  },
+  "plans": {
+    "title": "Choose your plan",
+    "subtitle": "You can change your plan at any time.",
+    "current": "Current",
+    "popular": "Most popular",
+    "quality": "Video quality",
+    "screens": "Number of screens",
+    "downloads": "Downloads",
+    "yes": "Included",
+    "no": "Not included",
+    "select": "Select plan",
+    "selected": "Current plan",
+    "error": "Couldn't load plans"
+  },
+  "downloads": {
+    "title": "Downloads",
+    "used": "{{size}} used",
+    "free": "{{size}} free",
+    "storage": "Storage",
+    "ready": "Ready to watch",
+    "inProgress": "Downloading",
+    "emptyTitle": "No downloads yet",
+    "emptyMessage": "Movies and episodes you download will appear here for offline viewing.",
+    "offline": "You're offline. Showing your downloads.",
+    "offlineGo": "You're offline. Go to Downloads",
+    "started": "“{{title}}” started downloading",
+    "deleteTitle": "Delete download?",
+    "deleteMessage": "“{{title}}” will be removed from this device.",
+    "failed": "Download failed",
+    "quality": {
+      "standard": "Standard",
+      "high": "High"
+    },
+    "errors": {
+      "wifiOnly": "Downloads are restricted to Wi-Fi only. You can change this in settings."
+    },
+    "state": {
+      "none": "Download",
+      "queued": "Queued",
+      "downloading": "Downloading",
+      "paused": "Paused",
+      "completed": "Downloaded",
+      "failed": "Failed",
+      "expired": "Expired"
+    }
+  },
+  "settings": {
+    "title": "Settings",
+    "appearance": {
+      "title": "Appearance",
+      "system": "System",
+      "light": "Light",
+      "dark": "Dark"
+    },
+    "language": {
+      "title": "Language",
+      "downloadFailed": "Couldn't download the language. Check your internet connection."
+    },
+    "notifications": {
+      "title": "Notifications",
+      "enable": "Enable notifications",
+      "enableHint": "Get notified about new releases and reminders.",
+      "denied": "Notification permission not granted",
+      "openSettings": "Enable notifications in your phone settings."
+    },
+    "playback": {
+      "title": "Playback",
+      "autoplay": "Autoplay",
+      "autoplayHint": "Automatically starts the next video.",
+      "dataSaver": "Data saver",
+      "dataSaverHint": "Helps reduce mobile data usage.",
+      "uiSounds": "App sounds"
+    },
+    "downloads": {
+      "title": "Downloads",
+      "wifiOnly": "Download over Wi-Fi only",
+      "wifiOnlyHint": "Download without using mobile data.",
+      "smart": "Smart downloads",
+      "smartHint": "Automatically download content based on what you watch.",
+      "quality": "Download quality",
+      "forYou": "Downloads for You",
+      "forYouHint": "Storage limit reserved for downloads.",
+      "gb_one": "{{count}} GB",
+      "gb_other": "{{count}} GB"
+    },
+    "privacy": {
+      "title": "Privacy",
+      "parental": "Parental controls",
+      "account": "Account",
+      "devices": "Devices"
+    },
+    "about": {
+      "title": "About",
+      "version": "Version {{version}}"
+    }
   },
   "common": {
     "retry": "Try again",
@@ -303,60 +438,157 @@
     "confirm": "Confirm",
     "continue": "Continue",
     "next": "Next",
-    "skip": "Skip"
+    "skip": "Skip",
+    "close": "Close"
   },
-  "errors": {
-    "unknown": "Something went wrong. Please try again.",
-    "network": "No internet connection.",
-    "unauthorized": "Session expired. Please sign in again.",
-    "notFound": "We couldn't find that."
+  "account": {
+    "title": "Account",
+    "email": "Email",
+    "sections": {
+      "password": "Change password",
+      "email": "Change email",
+      "devices": "Devices",
+      "security": "Security",
+      "parental": "Parental controls",
+      "delete": "Delete account"
+    },
+    "signOut": "Sign out",
+    "signOutConfirm": {
+      "title": "Sign out?",
+      "message": "You'll need to sign in again to continue."
+    },
+    "changeEmail": {
+      "title": "Change email",
+      "subtitle": "We'll send a confirmation link to your new email address.",
+      "current": "Current email",
+      "new": "New email",
+      "submit": "Send confirmation",
+      "sentTitle": "Check your inbox",
+      "sentMessage": "We sent a confirmation link to {{email}}. Open it to complete the change."
+    },
+    "changePassword": {
+      "title": "Change password",
+      "subtitle": "Choose a strong password you don't use anywhere else.",
+      "submit": "Update password",
+      "success": "Password updated"
+    },
+    "delete": {
+      "title": "Delete account",
+      "warning": "If you delete your account, your profiles, watch history, lists and downloads will be removed.",
+      "grace": "You have {{days}} days to change your mind. During this time you can sign in and restore your account.",
+      "reasonTitle": "Why are you leaving? (optional)",
+      "understand": "I understand my account will be deleted",
+      "submit": "Delete my account",
+      "confirmTitle": "Delete account?",
+      "confirmMessage": "Your account will be permanently deleted after {{days}} days. Until then, you can restore it.",
+      "pendingTitle": "Deletion scheduled",
+      "pendingMessage": "Your account will be deleted soon. Days left to restore: {{days}}.",
+      "restore": "Restore account",
+      "restored": "Account restored"
+    },
+    "reasons": {
+      "too_expensive": "Too expensive",
+      "not_using": "I rarely use it",
+      "missing_content": "Missing the content I want",
+      "privacy": "Privacy concerns",
+      "other": "Other"
+    },
+    "reauth": {
+      "title": "Verify it's you",
+      "message": "For security, enter your password to continue.",
+      "password": "Password"
+    },
+    "devices": {
+      "title": "Devices",
+      "empty": "No devices found.",
+      "current": "This device",
+      "lastActive": "Last active: {{date}}",
+      "remove": "Remove",
+      "removeTitle": "Remove device?",
+      "removeMessage": "{{name}} will be removed from your account.",
+      "signOutAll": "Sign out of all devices",
+      "signOutAllTitle": "Sign out everywhere?",
+      "signOutAllMessage": "You'll be signed out of all devices, including this one."
+    },
+    "security": {
+      "title": "Security",
+      "twoFactor": "Two-factor authentication",
+      "twoFactorHint": "Add an extra layer of protection to your account.",
+      "soon": "Coming soon",
+      "signOutAllHint": "Sign out of all devices you're signed in on."
+    },
+    "errors": {
+      "emailSame": "The new email must be different from the current one.",
+      "graceExpired": "The restoration period has ended. This account can no longer be restored.",
+      "revokeCurrent": "You can't remove the device you're using."
+    }
   },
   "auth": {
-    "login": {
-      "title": "Sign In",
-      "subtitle": "Welcome back to CineVerse",
+    "field": {
       "email": "Email",
       "password": "Password",
-      "submit": "Sign In",
-      "forgot": "Forgot password?",
+      "newPassword": "New password",
+      "confirmPassword": "Confirm password",
+      "code": "Verification code",
+      "show": "Show",
+      "hide": "Hide"
+    },
+    "login": {
+      "existingAccount": "An account with this email already exists. Please sign in.",
+      "locked": "Too many attempts. Try again in {{time}}.",
+      "register": "Sign up",
+      "title": "Sign in",
+      "subtitle": "Welcome to CineVerse",
+      "email": "Email",
+      "password": "Password",
+      "submit": "Sign in",
+      "forgot": "Forgot your password?",
       "noAccount": "New to CineVerse? Sign up",
       "google": "Continue with Google",
-      "biometric": "Sign in with Biometrics"
+      "biometric": "Sign in with biometrics"
     },
     "register": {
-      "title": "Create Account",
-      "subtitle": "Start watching movies and shows",
+      "haveAccount": "Already have an account?",
+      "login": "Sign in",
+      "title": "Create account",
+      "subtitle": "Start watching movies and series",
       "email": "Email",
       "password": "Password",
-      "confirmPassword": "Confirm Password",
-      "terms": "I agree to the Terms of Service and Privacy Policy",
-      "submit": "Sign Up",
+      "confirmPassword": "Confirm password",
+      "terms": "I agree to the Terms of Use and Privacy Policy",
+      "submit": "Sign up",
       "hasAccount": "Already have an account? Sign in"
     },
-    "forgot": {
-      "title": "Reset Password",
-      "subtitle": "Enter your email to receive a reset code",
-      "email": "Email",
-      "submit": "Send Code",
-      "back": "Back to Sign In"
+    "otp": {
+      "title": "Enter the code",
+      "subtitle": "Enter the {{length}}-digit code sent to {{email}}",
+      "submit": "Verify",
+      "blocked": "Too many incorrect codes. Try again in a bit."
+    },
+    "resend": {
+      "action": "Resend code",
+      "wait": "Resend in {{seconds}} sec."
     },
     "reset": {
-      "title": "New Password",
+      "cancel": "Cancel",
+      "title": "New password",
       "subtitle": "Choose a strong password",
-      "password": "New Password",
-      "submit": "Update Password"
+      "password": "New password",
+      "submit": "Update password"
     },
-    "verifyEmail": {
-      "title": "Check your email",
-      "subtitle": "We sent a verification code to {{email}}",
-      "enterCode": "Enter verification code"
+    "social": {
+      "divider": "or",
+      "google": "Continue with Google"
     },
-    "verifyOtp": {
-      "title": "Enter Code",
-      "subtitle": "Enter the 6-digit code sent to {{email}}",
-      "submit": "Verify"
+    "terms": {
+      "accept": "I agree to the Terms of Use and Privacy Policy"
+    },
+    "biometric": {
+      "action": "Sign in with biometrics",
+      "prompt": "Verify your identity to sign in"
     },
     "validation": {
+      "passwordWeak": "Use at least 8 characters, including letters and numbers.",
       "emailRequired": "Email is required",
       "emailInvalid": "Enter a valid email address",
       "passwordRequired": "Password is required",
@@ -364,83 +596,131 @@
       "passwordMismatch": "Passwords do not match",
       "termsRequired": "You must accept the terms"
     },
+    "forgot": {
+      "title": "Reset password",
+      "subtitle": "Enter your email to get a reset code",
+      "email": "Email",
+      "submit": "Send code",
+      "back": "Back to sign in"
+    },
+    "verifyEmail": {
+      "title": "Check your email",
+      "subtitle": "We sent a verification code to {{email}}",
+      "enterCode": "Enter the verification code"
+    },
+    "verifyOtp": {
+      "title": "Enter the code",
+      "subtitle": "Enter the 6-digit code sent to {{email}}",
+      "submit": "Verify"
+    },
     "errors": {
       "invalidCredentials": "Incorrect email or password",
       "userAlreadyExists": "An account with this email already exists",
-      "otpInvalid": "Invalid or expired code",
-      "locked": "Too many attempts. Try again later."
+      "otpInvalid": "The code is incorrect or has expired",
+      "locked": "Too many attempts. Try again in a bit."
     }
+  },
+  "errors": {
+    "rateLimit": "Too many requests. Please wait a moment.",
+    "validation": "Check the information you entered.",
+    "unknown": "Something went wrong. Try again.",
+    "network": "No internet connection.",
+    "unauthorized": "Session ended. Please sign in again.",
+    "notFound": "We couldn't find it.",
+    "timeout": "The request timed out. Try again.",
+    "auth": {
+      "invalid_credentials": "Incorrect email or password.",
+      "email_not_confirmed": "Please confirm your email first.",
+      "user_already_exists": "An account with this email already exists.",
+      "session_expired": "Your session has expired. Please sign in again.",
+      "unauthorized": "You don't have permission for this action. Please sign in again.",
+      "weak_password": "Password is too weak. Use at least 8 characters, letters and numbers.",
+      "same_password": "The new password must be different from the current one.",
+      "invalid_email": "Enter a valid email address.",
+      "too_many_attempts": "Too many attempts. Try again in a bit.",
+      "otp_invalid": "The code is incorrect.",
+      "otp_expired": "The code has expired. Request a new one.",
+      "unknown": "Verification failed. Try again."
+    },
+    "payment": {
+      "declined": "Your card was declined.",
+      "insufficient_funds": "Insufficient funds on the card.",
+      "expired_card": "Your card has expired.",
+      "requires_authentication": "Your bank requires additional verification.",
+      "unknown": "Payment failed. Try again."
+    },
+    "somethingWrong": "Something went wrong"
   },
   "profiles": {
     "whoIsWatching": "Who's watching?",
-    "addProfile": "Add Profile",
-    "manage": "Manage Profiles",
-    "signOut": "Sign Out",
+    "addProfile": "Add profile",
+    "manage": "Manage profiles",
+    "signOut": "Sign out",
     "kidsBadge": "KIDS",
     "limitInfo": "You can create up to {{max}} profiles.",
     "avatar": {
-      "choose": "Choose an avatar",
-      "upload": "Upload Photo",
-      "denied": "Photo library permission is required.",
-      "openSettings": "Open Settings"
+      "choose": "Choose avatar",
+      "upload": "Upload photo",
+      "denied": "Gallery access permission is required.",
+      "openSettings": "Open settings"
     },
     "kids": {
-      "label": "Kids Profile",
-      "description": "Only show titles suitable for children"
+      "label": "Kids profile",
+      "description": "Only show content suitable for kids"
     },
     "edit": {
-      "newTitle": "Add Profile",
-      "editTitle": "Edit Profile",
-      "name": "Profile Name",
-      "maturity": "Maturity Rating",
+      "newTitle": "Add profile",
+      "editTitle": "Edit profile",
+      "name": "Profile name",
+      "maturity": "Maturity rating",
       "pin": "Profile PIN",
       "pinOn": "PIN enabled",
       "pinOff": "Off",
-      "delete": "Delete Profile",
+      "delete": "Delete profile",
       "deleteTitle": "Delete profile?",
-      "deleteMessage": "Are you sure you want to delete {{name}}?"
+      "deleteMessage": "Are you sure you want to delete the profile {{name}}?"
     },
     "pin": {
-      "title": "Profile Lock",
-      "subtitle": "Enter PIN for {{name}}",
-      "setupTitle": "Set Profile PIN",
+      "title": "Profile lock",
+      "subtitle": "Enter the PIN for {{name}}",
+      "setupTitle": "Set profile PIN",
       "setupEnter": "Enter a 4-digit PIN",
-      "setupConfirm": "Re-enter PIN to confirm",
+      "setupConfirm": "Re-enter the PIN to confirm",
       "mismatch": "PINs didn't match. Try again.",
       "remove": "Remove PIN",
-      "wrong": "Wrong PIN. {{attempts}} attempts left.",
+      "wrong": "Incorrect PIN. {{attempts}} attempts left.",
       "locked": "Locked. Try again in {{time}}."
     },
     "tab": {
       "photoUpdated": "Profile photo updated",
-      "changePhoto": "Change Photo",
+      "changePhoto": "Change photo",
       "account": "Account",
-      "parental": "Parental Controls",
-      "switchProfile": "Switch Profile",
-      "stats": "Viewing Stats"
+      "parental": "Parental controls",
+      "switchProfile": "Switch profile",
+      "stats": "Watch stats"
     },
     "validation": {
       "nameRequired": "Profile name is required",
       "nameTooLong": "Profile name is too long",
       "nameInvalid": "Enter a valid profile name",
-      "nameTaken": "This profile name is already taken"
+      "nameTaken": "This profile name is already in use"
     },
     "errors": {
-      "limit": "Maximum number of profiles reached",
-      "lastProfile": "You cannot delete your only profile",
+      "limit": "You've reached the maximum number of profiles",
+      "lastProfile": "You can't delete your only profile",
       "pinFormat": "PIN must be 4 digits"
     }
   },
   "parental": {
-    "title": "Parental Controls",
-    "subtitle": "Choose what each profile is allowed to watch.",
+    "title": "Parental controls",
+    "subtitle": "Choose what each profile can watch.",
     "profileFor": "Settings for {{name}}",
     "kidsInfo": "Kids profiles are always limited to PG and below.",
     "maxMaturity": "Maximum maturity rating",
-    "maxMaturityHint": "Titles above this rating will be hidden.",
+    "maxMaturityHint": "Content above this rating will be hidden.",
     "kidsLocked": {
       "title": "Locked for kids",
-      "message": "Switch to a standard profile to change parental controls."
+      "message": "Switch to a regular profile to change parental controls."
     },
     "blocked": {
       "row": "Blocked titles",
@@ -466,137 +746,29 @@
     },
     "PG-13": {
       "label": "PG-13",
-      "description": "Parents strongly cautioned – may be inappropriate under 13"
+      "description": "Parents strongly cautioned – may not be suitable for children under 13"
     },
     "R": {
       "label": "R",
-      "description": "Restricted – under 17 requires an adult"
+      "description": "Restricted – under 17 requires an accompanying adult"
     },
     "NC-17": {
       "label": "NC-17",
       "description": "Adults only – no restrictions"
     }
   },
-    "subscription": {
-    "title": "Subscription",
-    "currentPlan": "Current Plan",
-    "free": "Free",
-    "perMonth": "/ month",
-    "price": "{{price}} / month",
-    "noPlan": "You are currently on the Free plan.",
-    "renewsOn": "Renews on {{date}}",
-    "endsOn": "Ends on {{date}}",
-    "viewPlans": "View Plans",
-    "changePlan": "Change Plan",
-    "cancel": "Cancel Subscription",
-    "resume": "Resume Subscription",
-    "cancelTitle": "Cancel subscription?",
-    "cancelMessage": "You will keep access until the end of your current billing period.",
-    "confirmCancel": "Yes, Cancel",
-    "keep": "Keep Subscription",
-    "paymentMethods": "Payment Methods",
-    "billingHistory": "Billing History",
-    "changedToast": "Subscription plan updated",
-    "canceledToast": "Subscription will cancel at period end",
-    "resumedToast": "Subscription resumed",
-    "error": "Could not load subscription details",
-    "retry": "Try again",
-    "confirmChangeTitle": "Change plan?",
-"confirmChangeMessage": "Switch to {{plan}} for {{price}} / month? Your default card will be charged.",
-"noCard": "Add a payment card to continue",
-"paymentFailed": "Payment failed. Please check your card.",
-"requires3ds": "Your bank requires extra verification (3D Secure).",
-"expiredNote": "Your subscription has ended. You are on the Free plan.",
-"status": { "none": "FREE", "active": "ACTIVE", "canceled": "CANCELED", "pastDue": "PAYMENT FAILED", "expired": "EXPIRED" }
-  },
-  "plans": {
-    "title": "Choose Your Plan",
-    "subtitle": "Upgrade or downgrade anytime. No commitments.",
-    "current": "Current",
-    "popular": "Most Popular",
-    "quality": "Video quality",
-    "screens": "Screens",
+  "nav": {
+    "home": "Home",
+    "watched": "Watched Movies",
     "downloads": "Downloads",
-    "yes": "Included",
-    "no": "Not included",
-    "select": "Select Plan",
-    "selected": "Current Plan",
-    "error": "Could not load plans"
-  },
-    "downloads": {
-    "title": "Downloads",
-    "used": "{{size}} used",
-    "free": "{{size}} free",
-    "storage": "Storage",
-    "ready": "Ready to watch",
-    "inProgress": "Downloading",
-    "emptyTitle": "No downloads yet",
-    "emptyMessage": "Movies and episodes you download will appear here so you can watch offline.",
-    "offline": "You're offline. Showing your downloads.",
-    "offlineGo": "You're offline. Go to Downloads",
-    "started": "“{{title}}” download started",
-    "deleteTitle": "Delete download?",
-    "deleteMessage": "“{{title}}” will be removed from this device.",
-    "failed": "Download failed",
-    "quality": { "standard": "Standard", "high": "High" },
-    "errors": { "wifiOnly": "Downloads are limited to Wi-Fi. Change this in Settings." },
-    "state": {
-      "none": "Download",
-      "queued": "Queued",
-      "downloading": "Downloading",
-      "paused": "Paused",
-      "completed": "Downloaded",
-      "failed": "Failed",
-      "expired": "Expired"
+    "subscription": "Subscription",
+    "settings": "Settings",
+    "tabs": {
+      "home": "Home",
+      "newHot": "New & Hot",
+      "search": "Search",
+      "myList": "My List",
+      "profile": "Profile"
     }
-  },
-
-"settings": {
-  "title": "Settings",
-  "appearance": {
-    "title": "Appearance",
-    "system": "System",
-    "light": "Light",
-    "dark": "Dark"
-  },
-  "language": {
-    "title": "Language",
-    "downloadFailed": "Could not download the language. Check your connection."
-  },
-  "notifications": {
-    "title": "Notifications",
-    "enable": "Enable notifications",
-    "enableHint": "Get notified about new releases and reminders.",
-    "denied": "Notification permission denied",
-    "openSettings": "Enable notifications in your device settings."
-  },
-  "playback": {
-    "title": "Playback",
-    "autoplay": "Autoplay",
-    "autoplayHint": "Automatically start the next video.",
-    "dataSaver": "Data saver",
-    "dataSaverHint": "Help reduce mobile data usage.",
-    "uiSounds": "App sounds"
-  },
-  "downloads": {
-    "title": "Downloads",
-    "wifiOnly": "Download over Wi-Fi only",
-    "wifiOnlyHint": "Avoid using mobile data for downloads.",
-    "smart": "Smart downloads",
-    "smartHint": "Automatically download content based on what you watch.",
-    "quality": "Download quality",
-    "forYou": "Downloads for you",
-    "forYouHint": "Storage limit for recommended downloads.",
-    "gb_one": "{{count}} GB",
-    "gb_other": "{{count}} GB"
-  },
-  "privacy": {
-    "title": "Privacy",
-    "parental": "Parental controls",
-    "account": "Account",
-    "devices": "Devices"
   }
-}
-
-
 }

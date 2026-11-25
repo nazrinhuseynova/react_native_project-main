@@ -1,67 +1,50 @@
 import { Ionicons } from '@expo/vector-icons';
 import { Tabs } from 'expo-router';
 import type { ComponentProps } from 'react';
+import { useTranslation } from 'react-i18next';
+
+import { useTheme } from '@/shared/theme/useTheme';
 
 type IconName = ComponentProps<typeof Ionicons>['name'];
 
 const TABS: {
   name: string;
-  title: string;
+  titleKey: string;
   icon: IconName;
 }[] = [
-  {
-    name: 'home',
-    title: 'Home',
-    icon: 'home',
-  },
-  {
-    name: 'new-hot',
-    title: 'New & Hot',
-    icon: 'flame',
-  },
-  {
-    name: 'search',
-    title: 'Search',
-    icon: 'search',
-  },
-  {
-    name: 'watchlist',
-    title: 'My List',
-    icon: 'bookmark',
-  },
-  {
-    name: 'profile',
-    title: 'Profile',
-    icon: 'person',
-  },
+  { name: 'home', titleKey: 'nav.tabs.home', icon: 'home' },
+  { name: 'new-hot', titleKey: 'nav.tabs.newHot', icon: 'flame' },
+  { name: 'search', titleKey: 'nav.tabs.search', icon: 'search' },
+  { name: 'watchlist', titleKey: 'nav.tabs.myList', icon: 'bookmark' },
+  { name: 'profile', titleKey: 'nav.tabs.profile', icon: 'person' },
 ];
 
 export default function TabsLayout() {
+  const { t } = useTranslation();
+  const { colors } = useTheme();
+
   return (
     <Tabs
       screenOptions={{
         headerShown: false,
         tabBarShowLabel: true,
-        tabBarActiveTintColor: '#E50914',
-        tabBarInactiveTintColor: '#888888',
+        tabBarActiveTintColor: colors.primary,
+        tabBarInactiveTintColor: colors.textMuted,
         tabBarStyle: {
-          backgroundColor: '#111111',
-          borderTopColor: '#222222',
+          backgroundColor: colors.tabBar,
+          borderTopColor: colors.border,
         },
+        sceneStyle: { backgroundColor: colors.background },
       }}
     >
-      {TABS.map(({ name, title, icon }) => (
+      {TABS.map(({ name, titleKey, icon }) => (
         <Tabs.Screen
           key={name}
           name={name}
           options={{
-            title,
+            title: t(titleKey),
             tabBarIcon: ({ color, size }) => (
-              <Ionicons
-                name={icon}
-                color={typeof color === 'string' ? color : '#888888'}
-                size={size}
-              />
+              <Ionicons name={icon} color={typeof color === 'string' ? color : colors.textMuted} size={size} />
             ),
           }}
         />

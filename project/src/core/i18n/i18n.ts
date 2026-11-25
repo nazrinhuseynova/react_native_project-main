@@ -22,19 +22,29 @@ export type AppLanguage = string;
 
 export const DEFAULT_LANGUAGE: AppLanguage = 'en';
 
-const FALLBACK_LANGUAGES: LanguageOption[] = [
-  { code: DEFAULT_LANGUAGE, nativeName: 'English', version: 0 },
+
+const LOCAL_BUNDLES: Record<string, TranslationStrings> = { en, az, ru };
+
+const LOCAL_LANGUAGES: LanguageOption[] = [
+  { code: 'az', nativeName: 'Azərbaycanca', version: 0 },
+  { code: 'en', nativeName: 'English', version: 0 },
+  { code: 'ru', nativeName: 'Русский', version: 0 },
 ];
 
 let source: TranslationSource | null = null;
 let logger: Logger | null = null;
-let languages: LanguageOption[] = FALLBACK_LANGUAGES;
+let languages: LanguageOption[] = LOCAL_LANGUAGES;
 const listeners = new Set<() => void>();
 
+
 function setLanguages(next: LanguageOption[]): void {
-  languages = next.some((item) => item.code === DEFAULT_LANGUAGE)
-    ? next
-    : [...FALLBACK_LANGUAGES, ...next];
+  const merged = new Map<string, LanguageOption>();
+  for (const item of LOCAL_LANGUAGES) merged.set(item.code, item);
+  for (const item of next) {
+    const local = merged.get(item.code);
+    merged.set(item.code, local ? { ...item, nativeName: item.nativeName || local.nativeName } : item);
+  }
+  languages = [...merged.values()];
   listeners.forEach((listener) => listener());
 }
 
@@ -62,7 +72,7 @@ function isObj(value: unknown): value is Record<string, unknown> {
   return typeof value === 'object' && value !== null && !Array.isArray(value);
 }
 
-/** base üzərinə override yazır; override-da olmayan açarlar (məs. yeni ekranların mətnləri) base-dən qalır. */
+
 function deepMerge(base: TranslationStrings, override: TranslationStrings): TranslationStrings {
   const out: TranslationStrings = { ...base };
   for (const [key, value] of Object.entries(override)) {
@@ -70,6 +80,13 @@ function deepMerge(base: TranslationStrings, override: TranslationStrings): Tran
     out[key] = isObj(current) && isObj(value) ? deepMerge(current, value) : value;
   }
   return out;
+}
+
+/** en əsas, üzərinə həmin dilin lokal tərcüməsi (olmayan açarlar ingiliscədən qalır). */
+function localStrings(code: string): TranslationStrings {
+  const local = LOCAL_BUNDLES[code];
+  if (code === DEFAULT_LANGUAGE) return en;
+  return local ? deepMerge(en, local) : en;
 }
 
 function applyBundle(code: string, bundle: TranslationBundle): void {
@@ -146,9 +163,13 @@ export async function initI18n(options: InitI18nOptions): Promise<typeof i18n> {
 
   let lng: AppLanguage = wanted;
   if (wanted !== DEFAULT_LANGUAGE) {
-    const bundle = await source.loadBundle(wanted);
-    if (bundle) resources[wanted] = { translation: deepMerge(en, bundle.strings) };
-    else lng = DEFAULT_LANGUAGE;
+    const hasLocal = wanted in LOCAL_BUNDLES;
+    const bundle = hasLocal ? await source.readCachedBundle(wanted) : await source.loadBundle(wanted);
+    if (hasLocal || bundle) {
+      resources[wanted] = { translation: deepMerge(localStrings(wanted), bundle?.strings ?? {}) };
+    } else {
+      lng = DEFAULT_LANGUAGE;
+    }
   }
 
   await i18n.use(initReactI18next).init({
@@ -165,12 +186,22 @@ export async function initI18n(options: InitI18nOptions): Promise<typeof i18n> {
 
 export async function changeLanguage(language: AppLanguage): Promise<boolean> {
   if (!i18n.hasResourceBundle(language, 'translation')) {
-    const bundle = source ? await source.loadBundle(language) : null;
-    if (!bundle) {
+    const hasLocal = language in LOCAL_BUNDLES;
+    let bundle: TranslationBundle | null = null;
+    if (source) {
+      bundle = hasLocal ? await source.readCachedBundle(language) : await source.loadBundle(language);
+    }
+    if (!hasLocal && !bundle) {
       logger?.warn('i18n.bundle_unavailable', { language });
       return false;
     }
-    applyBundle(language, bundle);
+    i18n.addResourceBundle(
+      language,
+      'translation',
+      deepMerge(localStrings(language), bundle?.strings ?? {}),
+      true,
+      true,
+    );
   }
 
   await i18n.changeLanguage(language);

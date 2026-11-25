@@ -7,6 +7,8 @@ export type AuthErrorReason =
   | 'session_expired'
   | 'unauthorized'
   | 'weak_password'
+  | 'same_password'
+  | 'invalid_email'
   | 'too_many_attempts'
   | 'otp_invalid'
   | 'otp_expired'

@@ -18,7 +18,7 @@ import { ReauthSheet } from '../components/ReauthSheet';
 export function ChangeEmailScreen() {
   const { t } = useTranslation();
   const router = useRouter();
-  const { currentEmail, changeEmail, isPending, errorKey, sheet } = useChangeEmail();
+  const { currentEmail, changeEmail, isPending, errorKey, reset, sheet } = useChangeEmail();
   const [sentTo, setSentTo] = useState<string | null>(null);
 
   const { control, handleSubmit } = useForm<ChangeEmailValues>({
@@ -66,7 +66,10 @@ export function ChangeEmailScreen() {
               <TextField
                 label={t('account.changeEmail.new')}
                 value={field.value}
-                onChangeText={field.onChange}
+                onChangeText={(value) => {
+                  if (errorKey) reset();
+                  field.onChange(value);
+                }}
                 onBlur={field.onBlur}
                 keyboardType="email-address"
                 autoCapitalize="none"

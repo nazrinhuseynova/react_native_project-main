@@ -1,304 +1,774 @@
 {
-  "onboarding": {
-    "getStarted": "Başla",
-    "steps": {
-      "watch": { "title": "İstədiyin yerdə izlə", "body": "Film və serialları telefon, planşet və ya televizorda izlə." },
-      "download": { "title": "Yüklə və get", "body": "Sevimlilərini yadda saxla və internetsiz izlə." },
-      "personalized": { "title": "Sənin üçün seçilib", "body": "Nəyi sevdiyini de, ana səhifəni sənə uyğun quraq." }
-    },
-    "genres": {
-      "title": "Nə izləməyi sevirsən?",
-      "subtitle": "Ən azı {{count}} janr seç.",
-      "selected": "{{count}} seçilib",
-      "continue": "Davam et",
-      "options": {
-        "28": "Döyüş", "12": "Macəra", "16": "Animasiya", "35": "Komediya", "80": "Cinayət",
-        "99": "Sənədli", "18": "Dram", "10751": "Ailə", "14": "Fantaziya", "36": "Tarix",
-        "27": "Dəhşət", "10402": "Musiqi", "9648": "Sirr", "10749": "Romantik", "878": "Elmi-fantastika", "53": "Triller"
-      }
-    }
+ "onboarding": {
+  "getStarted": "Başla",
+  "steps": {
+   "watch": {
+    "title": "İstədiyin yerdə izlə",
+    "body": "Film və serialları telefon, planşet və ya televizorda izlə."
+   },
+   "download": {
+    "title": "Yüklə və get",
+    "body": "Sevimlilərini yadda saxla və internetsiz izlə."
+   },
+   "personalized": {
+    "title": "Sənin üçün seçilib",
+    "body": "Nəyi sevdiyini de, ana səhifəni sənə uyğun quraq."
+   }
   },
-  "catalog": {
-    "attribution": "Bu məhsul TMDB API-dən istifadə edir, lakin TMDB tərəfindən təsdiqlənməyib və ya sertifikatlaşdırılmayıb.",
-    "rating": { "tmdb": "TMDB", "imdb": "IMDb" },
-    "genre": { "title": "Janr", "movies": "Filmlər", "tv": "Seriallar" },
-    "person": {
-      "born": "Doğum tarixi: {{date}}", "biography": "Bioqrafiya", "noBiography": "Bioqrafiya yoxdur.",
-      "readMore": "Daha çox", "readLess": "Daha az", "knownFor": "Məşhur işləri"
-    },
-    "empty": { "title": "Hələ heç nə yoxdur", "message": "Başqa kateqoriya yoxla." }
+  "genres": {
+   "title": "Nə izləməyi sevirsən?",
+   "subtitle": "Ən azı {{count}} janr seç.",
+   "selected": "{{count}} seçilib",
+   "continue": "Davam et",
+   "options": {
+    "28": "Döyüş",
+    "12": "Macəra",
+    "16": "Animasiya",
+    "35": "Komediya",
+    "80": "Cinayət",
+    "99": "Sənədli",
+    "18": "Dram",
+    "10751": "Ailə",
+    "14": "Fantaziya",
+    "36": "Tarix",
+    "27": "Dəhşət",
+    "10402": "Musiqi",
+    "9648": "Sirr",
+    "10749": "Romantik",
+    "878": "Elmi-fantastika",
+    "53": "Triller"
+   }
+  }
+ },
+ "catalog": {
+  "attribution": "Bu məhsul TMDB API-dən istifadə edir, lakin TMDB tərəfindən təsdiqlənməyib və ya sertifikatlaşdırılmayıb.",
+  "rating": {
+   "tmdb": "TMDB",
+   "imdb": "IMDb"
   },
-  "home": {
-    "categories": { "all": "Hamısı", "tvShows": "Seriallar", "movies": "Filmlər" },
-    "rows": {
-      "continueWatching": "İzləməyə davam et",
-      "myList": "Siyahım",
-      "trending": "İndi trenddə",
-      "top10": "Bu günün Top 10-u",
-      "becauseYouWatched": "{{title}} izlədiyin üçün",
-      "popular": "Populyar",
-      "newReleases": "Yeni çıxanlar",
-      "topRated": "Ən yüksək reytinq",
-      "genre": "{{genre}}",
-      "genreMovies": "{{genre}} filmləri",
-      "genreSeries": "{{genre}} serialları",
-      "kidsMovies": "Uşaq filmləri",
-      "kidsSeries": "Uşaq serialları"
-    },
-    "hero": { "play": "Oynat", "myList": "Siyahıma əlavə et", "inMyList": "Siyahımdadır" },
-    "kids": { "title": "Uşaqlar" }
+  "genre": {
+   "title": "Janr",
+   "movies": "Filmlər",
+   "tv": "Seriallar"
   },
-  "newhot": {
-    "title": "Yeni və Məşhur",
-    "tabs": { "comingSoon": "Tezliklə", "everyoneWatching": "Hamı izləyir", "top10": "Top 10" },
-    "remindMe": "Xatırlat",
-    "reminding": "Xatırlatma qoyulub",
-    "reminderSet": "Çıxış günü səni xatırladacağıq.",
-    "releases": "{{date}} tarixində",
-    "trailer": "Treyler",
-    "info": "Ətraflı",
-    "play": "Oynat",
-    "noTrailer": "Treyler tapılmadı.",
-    "permissionDenied": "Xatırlatma almaq üçün ayarlarda bildirişləri aç.",
-    "validation": { "notUpcoming": "Bu başlıq artıq çıxıb." },
-    "notification": { "title": "{{title}} artıq çıxıb", "body": "Ətraflı görmək üçün toxun." },
-    "empty": { "title": "Göstəriləcək heç nə yoxdur", "message": "Bir az sonra yenidən yoxla." }
+  "person": {
+   "born": "Doğum tarixi: {{date}}",
+   "biography": "Bioqrafiya",
+   "noBiography": "Bioqrafiya yoxdur.",
+   "readMore": "Daha çox",
+   "readLess": "Daha az",
+   "knownFor": "Məşhur işləri"
   },
-  "search": {
-    "placeholder": "Film, serial, aktyor və ya janr axtar",
-    "clear": "Təmizlə",
-    "filter": "Filtrlər",
-    "retry": "Yenidən cəhd et",
-    "people": "Şəxslər",
-    "titles": "Filmlər və seriallar",
-    "filters": {
-      "title": "Filtrlər",
-      "kind": "Növ",
-      "kinds": { "all": "Hamısı", "movie": "Filmlər", "tv": "Seriallar" },
-      "rating": "Minimum reytinq",
-      "ratingAny": "İstənilən",
-      "genre": "Janr",
-      "genreAll": "Hamısı",
-      "reset": "Sıfırla",
-      "apply": "Tətbiq et"
-    },
-    "recent": { "title": "Son axtarışlar", "clear": "Hamısını sil", "remove": "Sil" },
-    "top": { "title": "Ən çox axtarılanlar" },
-    "empty": { "title": "“{{query}}” üçün nəticə tapılmadı", "message": "Başqa söz yoxlayın və ya filtrləri dəyişin." },
-    "error": { "title": "Axtarış alınmadı" }
+  "empty": {
+   "title": "Hələ heç nə yoxdur",
+   "message": "Başqa kateqoriya yoxla."
+  }
+ },
+ "home": {
+  "categories": {
+   "all": "Hamısı",
+   "tvShows": "Seriallar",
+   "movies": "Filmlər"
   },
-  "details": {
-    "play": "Oynat",
-    "resume": "Davam et",
-    "download": "Yüklə",
-    "rate": "Qiymətləndir",
-    "rated": "{{stars}} ★",
-    "share": "Paylaş",
-    "shareMessage": "“{{title}}” filminə bax: {{url}}",
-    "match": "{{score}}% uyğunluq",
-    "season": "Fəsil {{number}}",
-    "seasonsCount": "{{count}} fəsil",
-    "director": "Rejissor",
-    "more": "Daha çox",
-    "less": "Daha az",
-    "cast": "Aktyor heyəti",
-    "episodes": "Seriyalar",
-    "similar": "Bənzər başlıqlar",
-    "trailers": "Treylerlər",
-    "trailer": "Treyleri izlə",
-    "reviews": "Rəylər",
-    "seeAll": "Hamısı",
-    "noReviews": "Hələ rəy yoxdur.",
-    "error": "Başlıq yüklənmədi",
-    "retry": "Yenidən cəhd et"
+  "rows": {
+   "continueWatching": "İzləməyə davam et",
+   "myList": "Siyahım",
+   "trending": "İndi trenddə",
+   "top10": "Bu günün Top 10-u",
+   "becauseYouWatched": "{{title}} izlədiyin üçün",
+   "popular": "Populyar",
+   "newReleases": "Yeni çıxanlar",
+   "topRated": "Ən yüksək reytinq",
+   "genre": "{{genre}}",
+   "genreMovies": "{{genre}} filmləri",
+   "genreSeries": "{{genre}} serialları",
+   "kidsMovies": "Uşaq filmləri",
+   "kidsSeries": "Uşaq serialları"
   },
-  "library": {
-    "myList": "Siyahım",
-    "favorite": "Sevimli",
-    "retry": "Yenidən cəhd et",
-    "error": "Kitabxana yüklənmədi",
-    "remove": "Sil",
-    "tabs": { "saved": "Saxlanılanlar", "favorites": "Sevimlilər" },
-    "sort": { "recent": "Son əlavə", "alphabetical": "A–Z" },
-    "filter": { "all": "Hamısı", "movies": "Filmlər", "series": "Seriallar" },
-    "status": { "planned": "Planlaşdırılıb", "watching": "İzlənir", "completed": "Bitib" },
-    "empty": {
-      "saved": { "title": "Siyahınız boşdur", "message": "Bəyəndiyiniz filmləri “Siyahım”a əlavə edin." },
-      "favorites": { "title": "Sevimli yoxdur", "message": "Ürək işarəsi ilə sevimlilərinizi seçin." }
-    }
+  "hero": {
+   "play": "Oynat",
+   "myList": "Siyahıma əlavə et",
+   "inMyList": "Siyahımdadır"
   },
-  "history": {
-    "watched": { "title": "İzlənilənlər" },
-    "watchedBadge": "İZLƏNİB",
-    "watchedOn": "{{date}} tarixində izlənib",
-    "remove": "Tarixçədən sil",
-    "clear": "Tarixçəni təmizlə",
-    "cleared": "Tarixçə təmizləndi",
-    "retry": "Yenidən cəhd et",
-    "error": "Tarixçə yüklənmədi",
-    "clearDialog": {
-      "title": "Tarixçə silinsin?",
-      "message": "Bütün izləmə tarixçəniz silinəcək. Bu əməliyyat geri qaytarıla bilməz.",
-      "confirm": "Sil",
-      "cancel": "Ləğv et"
-    },
-    "empty": { "title": "Hələ heç nə izləməmisiniz", "message": "Bitirdiyiniz filmlər burada görünəcək." }
+  "kids": {
+   "title": "Uşaqlar"
+  }
+ },
+ "newhot": {
+  "title": "Yeni və Məşhur",
+  "tabs": {
+   "comingSoon": "Tezliklə",
+   "everyoneWatching": "Hamı izləyir",
+   "top10": "Top 10"
   },
-  "reviews": {
-    "title": "Rəylər",
-    "mine": "Sizin rəyiniz",
-    "anonymous": "İstifadəçi",
-    "write": "Rəy yaz",
-    "edit": "Rəyi redaktə et",
-    "delete": "Sil",
-    "cancel": "Ləğv et",
-    "save": "Yadda saxla",
-    "saved": "Rəy yadda saxlanıldı",
-    "deleted": "Rəy silindi",
-    "error": "Rəylər yüklənmədi",
-    "retry": "Yenidən cəhd et",
-    "form": { "text": "Rəyiniz", "placeholder": "Filmlə bağlı fikirlərinizi yazın (ixtiyari)" },
-    "validation": { "stars": "1-dən 5-ə qədər ulduz seçin", "textTooLong": "Rəy çox uzundur" },
-    "summary": { "count_one": "{{count}} rəy", "count_other": "{{count}} rəy" },
-    "reaction": { "dislike": "Xoşuma gəlmədi", "like": "Xoşuma gəldi", "love": "Çox xoşuma gəldi" },
-    "deleteConfirm": { "title": "Rəy silinsin?", "message": "Bu əməliyyat geri qaytarıla bilməz." },
-    "empty": { "title": "Hələ rəy yoxdur", "message": "İlk rəyi siz yazın." }
+  "remindMe": "Xatırlat",
+  "reminding": "Xatırlatma qoyulub",
+  "reminderSet": "Çıxış günü səni xatırladacağıq.",
+  "releases": "{{date}} tarixində",
+  "trailer": "Treyler",
+  "info": "Ətraflı",
+  "play": "Oynat",
+  "noTrailer": "Treyler tapılmadı.",
+  "permissionDenied": "Xatırlatma almaq üçün ayarlarda bildirişləri aç.",
+  "validation": {
+   "notUpcoming": "Bu başlıq artıq çıxıb."
   },
-  "stats": {
-    "title": "İzləmə statistikası",
-    "totalTitles": "İzlənən başlıq",
-    "totalHours": "Ümumi vaxt",
-    "hoursValue": "{{value}} saat",
-    "topGenre": "Sevimli janr",
-    "avgRating": "Orta reytinqiniz",
-    "genres": "Janrlar üzrə",
-    "empty": "Statistika üçün ən azı bir film izləyin."
+  "notification": {
+   "title": "{{title}} artıq çıxıb",
+   "body": "Ətraflı görmək üçün toxun."
   },
-    "subscription": {
-    "title": "Abunəlik",
-    "currentPlan": "Cari plan",
-    "free": "Pulsuz",
-    "perMonth": "/ ay",
-    "price": "{{price}} / ay",
-    "noPlan": "Hazırda Pulsuz plandan istifadə edirsiniz.",
-    "renewsOn": "Yenilənmə tarixi: {{date}}",
-    "endsOn": "Bitmə tarixi: {{date}}",
-    "viewPlans": "Planlara bax",
-    "changePlan": "Planı dəyiş",
-    "cancel": "Abunəliyi ləğv et",
-    "resume": "Abunəliyi bərpa et",
-    "cancelTitle": "Abunəlik ləğv edilsin?",
-    "cancelMessage": "Cari ödəniş dövrünün sonuna qədər xidmətdən istifadə edə biləcəksiniz.",
-    "confirmCancel": "Bəli, ləğv et",
-    "keep": "Abunəliyi saxla",
-    "paymentMethods": "Ödəniş üsulları",
-    "billingHistory": "Ödəniş tarixçəsi",
-    "changedToast": "Abunəlik planı yeniləndi",
-    "canceledToast": "Abunəlik dövrün sonunda ləğv ediləcək",
-    "resumedToast": "Abunəlik bərpa edildi",
-    "error": "Abunəlik məlumatları yüklənmədi",
-    "retry": "Yenidən cəhd et",
-   "confirmChangeTitle": "Plan dəyişdirilsin?",
-"confirmChangeMessage": "{{plan}} planına {{price}} / ay qiymətlə keçilsin? Əsas kartınızdan ödəniş çəkiləcək.",
-"noCard": "Davam etmək üçün ödəniş kartı əlavə edin",
-"paymentFailed": "Ödəniş alınmadı. Kartınızı yoxlayın.",
-"requires3ds": "Bankınız əlavə təsdiq (3D Secure) tələb edir.",
-"expiredNote": "Abunəliyin müddəti bitib. Pulsuz plandasınız.",
-"status": { "none": "PULSUZ", "active": "AKTİV", "canceled": "LƏĞV EDİLİB", "pastDue": "ÖDƏNİŞ UĞURSUZ", "expired": "MÜDDƏTİ BİTİB" }
+  "empty": {
+   "title": "Göstəriləcək heç nə yoxdur",
+   "message": "Bir az sonra yenidən yoxla."
+  }
+ },
+ "search": {
+  "placeholder": "Film, serial, aktyor və ya janr axtar",
+  "clear": "Təmizlə",
+  "filter": "Filtrlər",
+  "retry": "Yenidən cəhd et",
+  "people": "Şəxslər",
+  "titles": "Filmlər və seriallar",
+  "filters": {
+   "title": "Filtrlər",
+   "kind": "Növ",
+   "kinds": {
+    "all": "Hamısı",
+    "movie": "Filmlər",
+    "tv": "Seriallar"
+   },
+   "rating": "Minimum reytinq",
+   "ratingAny": "İstənilən",
+   "genre": "Janr",
+   "genreAll": "Hamısı",
+   "reset": "Sıfırla",
+   "apply": "Tətbiq et"
   },
-  "plans": {
-    "title": "Planınızı seçin",
-    "subtitle": "İstənilən vaxt planı dəyişə bilərsiniz.",
-    "current": "Cari",
-    "popular": "Ən populyar",
-    "quality": "Video keyfiyyəti",
-    "screens": "Ekran sayı",
-    "downloads": "Yükləmələr",
-    "yes": "Daxildir",
-    "no": "Daxil deyil",
-    "select": "Planı seç",
-    "selected": "Cari plan",
-    "error": "Planlar yüklənmədi"
+  "recent": {
+   "title": "Son axtarışlar",
+   "clear": "Hamısını sil",
+   "remove": "Sil"
   },
-    "downloads": {
-    "title": "Yükləmələr",
-    "used": "{{size}} istifadə olunub",
-    "free": "{{size}} boş",
-    "storage": "Yaddaş",
-    "ready": "İzləməyə hazır",
-    "inProgress": "Yüklənir",
-    "emptyTitle": "Hələ yükləmə yoxdur",
-    "emptyMessage": "Yüklədiyiniz filmlər və seriyalar oflayn izləmək üçün burada görünəcək.",
-    "offline": "Oflaynsınız. Yükləmələriniz göstərilir.",
-    "offlineGo": "Oflaynsınız. Yükləmələrə keçin",
-    "started": "“{{title}}” yüklənməyə başladı",
-    "deleteTitle": "Yükləmə silinsin?",
-    "deleteMessage": "“{{title}}” bu cihazdan silinəcək.",
-    "failed": "Yükləmə alınmadı",
-    "quality": { "standard": "Standart", "high": "Yüksək" },
-    "errors": { "wifiOnly": "Yükləmələr yalnız Wi-Fi ilə məhdudlaşdırılıb. Ayarlardan dəyişə bilərsiniz." },
-    "state": {
-      "none": "Yüklə",
-      "queued": "Növbədə",
-      "downloading": "Yüklənir",
-      "paused": "Dayandırılıb",
-      "completed": "Yüklənib",
-      "failed": "Alınmadı",
-      "expired": "Vaxtı bitib"
-    }
+  "top": {
+   "title": "Ən çox axtarılanlar"
   },
-
-"settings": {
+  "empty": {
+   "title": "“{{query}}” üçün nəticə tapılmadı",
+   "message": "Başqa söz yoxlayın və ya filtrləri dəyişin."
+  },
+  "error": {
+   "title": "Axtarış alınmadı"
+  }
+ },
+ "details": {
+  "play": "Oynat",
+  "resume": "Davam et",
+  "download": "Yüklə",
+  "rate": "Qiymətləndir",
+  "rated": "{{stars}} ★",
+  "share": "Paylaş",
+  "shareMessage": "“{{title}}” filminə bax: {{url}}",
+  "match": "{{score}}% uyğunluq",
+  "season": "Fəsil {{number}}",
+  "seasonsCount": "{{count}} fəsil",
+  "director": "Rejissor",
+  "more": "Daha çox",
+  "less": "Daha az",
+  "cast": "Aktyor heyəti",
+  "episodes": "Seriyalar",
+  "similar": "Bənzər başlıqlar",
+  "trailers": "Treylerlər",
+  "trailer": "Treyleri izlə",
+  "reviews": "Rəylər",
+  "seeAll": "Hamısı",
+  "noReviews": "Hələ rəy yoxdur.",
+  "error": "Başlıq yüklənmədi",
+  "retry": "Yenidən cəhd et",
+  "seasonsCount_one": "{{count}} sezon",
+  "seasonsCount_other": "{{count}} sezon"
+ },
+ "library": {
+  "myList": "Siyahım",
+  "favorite": "Sevimli",
+  "retry": "Yenidən cəhd et",
+  "error": "Kitabxana yüklənmədi",
+  "remove": "Sil",
+  "tabs": {
+   "saved": "Saxlanılanlar",
+   "favorites": "Sevimlilər"
+  },
+  "sort": {
+   "recent": "Son əlavə",
+   "alphabetical": "A–Z"
+  },
+  "filter": {
+   "all": "Hamısı",
+   "movies": "Filmlər",
+   "series": "Seriallar"
+  },
+  "status": {
+   "planned": "Planlaşdırılıb",
+   "watching": "İzlənir",
+   "completed": "Bitib"
+  },
+  "empty": {
+   "saved": {
+    "title": "Siyahınız boşdur",
+    "message": "Bəyəndiyiniz filmləri “Siyahım”a əlavə edin."
+   },
+   "favorites": {
+    "title": "Sevimli yoxdur",
+    "message": "Ürək işarəsi ilə sevimlilərinizi seçin."
+   }
+  }
+ },
+ "history": {
+  "watched": {
+   "title": "İzlənilənlər"
+  },
+  "watchedBadge": "İZLƏNİB",
+  "watchedOn": "{{date}} tarixində izlənib",
+  "remove": "Tarixçədən sil",
+  "clear": "Tarixçəni təmizlə",
+  "cleared": "Tarixçə təmizləndi",
+  "retry": "Yenidən cəhd et",
+  "error": "Tarixçə yüklənmədi",
+  "clearDialog": {
+   "title": "Tarixçə silinsin?",
+   "message": "Bütün izləmə tarixçəniz silinəcək. Bu əməliyyat geri qaytarıla bilməz.",
+   "confirm": "Sil",
+   "cancel": "Ləğv et"
+  },
+  "empty": {
+   "title": "Hələ heç nə izləməmisiniz",
+   "message": "Bitirdiyiniz filmlər burada görünəcək."
+  }
+ },
+ "reviews": {
+  "title": "Rəylər",
+  "mine": "Sizin rəyiniz",
+  "anonymous": "İstifadəçi",
+  "write": "Rəy yaz",
+  "edit": "Rəyi redaktə et",
+  "delete": "Sil",
+  "cancel": "Ləğv et",
+  "save": "Yadda saxla",
+  "saved": "Rəy yadda saxlanıldı",
+  "deleted": "Rəy silindi",
+  "error": "Rəylər yüklənmədi",
+  "retry": "Yenidən cəhd et",
+  "form": {
+   "text": "Rəyiniz",
+   "placeholder": "Filmlə bağlı fikirlərinizi yazın (ixtiyari)"
+  },
+  "validation": {
+   "stars": "1-dən 5-ə qədər ulduz seçin",
+   "textTooLong": "Rəy çox uzundur"
+  },
+  "summary": {
+   "count_one": "{{count}} rəy",
+   "count_other": "{{count}} rəy"
+  },
+  "reaction": {
+   "dislike": "Xoşuma gəlmədi",
+   "like": "Xoşuma gəldi",
+   "love": "Çox xoşuma gəldi"
+  },
+  "deleteConfirm": {
+   "title": "Rəy silinsin?",
+   "message": "Bu əməliyyat geri qaytarıla bilməz."
+  },
+  "empty": {
+   "title": "Hələ rəy yoxdur",
+   "message": "İlk rəyi siz yazın."
+  }
+ },
+ "stats": {
+  "title": "İzləmə statistikası",
+  "totalTitles": "İzlənən başlıq",
+  "totalHours": "Ümumi vaxt",
+  "hoursValue": "{{value}} saat",
+  "topGenre": "Sevimli janr",
+  "avgRating": "Orta reytinqiniz",
+  "genres": "Janrlar üzrə",
+  "empty": "Statistika üçün ən azı bir film izləyin."
+ },
+ "subscription": {
+  "title": "Abunəlik",
+  "currentPlan": "Cari plan",
+  "free": "Pulsuz",
+  "perMonth": "/ ay",
+  "price": "{{price}} / ay",
+  "noPlan": "Hazırda Pulsuz plandan istifadə edirsiniz.",
+  "renewsOn": "Yenilənmə tarixi: {{date}}",
+  "endsOn": "Bitmə tarixi: {{date}}",
+  "viewPlans": "Planlara bax",
+  "changePlan": "Planı dəyiş",
+  "cancel": "Abunəliyi ləğv et",
+  "resume": "Abunəliyi bərpa et",
+  "cancelTitle": "Abunəlik ləğv edilsin?",
+  "cancelMessage": "Cari ödəniş dövrünün sonuna qədər xidmətdən istifadə edə biləcəksiniz.",
+  "confirmCancel": "Bəli, ləğv et",
+  "keep": "Abunəliyi saxla",
+  "paymentMethods": "Ödəniş üsulları",
+  "billingHistory": "Ödəniş tarixçəsi",
+  "changedToast": "Abunəlik planı yeniləndi",
+  "canceledToast": "Abunəlik dövrün sonunda ləğv ediləcək",
+  "resumedToast": "Abunəlik bərpa edildi",
+  "error": "Abunəlik məlumatları yüklənmədi",
+  "retry": "Yenidən cəhd et",
+  "confirmChangeTitle": "Plan dəyişdirilsin?",
+  "confirmChangeMessage": "{{plan}} planına {{price}} / ay qiymətlə keçilsin? Əsas kartınızdan ödəniş çəkiləcək.",
+  "noCard": "Davam etmək üçün ödəniş kartı əlavə edin",
+  "paymentFailed": "Ödəniş alınmadı. Kartınızı yoxlayın.",
+  "requires3ds": "Bankınız əlavə təsdiq (3D Secure) tələb edir.",
+  "expiredNote": "Abunəliyin müddəti bitib. Pulsuz plandasınız.",
+  "status": {
+   "none": "PULSUZ",
+   "active": "AKTİV",
+   "canceled": "LƏĞV EDİLİB",
+   "pastDue": "ÖDƏNİŞ UĞURSUZ",
+   "expired": "MÜDDƏTİ BİTİB"
+  }
+ },
+ "plans": {
+  "title": "Planınızı seçin",
+  "subtitle": "İstənilən vaxt planı dəyişə bilərsiniz.",
+  "current": "Cari",
+  "popular": "Ən populyar",
+  "quality": "Video keyfiyyəti",
+  "screens": "Ekran sayı",
+  "downloads": "Yükləmələr",
+  "yes": "Daxildir",
+  "no": "Daxil deyil",
+  "select": "Planı seç",
+  "selected": "Cari plan",
+  "error": "Planlar yüklənmədi"
+ },
+ "downloads": {
+  "title": "Yükləmələr",
+  "used": "{{size}} istifadə olunub",
+  "free": "{{size}} boş",
+  "storage": "Yaddaş",
+  "ready": "İzləməyə hazır",
+  "inProgress": "Yüklənir",
+  "emptyTitle": "Hələ yükləmə yoxdur",
+  "emptyMessage": "Yüklədiyiniz filmlər və seriyalar oflayn izləmək üçün burada görünəcək.",
+  "offline": "Oflaynsınız. Yükləmələriniz göstərilir.",
+  "offlineGo": "Oflaynsınız. Yükləmələrə keçin",
+  "started": "“{{title}}” yüklənməyə başladı",
+  "deleteTitle": "Yükləmə silinsin?",
+  "deleteMessage": "“{{title}}” bu cihazdan silinəcək.",
+  "failed": "Yükləmə alınmadı",
+  "quality": {
+   "standard": "Standart",
+   "high": "Yüksək"
+  },
+  "errors": {
+   "wifiOnly": "Yükləmələr yalnız Wi-Fi ilə məhdudlaşdırılıb. Ayarlardan dəyişə bilərsiniz."
+  },
+  "state": {
+   "none": "Yüklə",
+   "queued": "Növbədə",
+   "downloading": "Yüklənir",
+   "paused": "Dayandırılıb",
+   "completed": "Yüklənib",
+   "failed": "Alınmadı",
+   "expired": "Vaxtı bitib"
+  }
+ },
+ "settings": {
   "title": "Tənzimləmələr",
   "appearance": {
-    "title": "Görünüş",
-    "system": "Sistem",
-    "light": "Açıq",
-    "dark": "Tünd"
+   "title": "Görünüş",
+   "system": "Sistem",
+   "light": "Açıq",
+   "dark": "Tünd"
   },
   "language": {
-    "title": "Dil",
-    "downloadFailed": "Dil yüklənmədi. İnternet bağlantını yoxla."
+   "title": "Dil",
+   "downloadFailed": "Dil yüklənmədi. İnternet bağlantını yoxla."
   },
   "notifications": {
-    "title": "Bildirişlər",
-    "enable": "Bildirişləri aktiv et",
-    "enableHint": "Yeni çıxışlar və xatırlatmalar barədə bildiriş al.",
-    "denied": "Bildiriş icazəsi verilməyib",
-    "openSettings": "Bildirişləri telefon ayarlarından aktiv et."
+   "title": "Bildirişlər",
+   "enable": "Bildirişləri aktiv et",
+   "enableHint": "Yeni çıxışlar və xatırlatmalar barədə bildiriş al.",
+   "denied": "Bildiriş icazəsi verilməyib",
+   "openSettings": "Bildirişləri telefon ayarlarından aktiv et."
   },
   "playback": {
-    "title": "Oynatma",
-    "autoplay": "Avtomatik oynatma",
-    "autoplayHint": "Növbəti videonu avtomatik başladır.",
-    "dataSaver": "Məlumat qənaəti",
-    "dataSaverHint": "Mobil internet istifadəsini azaltmağa kömək edir.",
-    "uiSounds": "Tətbiq səsləri"
+   "title": "Oynatma",
+   "autoplay": "Avtomatik oynatma",
+   "autoplayHint": "Növbəti videonu avtomatik başladır.",
+   "dataSaver": "Məlumat qənaəti",
+   "dataSaverHint": "Mobil internet istifadəsini azaltmağa kömək edir.",
+   "uiSounds": "Tətbiq səsləri"
   },
   "downloads": {
-    "title": "Yükləmələr",
-    "wifiOnly": "Yalnız Wi-Fi ilə yüklə",
-    "wifiOnlyHint": "Mobil internetdən istifadə etmədən yüklə.",
-    "smart": "Ağıllı yükləmələr",
-    "smartHint": "İzlədiklərinə uyğun məzmunu avtomatik yüklə.",
-    "quality": "Yükləmə keyfiyyəti",
-    "forYou": "Sənin üçün yükləmələr",
-    "forYouHint": "Yükləmələr üçün ayrılan yaddaş limiti.",
-    "gb_one": "{{count}} GB",
-    "gb_other": "{{count}} GB"
+   "title": "Yükləmələr",
+   "wifiOnly": "Yalnız Wi-Fi ilə yüklə",
+   "wifiOnlyHint": "Mobil internetdən istifadə etmədən yüklə.",
+   "smart": "Ağıllı yükləmələr",
+   "smartHint": "İzlədiklərinə uyğun məzmunu avtomatik yüklə.",
+   "quality": "Yükləmə keyfiyyəti",
+   "forYou": "Sənin üçün yükləmələr",
+   "forYouHint": "Yükləmələr üçün ayrılan yaddaş limiti.",
+   "gb_one": "{{count}} GB",
+   "gb_other": "{{count}} GB"
   },
   "privacy": {
-    "title": "Məxfilik",
-    "parental": "Valideyn nəzarəti",
-    "account": "Hesab",
-    "devices": "Cihazlar"
+   "title": "Məxfilik",
+   "parental": "Valideyn nəzarəti",
+   "account": "Hesab",
+   "devices": "Cihazlar"
+  },
+  "about": {
+   "title": "Haqqında",
+   "version": "Versiya {{version}}"
   }
-},
-"common": {
-  "retry": "Yenidən cəhd et", "save": "Yadda saxla", "cancel": "Ləğv et", "delete": "Sil",
-  "done": "Hazır", "back": "Geri", "loading": "Yüklənir...", "confirm": "Təsdiq et",
-  "continue": "Davam et", "next": "Növbəti", "skip": "Keç"
-}
-
-
+ },
+ "common": {
+  "retry": "Yenidən cəhd et",
+  "save": "Yadda saxla",
+  "cancel": "Ləğv et",
+  "delete": "Sil",
+  "done": "Hazır",
+  "back": "Geri",
+  "loading": "Yüklənir...",
+  "confirm": "Təsdiq et",
+  "continue": "Davam et",
+  "next": "Növbəti",
+  "skip": "Keç",
+  "close": "Bağla"
+ },
+ "account": {
+  "title": "Hesab",
+  "email": "E-poçt",
+  "sections": {
+   "password": "Şifrəni dəyiş",
+   "email": "E-poçtu dəyiş",
+   "devices": "Cihazlar",
+   "security": "Təhlükəsizlik",
+   "parental": "Valideyn nəzarəti",
+   "delete": "Hesabı sil"
+  },
+  "signOut": "Çıxış",
+  "signOutConfirm": {
+   "title": "Çıxış edilsin?",
+   "message": "Davam etmək üçün yenidən daxil olmalı olacaqsan."
+  },
+  "changeEmail": {
+   "title": "E-poçtu dəyiş",
+   "subtitle": "Yeni e-poçt ünvanına təsdiq linki göndərəcəyik.",
+   "current": "Cari e-poçt",
+   "new": "Yeni e-poçt",
+   "submit": "Təsdiq göndər",
+   "sentTitle": "Gələn qutunu yoxla",
+   "sentMessage": "{{email}} ünvanına təsdiq linki göndərdik. Dəyişikliyi tamamlamaq üçün onu aç."
+  },
+  "changePassword": {
+   "title": "Şifrəni dəyiş",
+   "subtitle": "Başqa yerdə istifadə etmədiyin güclü şifrə seç.",
+   "submit": "Şifrəni yenilə",
+   "success": "Şifrə yeniləndi"
+  },
+  "delete": {
+   "title": "Hesabı sil",
+   "warning": "Hesabı silsən, profillərin, izləmə tarixçən, siyahıların və yükləmələrin silinəcək.",
+   "grace": "Fikrini dəyişmək üçün {{days}} gün vaxtın var. Bu müddətdə daxil olub hesabı bərpa edə bilərsən.",
+   "reasonTitle": "Niyə ayrılırsan? (ixtiyari)",
+   "understand": "Hesabımın silinəcəyini başa düşürəm",
+   "submit": "Hesabımı sil",
+   "confirmTitle": "Hesab silinsin?",
+   "confirmMessage": "Hesabın {{days}} gündən sonra həmişəlik silinəcək. O vaxta qədər onu bərpa edə bilərsən.",
+   "pendingTitle": "Silinmə planlaşdırılıb",
+   "pendingMessage": "Hesabın tezliklə silinəcək. Bərpa üçün qalan gün: {{days}}.",
+   "restore": "Hesabı bərpa et",
+   "restored": "Hesab bərpa olundu"
+  },
+  "reasons": {
+   "too_expensive": "Çox bahadır",
+   "not_using": "Az istifadə edirəm",
+   "missing_content": "İstədiyim məzmun yoxdur",
+   "privacy": "Məxfilik narahatlığı",
+   "other": "Digər"
+  },
+  "reauth": {
+   "title": "Özünü təsdiq et",
+   "message": "Təhlükəsizlik üçün davam etmək məqsədilə şifrəni daxil et.",
+   "password": "Şifrə"
+  },
+  "devices": {
+   "title": "Cihazlar",
+   "empty": "Cihaz tapılmadı.",
+   "current": "Bu cihaz",
+   "lastActive": "Son aktivlik: {{date}}",
+   "remove": "Sil",
+   "removeTitle": "Cihaz silinsin?",
+   "removeMessage": "{{name}} hesabından çıxarılacaq.",
+   "signOutAll": "Bütün cihazlardan çıx",
+   "signOutAllTitle": "Hər yerdən çıxılsın?",
+   "signOutAllMessage": "Bu cihaz daxil olmaqla, bütün cihazlardan çıxış edəcəksən."
+  },
+  "security": {
+   "title": "Təhlükəsizlik",
+   "twoFactor": "İkimərhələli doğrulama",
+   "twoFactorHint": "Hesabına əlavə qoruma qatı əlavə et.",
+   "soon": "Tezliklə",
+   "signOutAllHint": "Daxil olduğun bütün cihazlardan çıx."
+  },
+  "errors": {
+   "emailSame": "Yeni e-poçt cari e-poçtdan fərqli olmalıdır.",
+   "graceExpired": "Bərpa müddəti bitib. Bu hesabı artıq bərpa etmək olmur.",
+   "revokeCurrent": "İstifadə etdiyin cihazı silə bilməzsən."
+  }
+ },
+ "auth": {
+  "field": {
+   "email": "E-poçt",
+   "password": "Şifrə",
+   "newPassword": "Yeni şifrə",
+   "confirmPassword": "Şifrəni təsdiqlə",
+   "code": "Təsdiq kodu",
+   "show": "Göstər",
+   "hide": "Gizlət"
+  },
+  "login": {
+   "existingAccount": "Bu e-poçtla hesab artıq mövcuddur. Zəhmət olmasa daxil ol.",
+   "locked": "Çox cəhd edildi. {{time}} sonra yenidən yoxla.",
+   "register": "Qeydiyyat",
+   "title": "Daxil ol",
+   "subtitle": "CineVerse-ə xoş gəldin",
+   "email": "E-poçt",
+   "password": "Şifrə",
+   "submit": "Daxil ol",
+   "forgot": "Şifrəni unutmusan?",
+   "noAccount": "CineVerse-də yenisən? Qeydiyyatdan keç",
+   "google": "Google ilə davam et",
+   "biometric": "Biometrik ilə daxil ol"
+  },
+  "register": {
+   "haveAccount": "Artıq hesabın var?",
+   "login": "Daxil ol",
+   "title": "Hesab yarat",
+   "subtitle": "Film və seriallara baxmağa başla",
+   "email": "E-poçt",
+   "password": "Şifrə",
+   "confirmPassword": "Şifrəni təsdiqlə",
+   "terms": "İstifadə şərtləri və Məxfilik siyasəti ilə razıyam",
+   "submit": "Qeydiyyatdan keç",
+   "hasAccount": "Artıq hesabın var? Daxil ol"
+  },
+  "otp": {
+   "title": "Kodu daxil et",
+   "subtitle": "{{email}} ünvanına göndərilən {{length}} rəqəmli kodu daxil et",
+   "submit": "Təsdiqlə",
+   "blocked": "Çox səhv kod daxil edildi. Bir az sonra yenidən cəhd et."
+  },
+  "resend": {
+   "action": "Kodu yenidən göndər",
+   "wait": "{{seconds}} san. sonra yenidən göndər"
+  },
+  "reset": {
+   "cancel": "Ləğv et",
+   "title": "Yeni şifrə",
+   "subtitle": "Güclü şifrə seç",
+   "password": "Yeni şifrə",
+   "submit": "Şifrəni yenilə"
+  },
+  "social": {
+   "divider": "və ya",
+   "google": "Google ilə davam et"
+  },
+  "terms": {
+   "accept": "İstifadə şərtləri və Məxfilik siyasəti ilə razıyam"
+  },
+  "biometric": {
+   "action": "Biometrik ilə daxil ol",
+   "prompt": "Daxil olmaq üçün kimliyini təsdiqlə"
+  },
+  "validation": {
+   "passwordWeak": "Ən azı 8 simvol istifadə et: hərf və rəqəm olmalıdır.",
+   "emailRequired": "E-poçt tələb olunur",
+   "emailInvalid": "Düzgün e-poçt ünvanı daxil et",
+   "passwordRequired": "Şifrə tələb olunur",
+   "passwordMin": "Şifrə ən azı 8 simvol olmalıdır",
+   "passwordMismatch": "Şifrələr uyğun gəlmir",
+   "termsRequired": "Şərtləri qəbul etməlisən"
+  },
+  "forgot": {
+   "title": "Şifrəni sıfırla",
+   "subtitle": "Sıfırlama kodu almaq üçün e-poçtunu daxil et",
+   "email": "E-poçt",
+   "submit": "Kodu göndər",
+   "back": "Daxil olmağa qayıt"
+  },
+  "verifyEmail": {
+   "title": "E-poçtunu yoxla",
+   "subtitle": "{{email}} ünvanına təsdiq kodu göndərdik",
+   "enterCode": "Təsdiq kodunu daxil et"
+  },
+  "verifyOtp": {
+   "title": "Kodu daxil et",
+   "subtitle": "{{email}} ünvanına göndərilən 6 rəqəmli kodu daxil et",
+   "submit": "Təsdiqlə"
+  },
+  "errors": {
+   "invalidCredentials": "E-poçt və ya şifrə yanlışdır",
+   "userAlreadyExists": "Bu e-poçtla hesab artıq mövcuddur",
+   "otpInvalid": "Kod yanlış və ya vaxtı bitib",
+   "locked": "Çox cəhd edildi. Bir az sonra yenidən yoxla."
+  }
+ },
+ "errors": {
+  "rateLimit": "Çox sorğu göndərildi. Bir az gözlə.",
+  "validation": "Daxil etdiyin məlumatları yoxla.",
+  "unknown": "Nəsə səhv getdi. Yenidən cəhd et.",
+  "network": "İnternet bağlantısı yoxdur.",
+  "unauthorized": "Sessiya başa çatdı. Yenidən daxil ol.",
+  "notFound": "Tapa bilmədik.",
+  "timeout": "Sorğunun vaxtı bitdi. Yenidən cəhd et.",
+  "auth": {
+   "invalid_credentials": "E-poçt və ya şifrə yanlışdır.",
+   "email_not_confirmed": "Əvvəlcə e-poçtunu təsdiqlə.",
+   "user_already_exists": "Bu e-poçtla hesab artıq mövcuddur.",
+   "session_expired": "Sessiyanın vaxtı bitib. Yenidən daxil ol.",
+   "unauthorized": "Bu əməliyyat üçün icazən yoxdur. Yenidən daxil ol.",
+   "weak_password": "Şifrə çox zəifdir. Ən azı 8 simvol, hərf və rəqəm istifadə et.",
+   "same_password": "Yeni şifrə cari şifrədən fərqli olmalıdır.",
+   "invalid_email": "Düzgün e-poçt ünvanı daxil et.",
+   "too_many_attempts": "Çox cəhd edildi. Bir az sonra yenidən yoxla.",
+   "otp_invalid": "Kod yanlışdır.",
+   "otp_expired": "Kodun vaxtı bitib. Yenisini istə.",
+   "unknown": "Doğrulama alınmadı. Yenidən cəhd et."
+  },
+  "payment": {
+   "declined": "Kartın qəbul edilmədi.",
+   "insufficient_funds": "Kartda kifayət qədər vəsait yoxdur.",
+   "expired_card": "Kartın müddəti bitib.",
+   "requires_authentication": "Bankın əlavə təsdiq tələb edir.",
+   "unknown": "Ödəniş alınmadı. Yenidən cəhd et."
+  },
+  "somethingWrong": "Nəsə səhv getdi"
+ },
+ "profiles": {
+  "whoIsWatching": "Kim izləyir?",
+  "addProfile": "Profil əlavə et",
+  "manage": "Profilləri idarə et",
+  "signOut": "Çıxış",
+  "kidsBadge": "UŞAQ",
+  "limitInfo": "Ən çox {{max}} profil yarada bilərsən.",
+  "avatar": {
+   "choose": "Avatar seç",
+   "upload": "Şəkil yüklə",
+   "denied": "Qalereyaya giriş icazəsi lazımdır.",
+   "openSettings": "Ayarları aç"
+  },
+  "kids": {
+   "label": "Uşaq profili",
+   "description": "Yalnız uşaqlar üçün uyğun məzmunu göstər"
+  },
+  "edit": {
+   "newTitle": "Profil əlavə et",
+   "editTitle": "Profili redaktə et",
+   "name": "Profil adı",
+   "maturity": "Yaş həddi",
+   "pin": "Profil PIN-i",
+   "pinOn": "PIN aktivdir",
+   "pinOff": "Söndürülüb",
+   "delete": "Profili sil",
+   "deleteTitle": "Profil silinsin?",
+   "deleteMessage": "{{name}} profilini silmək istədiyinə əminsən?"
+  },
+  "pin": {
+   "title": "Profil kilidi",
+   "subtitle": "{{name}} üçün PIN daxil et",
+   "setupTitle": "Profil PIN-i təyin et",
+   "setupEnter": "4 rəqəmli PIN daxil et",
+   "setupConfirm": "Təsdiq üçün PIN-i təkrar daxil et",
+   "mismatch": "PIN-lər uyğun gəlmədi. Yenidən cəhd et.",
+   "remove": "PIN-i sil",
+   "wrong": "PIN yanlışdır. {{attempts}} cəhd qalıb.",
+   "locked": "Kilidlənib. {{time}} sonra yenidən cəhd et."
+  },
+  "tab": {
+   "photoUpdated": "Profil şəkli yeniləndi",
+   "changePhoto": "Şəkli dəyiş",
+   "account": "Hesab",
+   "parental": "Valideyn nəzarəti",
+   "switchProfile": "Profili dəyiş",
+   "stats": "İzləmə statistikası"
+  },
+  "validation": {
+   "nameRequired": "Profil adı tələb olunur",
+   "nameTooLong": "Profil adı çox uzundur",
+   "nameInvalid": "Düzgün profil adı daxil et",
+   "nameTaken": "Bu profil adı artıq istifadə olunur"
+  },
+  "errors": {
+   "limit": "Maksimum profil sayına çatdın",
+   "lastProfile": "Yeganə profilini silə bilməzsən",
+   "pinFormat": "PIN 4 rəqəmdən ibarət olmalıdır"
+  }
+ },
+ "parental": {
+  "title": "Valideyn nəzarəti",
+  "subtitle": "Hər profilin nəyə baxa biləcəyini seç.",
+  "profileFor": "{{name}} üçün ayarlar",
+  "kidsInfo": "Uşaq profilləri həmişə PG və aşağı ilə məhdudlaşdırılır.",
+  "maxMaturity": "Maksimum yaş həddi",
+  "maxMaturityHint": "Bu həddən yuxarı olan məzmun gizlədiləcək.",
+  "kidsLocked": {
+   "title": "Uşaqlar üçün kilidlənib",
+   "message": "Valideyn nəzarətini dəyişmək üçün adi profilə keç."
+  },
+  "blocked": {
+   "row": "Bloklanmış başlıqlar",
+   "count_one": "{{count}} başlıq bloklanıb",
+   "count_other": "{{count}} başlıq bloklanıb",
+   "count": "{{count}} bloklanıb",
+   "title": "Bloklanmış başlıqlar",
+   "empty": {
+    "title": "Bloklanmış başlıq yoxdur",
+    "message": "Blokladığın başlıqlar burada görünəcək."
+   }
+  },
+  "unblock": "Blokdan çıxar"
+ },
+ "maturity": {
+  "G": {
+   "label": "G",
+   "description": "Hamı üçün – bütün yaşlara uyğundur"
+  },
+  "PG": {
+   "label": "PG",
+   "description": "Valideyn nəzarəti tövsiyə olunur"
+  },
+  "PG-13": {
+   "label": "PG-13",
+   "description": "Valideynlər diqqətli olmalıdır – 13 yaşa qədər uyğun olmaya bilər"
+  },
+  "R": {
+   "label": "R",
+   "description": "Məhdudiyyətli – 17 yaşa qədər böyüklə birlikdə"
+  },
+  "NC-17": {
+   "label": "NC-17",
+   "description": "Yalnız böyüklər üçün – məhdudiyyət yoxdur"
+  }
+ },
+ "nav": {
+  "home": "Ana səhifə",
+  "watched": "İzlənmiş filmlər",
+  "downloads": "Yükləmələr",
+  "subscription": "Abunəlik",
+  "settings": "Tənzimləmələr",
+  "tabs": {
+   "home": "Ana səhifə",
+   "newHot": "Yeni və Trend",
+   "search": "Axtarış",
+   "myList": "Siyahım",
+   "profile": "Profil"
+  }
+ }
 }
