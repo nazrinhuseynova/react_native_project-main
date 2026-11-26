@@ -75,7 +75,6 @@ function RootNavigator() {
       <Stack.Screen name="account/index" />
       <Stack.Screen name="account/change-password" />
       <Stack.Screen name="account/change-email" />
-      <Stack.Screen name="account/devices" />
       <Stack.Screen name="account/delete" />
       <Stack.Screen name="account/security" />
       <Stack.Screen name="billing/plans" />

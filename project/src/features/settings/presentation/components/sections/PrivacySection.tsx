@@ -26,12 +26,7 @@ export function PrivacySection() {
         onPress={() => router.push('/account')}
         showChevron
       />
-      <ListRow
-        icon="phone-portrait-outline"
-        title={t('settings.privacy.devices')}
-        onPress={() => router.push('/account/devices')}
-        showChevron
-      />
+     
     </View>
   );
 }

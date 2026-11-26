@@ -43,8 +43,7 @@ export function SecurityScreen() {
           <Divider />
         </>
       ) : null}
-      <ListRow icon="phone-portrait-outline" title={t('account.sections.devices')} onPress={() => router.push('/account/devices')} />
-      <Divider />
+     
       <ListRow
         icon="log-out-outline"
         title={t('account.devices.signOutAll')}

@@ -22,7 +22,7 @@ export type AuthContextValue = {
 export const AuthContext = createContext<AuthContextValue | null>(null);
 
 export function AuthProvider({ children }: PropsWithChildren) {
-  const { auth, analytics, deviceInfo, eventBus, logger } = useServices();
+   const { auth, analytics, eventBus, logger } = useServices();
   const queryClient = useQueryClient();
 
   const [isReady, setIsReady] = useState(false);
@@ -45,9 +45,7 @@ export function AuthProvider({ children }: PropsWithChildren) {
       setTimeout(() => {
         void (async () => {
           try {
-            if (event === 'initialSession' || event === 'signedIn') {
-              await auth.devices.registerCurrent(await deviceInfo.getDeviceInfo());
-            }
+           
             await auth.biometric.syncRefreshToken(next.refreshToken);
           } catch (error) {
             logger.warn('auth.side_effects_failed', { error: String(error) });
@@ -119,7 +117,7 @@ export function AuthProvider({ children }: PropsWithChildren) {
       active = false;
       unsubscribe();
     };
-  }, [auth, analytics, deviceInfo, eventBus, logger, queryClient]);
+  }, [auth, analytics, eventBus, logger, queryClient]);
 
   const signOut = async () => {
     manualSignOutRef.current = true;
