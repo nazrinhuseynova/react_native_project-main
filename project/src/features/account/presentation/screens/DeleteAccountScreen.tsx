@@ -29,42 +29,14 @@ export function DeleteAccountScreen() {
 
   const header = <ScreenHeader title={t('account.delete.title')} onBack={() => router.back()} />;
 
-  const onRestore = async () => {
-    try {
-      await deletion.restoreAccount();
-      toast.success(t('account.delete.restored'));
-      router.back();
-    } catch (error) {
-      toast.error(t(toUserMessage(error)));
-    }
-  };
-
   const onConfirm = async () => {
     confirmDialog.close();
     try {
-      await deletion.requestDeletion(reason);
+      await deletion.deleteAccount(reason);
     } catch (error) {
       toast.error(t(toUserMessage(error)));
     }
   };
-
-  if (deletion.isPendingDeletion) {
-    return (
-      <Screen scroll header={header}>
-        <View style={{ gap: 12 }}>
-          <AppText variant="title3">{t('account.delete.pendingTitle')}</AppText>
-          <AppText variant="body" color="textSecondary">
-            {t('account.delete.pendingMessage', { days: deletion.daysLeft ?? 0 })}
-          </AppText>
-          <Button
-            label={t('account.delete.restore')}
-            loading={deletion.isRestoring}
-            onPress={() => void onRestore()}
-          />
-        </View>
-      </Screen>
-    );
-  }
 
   return (
     <Screen scroll header={header}>
@@ -73,7 +45,7 @@ export function DeleteAccountScreen() {
           {t('account.delete.warning')}
         </AppText>
         <AppText variant="callout" color="textMuted">
-          {t('account.delete.grace', { days: deletion.graceDays })}
+          {t('account.delete.irreversible')}
         </AppText>
 
         <AppText variant="captionStrong" color="textSecondary">
@@ -87,9 +59,9 @@ export function DeleteAccountScreen() {
           onValueChange={setUnderstood}
         />
 
-        {deletion.requestErrorKey ? (
+        {deletion.deleteErrorKey ? (
           <AppText variant="callout" color="danger" accessibilityLiveRegion="polite">
-            {t(deletion.requestErrorKey)}
+            {t(deletion.deleteErrorKey)}
           </AppText>
         ) : null}
 
@@ -97,7 +69,7 @@ export function DeleteAccountScreen() {
           label={t('account.delete.submit')}
           variant="danger"
           disabled={!understood}
-          loading={deletion.isRequesting}
+          loading={deletion.isDeleting}
           onPress={confirmDialog.open}
         />
       </View>
@@ -105,7 +77,7 @@ export function DeleteAccountScreen() {
       <ConfirmDialog
         visible={confirmDialog.isOpen}
         title={t('account.delete.confirmTitle')}
-        message={t('account.delete.confirmMessage', { days: deletion.graceDays })}
+        message={t('account.delete.confirmMessage')}
         confirmLabel={t('account.delete.submit')}
         cancelLabel={t('common.cancel')}
         destructive

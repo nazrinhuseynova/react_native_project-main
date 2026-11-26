@@ -15,16 +15,7 @@ import { Screen } from '@/shared/ui/Screen';
 import { ScreenHeader } from '@/shared/ui/ScreenHeader';
 import { useToast } from '@/shared/ui/ToastProvider';
 
-import { useDeleteAccount } from '../../application/hooks/useDeleteAccount';
-
-const useStyles = makeStyles(({ spacing, colors, radius }) => ({
-  banner: {
-    padding: spacing.lg,
-    borderRadius: radius.md,
-    backgroundColor: colors.primarySoft,
-    gap: spacing.sm,
-    marginBottom: spacing.lg,
-  },
+const useStyles = makeStyles(({ spacing }) => ({
   email: { marginBottom: spacing.lg },
   footer: { marginTop: spacing.xl },
 }));
@@ -36,22 +27,12 @@ export function AccountScreen() {
   const styles = useStyles();
   const { user, signOut } = useAuth();
   const signOutDialog = useDisclosure();
-  const deletion = useDeleteAccount();
 
   const onSignOut = async () => {
     try {
       await signOut();
     } catch (error) {
       signOutDialog.close();
-      toast.error(t(toUserMessage(error)));
-    }
-  };
-
-  const onRestore = async () => {
-    try {
-      await deletion.restoreAccount();
-      toast.success(t('account.delete.restored'));
-    } catch (error) {
       toast.error(t(toUserMessage(error)));
     }
   };
@@ -66,21 +47,6 @@ export function AccountScreen() {
       header={<ScreenHeader title={t('account.title')} onBack={() => router.back()} />}
       contentContainerStyle={{ padding: 16 }}
     >
-      {deletion.isPendingDeletion ? (
-        <View style={styles.banner}>
-          <AppText variant="bodyStrong">{t('account.delete.pendingTitle')}</AppText>
-          <AppText variant="callout" color="textSecondary">
-            {t('account.delete.pendingMessage', { days: deletion.daysLeft ?? 0 })}
-          </AppText>
-          <Button
-            label={t('account.delete.restore')}
-            variant="secondary"
-            loading={deletion.isRestoring}
-            onPress={() => void onRestore()}
-          />
-        </View>
-      ) : null}
-
       <View style={styles.email}>
         <AppText variant="captionStrong" color="textSecondary">
           {t('account.email')}

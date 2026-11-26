@@ -8,8 +8,6 @@ import { SupabaseSink } from '@/core/analytics/sinks/SupabaseSink';
 import { createSupabaseClient } from '@/core/backend/supabase/createSupabaseClient';
 import { env } from '@/core/config/env';
 import { featureFlags } from '@/core/config/featureFlags';
-import type { DeviceInfoProvider } from '@/core/device/DeviceInfoProvider';
-import { ExpoDeviceInfoProvider } from '@/core/device/ExpoDeviceInfoProvider';
 import type { AppEventBus, AppEvents } from '@/core/events/AppEvents';
 import { EventBus } from '@/core/events/EventBus';
 import { FetchHttpClient } from '@/core/http/FetchHttpClient';
@@ -35,11 +33,7 @@ import { SecureStoreAdapter } from '@/core/storage/SecureStoreAdapter';
 import {
   ChangeEmail,
   ChangePassword,
-  DeletionGracePolicy,
-  ListDevices,
   RequestAccountDeletion,
-  RestoreAccount,
-  RevokeDevice,
   StepUpAuthPolicy,
   SupabaseAccountRepository,
 } from '@/features/account';
@@ -63,7 +57,6 @@ import {
   SignOutAllDevices,
   SignUp,
   SupabaseAuthRepository,
-  SupabaseDeviceRepository,
   VerifyOtp,
 } from '@/features/auth';
 import {
@@ -217,7 +210,6 @@ function createAuthServices({
   secureStorage: SecureStorage;
 }) {
   const repository = new SupabaseAuthRepository(supabase);
-  const devices = new SupabaseDeviceRepository(supabase);
   const biometric = new BiometricStrategy(supabase, new BiometricCredentialStore(secureStorage));
 
 
@@ -233,7 +225,6 @@ function createAuthServices({
 
   return {
     repository,
-    devices,
     strategies,
     biometric,
     signUp: new SignUp(strategies, password),
@@ -256,25 +247,19 @@ function createAuthServices({
 
 function createAccountServices({
   supabase,
-  deviceInfo,
   auth,
 }: {
   supabase: SupabaseClient;
-  deviceInfo: DeviceInfoProvider;
   auth: ReturnType<typeof createAuthServices>;
 }) {
   const repository = new SupabaseAccountRepository(supabase);
-  const grace = new DeletionGracePolicy();
 
   return {
     repository,
-    policies: { stepUp: new StepUpAuthPolicy(), grace },
+    policies: { stepUp: new StepUpAuthPolicy() },
     changePassword: new ChangePassword(repository, auth.policies.password),
     changeEmail: new ChangeEmail(repository),
-    requestDeletion: new RequestAccountDeletion(repository, grace),
-    restore: new RestoreAccount(repository, grace),
-    listDevices: new ListDevices(auth.devices, deviceInfo),
-    revokeDevice: new RevokeDevice(auth.devices, deviceInfo),
+    requestDeletion: new RequestAccountDeletion(repository),
   };
 }
 
@@ -619,7 +604,6 @@ export type Services = {
   networkMonitor: NetworkMonitor;
   storage: KeyValueStorage;
   secureStorage: SecureStorage;
-  deviceInfo: DeviceInfoProvider;
   supabase: SupabaseClient;
   queryClient: QueryClient;
   notifications: NotificationScheduler;
@@ -649,7 +633,6 @@ export function createServices(): Services {
   const secureStorage = new SecureStoreAdapter();
   const supabase = createSupabaseClient({ url: env.supabaseUrl, anonKey: env.supabaseAnonKey });
   const eventBus: AppEventBus = new EventBus<AppEvents>();
-  const deviceInfo = new ExpoDeviceInfoProvider(secureStorage);
   const notifications = new ExpoNotificationScheduler();
   const images = new TmdbImageUrlBuilder();
 
@@ -669,13 +652,12 @@ export function createServices(): Services {
     networkMonitor,
     storage,
     secureStorage,
-    deviceInfo,
     supabase,
     queryClient: createQueryClient(networkMonitor),
     notifications,
     deepLinks: new DeepLinkRegistry(),
     auth,
-    account: createAccountServices({ supabase, deviceInfo, auth }),
+    account: createAccountServices({ supabase, auth }),
     profiles: createProfileServices({ supabase, storage, secureStorage, eventBus }),
     parental: createParentalServices({ supabase }),
     onboarding: createOnboardingServices({ storage }),
