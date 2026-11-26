@@ -22,7 +22,7 @@ export default function AppDrawerLayout() {
       }}
     >
       <Drawer.Screen name="(tabs)" options={{ title: t('nav.home') }} />
-      <Drawer.Screen name="watched" options={{ title: t('nav.watched') }} />
+      <Drawer.Screen name="watched" options={{ title: t('nav.watched'), headerShown: false }} />
       <Drawer.Screen name="downloads" options={{ title: t('nav.downloads'), headerShown: false }} />
       <Drawer.Screen name="subscription" options={{ title: t('nav.subscription') }} />
       <Drawer.Screen name="settings" options={{ title: t('nav.settings') }} />

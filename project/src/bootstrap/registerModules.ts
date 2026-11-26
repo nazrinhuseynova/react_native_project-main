@@ -3,7 +3,7 @@ import * as Linking from 'expo-linking';
 import { deepLinkRoutes } from '@/core/linking/deepLinkRoutes';
 import { NotificationTapHandler } from '@/core/notifications/NotificationTapHandler';
 import { setDownloadsTaskRunner } from '@/features/downloads';
-import { startHistoryListener } from '@/features/history';
+import { historyKeys, startHistoryListener } from '@/features/history';
 
 import type { Services } from './container';
 
@@ -24,6 +24,9 @@ export function registerModules(services: Services): void {
     storage: services.storage,
     save: services.history.save,
     logger: services.logger,
+    onSaved: () => {
+      void services.queryClient.invalidateQueries({ queryKey: historyKeys.all });
+    },
   });
 
   setDownloadsTaskRunner(async () => {

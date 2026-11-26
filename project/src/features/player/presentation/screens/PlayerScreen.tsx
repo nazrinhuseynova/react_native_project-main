@@ -1,9 +1,8 @@
-
 import { Ionicons } from '@expo/vector-icons';
 import { useKeepAwake } from 'expo-keep-awake';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   ActivityIndicator,
@@ -13,7 +12,7 @@ import {
   useWindowDimensions,
 } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import YoutubePlayer from 'react-native-youtube-iframe';
+import YoutubePlayer, { type YoutubeIframeRef } from 'react-native-youtube-iframe';
 
 import { useServices } from '@/bootstrap/useServices';
 import { useSecureScreen } from '@/core/security/useSecureScreen';
@@ -38,16 +37,14 @@ export function PlayerScreen() {
   const insets = useSafeAreaInsets();
   const { height } = useWindowDimensions();
   const { eventBus } = useServices();
+  const playerRef = useRef<YoutubeIframeRef>(null);
 
   const titleId = titleIdFromRoute(params.id, params.type);
+  const episodeId =
+    params.season && params.episode ? `s${params.season}e${params.episode}` : undefined;
 
   const { details } = useTitleDetails(titleId);
-
-  const {
-    trailer,
-    videos,
-    isLoading,
-  } = useTrailers(titleId, {
+  const { trailer, videos, isLoading } = useTrailers(titleId, {
     enabled: !params.videoKey,
   });
 
@@ -62,24 +59,57 @@ export function PlayerScreen() {
     FALLBACK_YOUTUBE_KEY;
 
   const titleName = details?.title.name ?? '';
-
   const subtitle =
-    params.season && params.episode
-      ? `S${params.season}:E${params.episode}`
-      : undefined;
+    params.season && params.episode ? `S${params.season}:E${params.episode}` : undefined;
+
+  const recordProgress = async () => {
+    if (!titleId || !playerRef.current) return;
+    try {
+      const [currentSec, totalSec] = await Promise.all([
+        playerRef.current.getCurrentTime(),
+        playerRef.current.getDuration(),
+      ]);
+      const durationSec = totalSec > 0 ? totalSec : 1;
+      eventBus.emit('playback.progress', {
+        titleId,
+        episodeId,
+        positionSec: currentSec,
+        durationSec,
+      });
+    } catch {
+      // Pleyer hazır deyilsə səssiz keç
+    }
+  };
 
   useEffect(() => {
     if (!titleId) return;
 
     eventBus.emit('playback.started', {
       titleId,
-      episodeId:
-        params.season && params.episode
-          ? `s${params.season}e${params.episode}`
-          : undefined,
+      episodeId,
       positionSec: 0,
     });
-  }, [titleId, params.season, params.episode, eventBus]);
+
+    const interval = setInterval(() => {
+      void recordProgress();
+    }, 5000);
+
+    return () => {
+      clearInterval(interval);
+      void recordProgress();
+    };
+  }, [titleId, episodeId, eventBus]);
+
+  const handleStateChange = (state: string) => {
+    if (state === 'playing' || state === 'paused' || state === 'ended') {
+      void recordProgress();
+    }
+  };
+
+  const handleBack = () => {
+    void recordProgress();
+    router.back();
+  };
 
   return (
     <View style={styles.root}>
@@ -87,17 +117,16 @@ export function PlayerScreen() {
 
       {isLoading && !params.videoKey ? (
         <View style={styles.center}>
-          <ActivityIndicator
-            size="large"
-            color="#FFFFFF"
-          />
+          <ActivityIndicator size="large" color="#FFFFFF" />
         </View>
       ) : (
         <View style={[styles.playerContainer, { height }]}>
           <YoutubePlayer
+            ref={playerRef}
             height={height}
             videoId={resolvedVideo}
             play
+            onChangeState={handleStateChange}
             webViewProps={{
               allowsInlineMediaPlayback: true,
               mediaPlaybackRequiresUserAction: false,
@@ -120,35 +149,23 @@ export function PlayerScreen() {
         ]}
       >
         <Pressable
-          onPress={() => router.back()}
+          onPress={handleBack}
           accessibilityRole="button"
           accessibilityLabel={t('common.back')}
           style={styles.backButton}
         >
-          <Ionicons
-            name="chevron-back"
-            size={26}
-            color="#FFFFFF"
-          />
+          <Ionicons name="chevron-back" size={26} color="#FFFFFF" />
         </Pressable>
 
         <View style={styles.titleWrap}>
           {titleName ? (
-            <AppText
-              variant="headline"
-              color="#FFFFFF"
-              numberOfLines={1}
-            >
+            <AppText variant="headline" color="#FFFFFF" numberOfLines={1}>
               {titleName}
             </AppText>
           ) : null}
 
           {subtitle ? (
-            <AppText
-              variant="caption"
-              color="#D0D0D8"
-              numberOfLines={1}
-            >
+            <AppText variant="caption" color="#D0D0D8" numberOfLines={1}>
               {subtitle}
             </AppText>
           ) : null}
@@ -159,23 +176,9 @@ export function PlayerScreen() {
 }
 
 const styles = StyleSheet.create({
-  root: {
-    flex: 1,
-    backgroundColor: '#000000',
-  },
-
-  playerContainer: {
-    width: '100%',
-    backgroundColor: '#000000',
-  },
-
-  center: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#000000',
-  },
-
+  root: { flex: 1, backgroundColor: '#000000' },
+  playerContainer: { width: '100%', backgroundColor: '#000000' },
+  center: { flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: '#000000' },
   topBar: {
     position: 'absolute',
     top: 0,
@@ -188,7 +191,6 @@ const styles = StyleSheet.create({
     paddingBottom: 12,
     backgroundColor: 'rgba(0,0,0,0.45)',
   },
-
   backButton: {
     width: 40,
     height: 40,
@@ -197,9 +199,5 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-
-  titleWrap: {
-    flex: 1,
-  },
+  titleWrap: { flex: 1 },
 });
-

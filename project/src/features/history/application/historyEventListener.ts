@@ -19,7 +19,6 @@ export type HistoryListenerDeps = {
   onSaved?: () => void;
 };
 
-/** EventBus: playback.progress → SaveProgress (throttle). Dayandıranda/bitəndə dərhal yazır. */
 export function startHistoryListener({
   events,
   storage,
@@ -58,6 +57,16 @@ export function startHistoryListener({
       profileId = null;
       last = null;
       throttled.cancel();
+    }),
+    events.on('playback.started', ({ titleId, episodeId, positionSec }) => {
+      const payload: ProgressPayload = {
+        titleId,
+        episodeId,
+        positionSec,
+        durationSec: 1,
+      };
+      last = payload;
+      persist(payload);
     }),
     events.on('playback.progress', (payload) => {
       last = payload;

@@ -53,24 +53,38 @@ export class GoogleOAuthStrategy implements AuthStrategy {
         skipBrowserRedirect: true,
         queryParams: {
           access_type: 'offline',
-          prompt: 'consent',
+          prompt: 'select_account',
         },
       },
     });
-    if (error) throw toAuthError(error);
+    if (error) {
+      console.log('[GoogleOAuth] signInWithOAuth error:', error);
+      throw toAuthError(error);
+    }
     if (!data.url) throw new AuthError('OAuth URL is missing', { reason: 'unknown' });
 
     const result = await WebBrowser.openAuthSessionAsync(data.url, redirectTo);
+    console.log('[GoogleOAuth] result:', result);
+
+    if (result.type === 'locked') {
+      throw new AuthError('Browser is busy, try again', { reason: 'unknown' });
+    }
     if (result.type !== 'success') throw createCancelledError();
 
     const params = readParams(result.url);
     const providerError = params.get('error_description') ?? params.get('error');
-    if (providerError) throw new AuthError(providerError, { reason: 'unauthorized' });
+    if (providerError) {
+      console.log('[GoogleOAuth] providerError:', providerError);
+      throw new AuthError(providerError, { reason: 'unauthorized' });
+    }
 
     const code = params.get('code');
     if (code) {
       const exchanged = await this.client.auth.exchangeCodeForSession(code);
-      if (exchanged.error) throw toAuthError(exchanged.error);
+      if (exchanged.error) {
+        console.log('[GoogleOAuth] exchangeCodeForSession error:', exchanged.error);
+        throw toAuthError(exchanged.error);
+      }
       if (!exchanged.data.session) throw new AuthError('No session', { reason: 'unknown' });
       return toSession(exchanged.data.session);
     }
@@ -85,7 +99,10 @@ export class GoogleOAuthStrategy implements AuthStrategy {
       access_token: accessToken,
       refresh_token: refreshToken,
     });
-    if (sessionError) throw toAuthError(sessionError);
+    if (sessionError) {
+      console.log('[GoogleOAuth] setSession error:', sessionError);
+      throw toAuthError(sessionError);
+    }
     if (!sessionData.session) throw new AuthError('No session', { reason: 'unknown' });
     return toSession(sessionData.session);
   }

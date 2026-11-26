@@ -1,7 +1,14 @@
-import { Link } from 'expo-router';
+import { Link, Redirect, usePathname } from 'expo-router';
 import { StyleSheet, Text, View } from 'react-native';
 
 export default function NotFoundScreen() {
+  const pathname = usePathname();
+
+
+  if (pathname.includes('auth/callback')) {
+    return <Redirect href="/" />;
+  }
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Bu səhifə tapılmadı</Text>

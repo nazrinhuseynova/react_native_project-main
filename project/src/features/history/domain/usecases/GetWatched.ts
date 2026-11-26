@@ -10,8 +10,6 @@ export class GetWatched {
 
   async execute(profileId: string): Promise<WatchProgress[]> {
     const all = await this.repository.list(profileId);
-    return all
-      .filter((item) => item.completedAt !== null)
-      .sort((a, b) => (b.completedAt ?? '').localeCompare(a.completedAt ?? ''));
+    return all.sort((a, b) => b.updatedAt.localeCompare(a.updatedAt));
   }
 }
