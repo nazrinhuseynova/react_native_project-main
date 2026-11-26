@@ -36,7 +36,6 @@ export function InvoiceRow({ invoice, onPress }: InvoiceRowProps) {
         <AppText variant="caption" color="textMuted">
           {new Date(invoice.createdAt).toLocaleDateString()}
           {invoice.paymentMethodLast4 ? ` • •••• ${invoice.paymentMethodLast4}` : ''}
-          {invoice.promoCode ? ` • ${invoice.promoCode}` : ''}
         </AppText>
       </View>
 

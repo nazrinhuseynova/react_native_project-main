@@ -16,7 +16,6 @@ interface InvoiceRow {
   discount_amount: number;
   total_amount: number;
   currency: Invoice['currency'];
-  promo_code: string | null;
   payment_method_last4: string | null;
   status: InvoiceStatus;
   created_at: string;
@@ -33,7 +32,6 @@ function mapInvoice(row: InvoiceRow): Invoice {
     discountAmount: row.discount_amount,
     totalAmount: row.total_amount,
     currency: row.currency,
-    promoCode: row.promo_code ?? undefined,
     paymentMethodLast4: row.payment_method_last4 ?? undefined,
     status: row.status,
     createdAt: row.created_at,
@@ -66,7 +64,6 @@ export class SupabaseInvoiceRepository implements InvoiceRepository {
         discount_amount: input.discountAmount,
         total_amount: input.totalAmount,
         currency: input.currency,
-        promo_code: input.promoCode ?? null,
         payment_method_last4: input.paymentMethodLast4 ?? null,
         status: input.status,
       })

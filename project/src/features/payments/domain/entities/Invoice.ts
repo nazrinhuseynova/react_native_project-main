@@ -13,7 +13,6 @@ export interface Invoice {
   discountAmount: number;
   totalAmount: number;
   currency: CurrencyCode;
-  promoCode?: string;
   paymentMethodLast4?: string;
   status: InvoiceStatus;
   createdAt: string;

@@ -1,7 +1,7 @@
 import type { SecureStorage } from '@/core/storage/SecureStorage';
 import { storageKeys } from '@/core/storage/storageKeys';
 
-/** Biometrik giriş üçün refresh token yalnız SecureStore-da saxlanır. */
+
 export class BiometricCredentialStore {
   private readonly storage: SecureStorage;
 

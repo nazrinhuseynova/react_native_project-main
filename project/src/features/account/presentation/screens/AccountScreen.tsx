@@ -67,8 +67,6 @@ export function AccountScreen() {
           <Divider />
         </>
       ) : null}
-      <ListRow icon="phone-portrait-outline" title={t('account.sections.devices')} onPress={() => router.push('/account/devices')} />
-      <Divider />
       <ListRow icon="shield-checkmark-outline" title={t('account.sections.security')} onPress={() => router.push('/account/security')} />
       <Divider />
       <ListRow icon="people-outline" title={t('account.sections.parental')} onPress={() => router.push('/parental')} />

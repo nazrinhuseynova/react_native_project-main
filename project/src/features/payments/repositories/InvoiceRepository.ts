@@ -9,7 +9,6 @@ export interface CreateInvoiceInput {
   discountAmount: number;
   totalAmount: number;
   currency: Invoice['currency'];
-  promoCode?: string;
   paymentMethodLast4?: string;
   status: InvoiceStatus;
 }

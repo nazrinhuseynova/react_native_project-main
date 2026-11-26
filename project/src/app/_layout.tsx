@@ -82,7 +82,6 @@ function RootNavigator() {
       <Stack.Screen name="billing/checkout" />
       <Stack.Screen name="billing/payment-methods" />
       <Stack.Screen name="billing/history" />
-      <Stack.Screen name="billing/rent/[id]" />
       <Stack.Screen name="parental/index" />
       <Stack.Screen name="parental/blocked-titles" />
     </Stack>

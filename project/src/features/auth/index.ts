@@ -1,4 +1,3 @@
-// ── Route faylları üçün ekranlar ──
 export { ForgotPasswordScreen } from './presentation/screens/ForgotPasswordScreen';
 export { LoginScreen } from './presentation/screens/LoginScreen';
 export { RegisterScreen } from './presentation/screens/RegisterScreen';
@@ -15,7 +14,6 @@ export { useBiometricLogin } from './application/hooks/useBiometricLogin';
 
 export { normalizeEmail } from './domain/entities/AuthUser';
 export type { AuthUser } from './domain/entities/AuthUser';
-export type { Device } from './domain/entities/Device';
 export type { Session } from './domain/entities/Session';
 export type {
   AuthRepository,
@@ -23,7 +21,6 @@ export type {
   OtpPurpose,
   SignOutScope,
 } from './domain/repositories/AuthRepository';
-export type { DeviceRepository } from './domain/repositories/DeviceRepository';
 export type {
   AuthStrategy,
   AuthStrategyKind,
@@ -47,7 +44,6 @@ export { SignUp } from './domain/usecases/SignUp';
 export { VerifyOtp } from './domain/usecases/VerifyOtp';
 export { BiometricCredentialStore } from './data/BiometricCredentialStore';
 export { SupabaseAuthRepository } from './data/SupabaseAuthRepository';
-export { SupabaseDeviceRepository } from './data/SupabaseDeviceRepository';
 export { BiometricStrategy } from './data/strategies/BiometricStrategy';
 export { EmailOtpStrategy } from './data/strategies/EmailOtpStrategy';
 export { EmailPasswordStrategy } from './data/strategies/EmailPasswordStrategy';
